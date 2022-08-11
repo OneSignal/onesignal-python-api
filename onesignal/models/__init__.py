@@ -1,0 +1,64 @@
+# flake8: noqa
+
+# import all models into this package
+# if you have many models here with many references from one model to another this may
+# raise a RecursionError
+# to avoid this, import only the models that you directly need like:
+# from from onesignal.model.pet import Pet
+# or import this package, but before doing it, use:
+# import sys
+# sys.setrecursionlimit(n)
+
+from onesignal.model.app import App
+from onesignal.model.apps import Apps
+from onesignal.model.basic_notification import BasicNotification
+from onesignal.model.basic_notification_all_of import BasicNotificationAllOf
+from onesignal.model.basic_notification_all_of_android_background_layout import BasicNotificationAllOfAndroidBackgroundLayout
+from onesignal.model.button import Button
+from onesignal.model.buttons import Buttons
+from onesignal.model.cancel_notification_success_response import CancelNotificationSuccessResponse
+from onesignal.model.create_notification_bad_request_response import CreateNotificationBadRequestResponse
+from onesignal.model.create_notification_success_response import CreateNotificationSuccessResponse
+from onesignal.model.create_player_success_response import CreatePlayerSuccessResponse
+from onesignal.model.create_segment_bad_request_response import CreateSegmentBadRequestResponse
+from onesignal.model.create_segment_conflict_response import CreateSegmentConflictResponse
+from onesignal.model.create_segment_success_response import CreateSegmentSuccessResponse
+from onesignal.model.delete_player_bad_request_response import DeletePlayerBadRequestResponse
+from onesignal.model.delete_player_not_found_response import DeletePlayerNotFoundResponse
+from onesignal.model.delete_player_success_response import DeletePlayerSuccessResponse
+from onesignal.model.delete_segment_bad_request_response import DeleteSegmentBadRequestResponse
+from onesignal.model.delete_segment_not_found_response import DeleteSegmentNotFoundResponse
+from onesignal.model.delete_segment_success_response import DeleteSegmentSuccessResponse
+from onesignal.model.delivery_data import DeliveryData
+from onesignal.model.export_players_request_body import ExportPlayersRequestBody
+from onesignal.model.export_players_success_response import ExportPlayersSuccessResponse
+from onesignal.model.filter import Filter
+from onesignal.model.filter_expressions import FilterExpressions
+from onesignal.model.filter_notification_target import FilterNotificationTarget
+from onesignal.model.get_notification_request_body import GetNotificationRequestBody
+from onesignal.model.invalid_identifier_error import InvalidIdentifierError
+from onesignal.model.no_subscribers_error import NoSubscribersError
+from onesignal.model.notification import Notification
+from onesignal.model.notification200_errors import Notification200Errors
+from onesignal.model.notification_all_of import NotificationAllOf
+from onesignal.model.notification_history_bad_request_response import NotificationHistoryBadRequestResponse
+from onesignal.model.notification_history_success_response import NotificationHistorySuccessResponse
+from onesignal.model.notification_slice import NotificationSlice
+from onesignal.model.notification_target import NotificationTarget
+from onesignal.model.notification_with_meta import NotificationWithMeta
+from onesignal.model.notification_with_meta_all_of import NotificationWithMetaAllOf
+from onesignal.model.operator import Operator
+from onesignal.model.outcome_data import OutcomeData
+from onesignal.model.outcomes_data import OutcomesData
+from onesignal.model.platform_delivery_data import PlatformDeliveryData
+from onesignal.model.player import Player
+from onesignal.model.player_notification_target import PlayerNotificationTarget
+from onesignal.model.player_slice import PlayerSlice
+from onesignal.model.players import Players
+from onesignal.model.purchase import Purchase
+from onesignal.model.segment import Segment
+from onesignal.model.segment_notification_target import SegmentNotificationTarget
+from onesignal.model.string_map import StringMap
+from onesignal.model.update_player_success_response import UpdatePlayerSuccessResponse
+from onesignal.model.update_player_tags_request_body import UpdatePlayerTagsRequestBody
+from onesignal.model.update_player_tags_success_response import UpdatePlayerTagsSuccessResponse
