@@ -30,8 +30,11 @@ Python >=3.6
 
 ## Installation & Usage
 ### pip install
+```sh
+pip install onesignal-python-api
+```
 
-If the python package is hosted on a repository, you can install directly using:
+You can also install directly from GitHub using:
 
 ```sh
 pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git
@@ -148,6 +151,8 @@ Class | Method | HTTP request | Description
  - [OutcomeData](docs/OutcomeData.md)
  - [OutcomesData](docs/OutcomesData.md)
  - [PlatformDeliveryData](docs/PlatformDeliveryData.md)
+ - [PlatformDeliveryDataEmailAllOf](docs/PlatformDeliveryDataEmailAllOf.md)
+ - [PlatformDeliveryDataSmsAllOf](docs/PlatformDeliveryDataSmsAllOf.md)
  - [Player](docs/Player.md)
  - [PlayerNotificationTarget](docs/PlayerNotificationTarget.md)
  - [PlayerSlice](docs/PlayerSlice.md)
