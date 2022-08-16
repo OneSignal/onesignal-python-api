@@ -51,6 +51,8 @@ from onesignal.model.operator import Operator
 from onesignal.model.outcome_data import OutcomeData
 from onesignal.model.outcomes_data import OutcomesData
 from onesignal.model.platform_delivery_data import PlatformDeliveryData
+from onesignal.model.platform_delivery_data_email_all_of import PlatformDeliveryDataEmailAllOf
+from onesignal.model.platform_delivery_data_sms_all_of import PlatformDeliveryDataSmsAllOf
 from onesignal.model.player import Player
 from onesignal.model.player_notification_target import PlayerNotificationTarget
 from onesignal.model.player_slice import PlayerSlice

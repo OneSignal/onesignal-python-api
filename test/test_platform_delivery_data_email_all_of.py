@@ -13,17 +13,11 @@ import sys
 import unittest
 
 import onesignal
-from onesignal.model.delivery_data import DeliveryData
 from onesignal.model.platform_delivery_data_email_all_of import PlatformDeliveryDataEmailAllOf
-from onesignal.model.platform_delivery_data_sms_all_of import PlatformDeliveryDataSmsAllOf
-globals()['DeliveryData'] = DeliveryData
-globals()['PlatformDeliveryDataEmailAllOf'] = PlatformDeliveryDataEmailAllOf
-globals()['PlatformDeliveryDataSmsAllOf'] = PlatformDeliveryDataSmsAllOf
-from onesignal.model.platform_delivery_data import PlatformDeliveryData
 
 
-class TestPlatformDeliveryData(unittest.TestCase):
-    """PlatformDeliveryData unit test stubs"""
+class TestPlatformDeliveryDataEmailAllOf(unittest.TestCase):
+    """PlatformDeliveryDataEmailAllOf unit test stubs"""
 
     def setUp(self):
         pass
@@ -31,10 +25,10 @@ class TestPlatformDeliveryData(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testPlatformDeliveryData(self):
-        """Test PlatformDeliveryData"""
+    def testPlatformDeliveryDataEmailAllOf(self):
+        """Test PlatformDeliveryDataEmailAllOf"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = PlatformDeliveryData()  # noqa: E501
+        # model = PlatformDeliveryDataEmailAllOf()  # noqa: E501
         pass
 
 

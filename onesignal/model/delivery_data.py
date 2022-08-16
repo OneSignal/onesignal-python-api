@@ -143,11 +143,11 @@ class DeliveryData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            successful (int, none_type): [optional]  # noqa: E501
-            failed (int, none_type): [optional]  # noqa: E501
-            errored (int, none_type): [optional]  # noqa: E501
-            converted (int, none_type): [optional]  # noqa: E501
-            received (int, none_type): [optional]  # noqa: E501
+            successful (int, none_type): Number of messages delivered to push servers, mobile carriers, or email service providers.. [optional]  # noqa: E501
+            failed (int, none_type): Number of messages sent to unsubscribed devices.. [optional]  # noqa: E501
+            errored (int, none_type): Number of errors reported.. [optional]  # noqa: E501
+            converted (int, none_type): Number of messages that were clicked.. [optional]  # noqa: E501
+            received (int, none_type): Number of devices that received the message.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -233,11 +233,11 @@ class DeliveryData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            successful (int, none_type): [optional]  # noqa: E501
-            failed (int, none_type): [optional]  # noqa: E501
-            errored (int, none_type): [optional]  # noqa: E501
-            converted (int, none_type): [optional]  # noqa: E501
-            received (int, none_type): [optional]  # noqa: E501
+            successful (int, none_type): Number of messages delivered to push servers, mobile carriers, or email service providers.. [optional]  # noqa: E501
+            failed (int, none_type): Number of messages sent to unsubscribed devices.. [optional]  # noqa: E501
+            errored (int, none_type): Number of errors reported.. [optional]  # noqa: E501
+            converted (int, none_type): Number of messages that were clicked.. [optional]  # noqa: E501
+            received (int, none_type): Number of devices that received the message.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
