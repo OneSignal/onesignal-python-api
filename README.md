@@ -59,8 +59,12 @@ Please follow the [installation procedure](#installation--usage) and then run th
 
 ```python
 import onesignal
+from onesignal.api import default_api
 
 # See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require USER_KEY bearer token for authorization as long as others require APP_KEY
+# (also knows as REST_API_KEY). We recommend adding both of them in the configuration page so that you will not need
+# to figure it yourself.
 configuration = onesignal.Configuration(
     app_key = "YOUR_APP_KEY",
     user_key = "YOUR_USER_KEY"
