@@ -141,7 +141,7 @@ class ExportPlayersRequestBody(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             extra_fields ([str]): Additional fields that you wish to include. Currently supports location, country, rooted, notification_types, ip, external_user_id, web_auth, and web_p256.. [optional]  # noqa: E501
             last_active_since (str): Export all devices with a last_active timestamp greater than this time.  Unixtime in seconds.. [optional]  # noqa: E501
-            segment_name (str): Export al ldevices belonging to the segment.. [optional]  # noqa: E501
+            segment_name (str): Export all devices belonging to the segment.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -229,7 +229,7 @@ class ExportPlayersRequestBody(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             extra_fields ([str]): Additional fields that you wish to include. Currently supports location, country, rooted, notification_types, ip, external_user_id, web_auth, and web_p256.. [optional]  # noqa: E501
             last_active_since (str): Export all devices with a last_active timestamp greater than this time.  Unixtime in seconds.. [optional]  # noqa: E501
-            segment_name (str): Export al ldevices belonging to the segment.. [optional]  # noqa: E501
+            segment_name (str): Export all devices belonging to the segment.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

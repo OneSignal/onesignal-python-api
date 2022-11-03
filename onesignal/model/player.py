@@ -82,8 +82,8 @@ class Player(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'id': (str,),  # noqa: E501
             'device_type': (int,),  # noqa: E501
+            'id': (str,),  # noqa: E501
             'invalid_identifier': (bool,),  # noqa: E501
             'app_id': (str,),  # noqa: E501
             'external_user_id': (str, none_type,),  # noqa: E501
@@ -117,8 +117,8 @@ class Player(ModelNormal):
 
 
     attribute_map = {
-        'id': 'id',  # noqa: E501
         'device_type': 'device_type',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'invalid_identifier': 'invalid_identifier',  # noqa: E501
         'app_id': 'app_id',  # noqa: E501
         'external_user_id': 'external_user_id',  # noqa: E501
@@ -155,11 +155,10 @@ class Player(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, id, device_type, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, device_type, *args, **kwargs):  # noqa: E501
         """Player - a model defined in OpenAPI
 
         Args:
-            id (str): The device's OneSignal ID
             device_type (int): Required The device's platform:   0 = iOS   1 = Android   2 = Amazon   3 = WindowsPhone (MPNS)   4 = Chrome Apps / Extensions   5 = Chrome Web Push   6 = Windows (WNS)   7 = Safari   8 = Firefox   9 = MacOS   10 = Alexa   11 = Email   13 = For Huawei App Gallery Builds SDK Setup. Not for Huawei Devices using FCM   14 = SMS 
 
         Keyword Args:
@@ -193,6 +192,7 @@ class Player(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            id (str): The device's OneSignal ID. [optional]  # noqa: E501
             invalid_identifier (bool): If true, this is the equivalent of a user being Unsubscribed. [optional]  # noqa: E501
             app_id (str): [optional]  # noqa: E501
             external_user_id (str, none_type): a custom user ID. [optional]  # noqa: E501
@@ -249,7 +249,6 @@ class Player(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.id = id
         self.device_type = device_type
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
@@ -274,6 +273,7 @@ class Player(ModelNormal):
     def __init__(self, device_type, *args, **kwargs):  # noqa: E501
         """Player - a model defined in OpenAPI
 
+        Args:
             device_type (int): Required The device's platform:   0 = iOS   1 = Android   2 = Amazon   3 = WindowsPhone (MPNS)   4 = Chrome Apps / Extensions   5 = Chrome Web Push   6 = Windows (WNS)   7 = Safari   8 = Firefox   9 = MacOS   10 = Alexa   11 = Email   13 = For Huawei App Gallery Builds SDK Setup. Not for Huawei Devices using FCM   14 = SMS 
 
         Keyword Args:
@@ -307,6 +307,7 @@ class Player(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            id (str): The device's OneSignal ID. [optional]  # noqa: E501
             invalid_identifier (bool): If true, this is the equivalent of a user being Unsubscribed. [optional]  # noqa: E501
             app_id (str): [optional]  # noqa: E501
             external_user_id (str, none_type): a custom user ID. [optional]  # noqa: E501
