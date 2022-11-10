@@ -16,11 +16,13 @@ import onesignal
 from onesignal.model.basic_notification import BasicNotification
 from onesignal.model.basic_notification_all_of_android_background_layout import BasicNotificationAllOfAndroidBackgroundLayout
 from onesignal.model.button import Button
+from onesignal.model.filter import Filter
 from onesignal.model.notification_all_of import NotificationAllOf
 from onesignal.model.string_map import StringMap
 globals()['BasicNotification'] = BasicNotification
 globals()['BasicNotificationAllOfAndroidBackgroundLayout'] = BasicNotificationAllOfAndroidBackgroundLayout
 globals()['Button'] = Button
+globals()['Filter'] = Filter
 globals()['NotificationAllOf'] = NotificationAllOf
 globals()['StringMap'] = StringMap
 from onesignal.model.notification import Notification

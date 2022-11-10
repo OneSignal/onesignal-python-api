@@ -164,7 +164,7 @@ class FilterExpressions(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             key (str): If `field` is `tag`, this field is *required* to specify `key` inside the tags.. [optional]  # noqa: E501
-            value (str): Constant value to use as the second operand in the filter expression.  This value is *required* when the relation operator is a binary operator.. [optional]  # noqa: E501
+            value (str): Constant value to use as the second operand in the filter expression. This value is *required* when the relation operator is a binary operator.. [optional]  # noqa: E501
             operator (str): Strictly, this must be either `\"OR\"`, or `\"AND\"`.  It can be used to compose Filters as part of a Filters object.. [optional]  # noqa: E501
             field (str): Name of the field to use as the first operand in the filter expression.. [optional]  # noqa: E501
             relation (str): Operator of a filter expression.. [optional]  # noqa: E501
@@ -272,7 +272,7 @@ class FilterExpressions(ModelComposed):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             key (str): If `field` is `tag`, this field is *required* to specify `key` inside the tags.. [optional]  # noqa: E501
-            value (str): Constant value to use as the second operand in the filter expression.  This value is *required* when the relation operator is a binary operator.. [optional]  # noqa: E501
+            value (str): Constant value to use as the second operand in the filter expression. This value is *required* when the relation operator is a binary operator.. [optional]  # noqa: E501
             operator (str): Strictly, this must be either `\"OR\"`, or `\"AND\"`.  It can be used to compose Filters as part of a Filters object.. [optional]  # noqa: E501
             field (str): Name of the field to use as the first operand in the filter expression.. [optional]  # noqa: E501
             relation (str): Operator of a filter expression.. [optional]  # noqa: E501

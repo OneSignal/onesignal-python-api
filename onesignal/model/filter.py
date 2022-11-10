@@ -156,7 +156,7 @@ class Filter(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             key (str): If `field` is `tag`, this field is *required* to specify `key` inside the tags.. [optional]  # noqa: E501
-            value (str): Constant value to use as the second operand in the filter expression.  This value is *required* when the relation operator is a binary operator.. [optional]  # noqa: E501
+            value (str): Constant value to use as the second operand in the filter expression. This value is *required* when the relation operator is a binary operator.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -249,7 +249,7 @@ class Filter(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             key (str): If `field` is `tag`, this field is *required* to specify `key` inside the tags.. [optional]  # noqa: E501
-            value (str): Constant value to use as the second operand in the filter expression.  This value is *required* when the relation operator is a binary operator.. [optional]  # noqa: E501
+            value (str): Constant value to use as the second operand in the filter expression. This value is *required* when the relation operator is a binary operator.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

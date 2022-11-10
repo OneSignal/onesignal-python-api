@@ -33,9 +33,11 @@ from onesignal.exceptions import ApiAttributeError
 def lazy_import():
     from onesignal.model.basic_notification_all_of_android_background_layout import BasicNotificationAllOfAndroidBackgroundLayout
     from onesignal.model.button import Button
+    from onesignal.model.filter import Filter
     from onesignal.model.string_map import StringMap
     globals()['BasicNotificationAllOfAndroidBackgroundLayout'] = BasicNotificationAllOfAndroidBackgroundLayout
     globals()['Button'] = Button
+    globals()['Filter'] = Filter
     globals()['StringMap'] = StringMap
 
 
@@ -184,6 +186,7 @@ class BasicNotificationAllOf(ModelNormal):
             'email_from_address': (str, none_type,),  # noqa: E501
             'sms_from': (str, none_type,),  # noqa: E501
             'sms_media_urls': ([str], none_type,),  # noqa: E501
+            'filters': ([Filter], none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -280,6 +283,7 @@ class BasicNotificationAllOf(ModelNormal):
         'email_from_address': 'email_from_address',  # noqa: E501
         'sms_from': 'sms_from',  # noqa: E501
         'sms_media_urls': 'sms_media_urls',  # noqa: E501
+        'filters': 'filters',  # noqa: E501
     }
 
     read_only_vars = {
@@ -413,6 +417,7 @@ class BasicNotificationAllOf(ModelNormal):
             email_from_address (str, none_type): Channel: Email The email address the email is from. If not specified, will default to \"from email\" set in the OneSignal Dashboard Email Settings. . [optional]  # noqa: E501
             sms_from (str, none_type): Channel: SMS Phone Number used to send SMS. Should be a registered Twilio phone number in E.164 format. . [optional]  # noqa: E501
             sms_media_urls ([str], none_type): Channel: SMS URLs for the media files to be attached to the SMS content. Limit: 10 media urls with a total max. size of 5MBs. . [optional]  # noqa: E501
+            filters ([Filter], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -586,6 +591,7 @@ class BasicNotificationAllOf(ModelNormal):
             email_from_address (str, none_type): Channel: Email The email address the email is from. If not specified, will default to \"from email\" set in the OneSignal Dashboard Email Settings. . [optional]  # noqa: E501
             sms_from (str, none_type): Channel: SMS Phone Number used to send SMS. Should be a registered Twilio phone number in E.164 format. . [optional]  # noqa: E501
             sms_media_urls ([str], none_type): Channel: SMS URLs for the media files to be attached to the SMS content. Limit: 10 media urls with a total max. size of 5MBs. . [optional]  # noqa: E501
+            filters ([Filter], none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
