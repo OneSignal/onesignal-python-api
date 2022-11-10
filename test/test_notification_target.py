@@ -13,10 +13,8 @@ import sys
 import unittest
 
 import onesignal
-from onesignal.model.filter_notification_target import FilterNotificationTarget
 from onesignal.model.player_notification_target import PlayerNotificationTarget
 from onesignal.model.segment_notification_target import SegmentNotificationTarget
-globals()['FilterNotificationTarget'] = FilterNotificationTarget
 globals()['PlayerNotificationTarget'] = PlayerNotificationTarget
 globals()['SegmentNotificationTarget'] = SegmentNotificationTarget
 from onesignal.model.notification_target import NotificationTarget

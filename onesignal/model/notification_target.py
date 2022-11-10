@@ -31,10 +31,8 @@ from onesignal.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from onesignal.model.filter_notification_target import FilterNotificationTarget
     from onesignal.model.player_notification_target import PlayerNotificationTarget
     from onesignal.model.segment_notification_target import SegmentNotificationTarget
-    globals()['FilterNotificationTarget'] = FilterNotificationTarget
     globals()['PlayerNotificationTarget'] = PlayerNotificationTarget
     globals()['SegmentNotificationTarget'] = SegmentNotificationTarget
 
@@ -94,18 +92,6 @@ class NotificationTarget(ModelComposed):
         return {
             'included_segments': ([str],),  # noqa: E501
             'excluded_segments': ([str],),  # noqa: E501
-            'last_session': (str,),  # noqa: E501
-            'first_session': (str,),  # noqa: E501
-            'session_count': (str,),  # noqa: E501
-            'session_time': (str,),  # noqa: E501
-            'amount_spent': (str,),  # noqa: E501
-            'bought_sku': (str,),  # noqa: E501
-            'tag': (str,),  # noqa: E501
-            'language': (str,),  # noqa: E501
-            'app_version': (str,),  # noqa: E501
-            'location': (str,),  # noqa: E501
-            'email': (str,),  # noqa: E501
-            'country': (str,),  # noqa: E501
             'include_player_ids': ([str], none_type,),  # noqa: E501
             'include_external_user_ids': ([str], none_type,),  # noqa: E501
             'include_email_tokens': ([str],),  # noqa: E501
@@ -126,18 +112,6 @@ class NotificationTarget(ModelComposed):
     attribute_map = {
         'included_segments': 'included_segments',  # noqa: E501
         'excluded_segments': 'excluded_segments',  # noqa: E501
-        'last_session': 'last_session',  # noqa: E501
-        'first_session': 'first_session',  # noqa: E501
-        'session_count': 'session_count',  # noqa: E501
-        'session_time': 'session_time',  # noqa: E501
-        'amount_spent': 'amount_spent',  # noqa: E501
-        'bought_sku': 'bought_sku',  # noqa: E501
-        'tag': 'tag',  # noqa: E501
-        'language': 'language',  # noqa: E501
-        'app_version': 'app_version',  # noqa: E501
-        'location': 'location',  # noqa: E501
-        'email': 'email',  # noqa: E501
-        'country': 'country',  # noqa: E501
         'include_player_ids': 'include_player_ids',  # noqa: E501
         'include_external_user_ids': 'include_external_user_ids',  # noqa: E501
         'include_email_tokens': 'include_email_tokens',  # noqa: E501
@@ -191,18 +165,6 @@ class NotificationTarget(ModelComposed):
                                 _visited_composed_classes = (Animal,)
             included_segments ([str]): The segment names you want to target. Users in these segments will receive a notification. This targeting parameter is only compatible with excluded_segments. Example: [\"Active Users\", \"Inactive Users\"] . [optional]  # noqa: E501
             excluded_segments ([str]): Segment that will be excluded when sending. Users in these segments will not receive a notification, even if they were included in included_segments. This targeting parameter is only compatible with included_segments. Example: [\"Active Users\", \"Inactive Users\"] . [optional]  # noqa: E501
-            last_session (str): relation = \">\" or \"<\" hours_ago = number of hours before or after the users last session. Example: \"1.1\" . [optional]  # noqa: E501
-            first_session (str): relation = \">\" or \"<\" hours_ago = number of hours before or after the users first session. Example: \"1.1\" . [optional]  # noqa: E501
-            session_count (str): relation = \">\", \"<\", \"=\" or \"!=\" value = number sessions. Example: \"1\" . [optional]  # noqa: E501
-            session_time (str): relation = \">\", \"<\", \"=\" or \"!=\" value = Time in seconds the user has been in your app. Example: \"3600\" . [optional]  # noqa: E501
-            amount_spent (str): relation = \">\", \"<\", or \"=\" value = Amount in USD a user has spent on IAP (In App Purchases). Example: \"0.99\" . [optional]  # noqa: E501
-            bought_sku (str): relation = \">\", \"<\" or \"=\" key = SKU purchased in your app as an IAP (In App Purchases). Example: \"com.domain.100coinpack\" value = value of SKU to compare to. Example: \"0.99\" . [optional]  # noqa: E501
-            tag (str): relation = \">\", \"<\", \"=\", \"!=\", \"exists\", \"not_exists\", \"time_elapsed_gt\" (paid plan only) or \"time_elapsed_lt\" (paid plan only) See Time Operators key = Tag key to compare. value = Tag value to compare. Not required for \"exists\" or \"not_exists\". Example: See Formatting Filters . [optional]  # noqa: E501
-            language (str): relation = \"=\" or \"!=\" value = 2 character language code. Example: \"en\". For a list of all language codes see Language & Localization. . [optional]  # noqa: E501
-            app_version (str): relation = \">\", \"<\", \"=\" or \"!=\" value = app version. Example: \"1.0.0\" . [optional]  # noqa: E501
-            location (str): radius = in meters lat = latitude long = longitude . [optional]  # noqa: E501
-            email (str): value = email address Only for sending Push Notifications Use this for targeting push subscribers associated with an email set with all SDK setEmail methods To send emails to specific email addresses use include_email_tokens parameter . [optional]  # noqa: E501
-            country (str): relation = \"=\" value = 2-digit Country code Example: \"field\": \"country\", \"relation\": \"=\", \"value\", \"US\" . [optional]  # noqa: E501
             include_player_ids ([str], none_type): Specific playerids to send your notification to. _Does not require API Auth Key. Do not combine with other targeting parameters. Not compatible with any other targeting parameters. Example: [\"1dd608f2-c6a1-11e3-851d-000c2940e62c\"] Limit of 2,000 entries per REST API call . [optional]  # noqa: E501
             include_external_user_ids ([str], none_type): Target specific devices by custom user IDs assigned via API. Not compatible with any other targeting parameters Example: [\"custom-id-assigned-by-api\"] REQUIRED: REST API Key Authentication Limit of 2,000 entries per REST API call. Note: If targeting push, email, or sms subscribers with same ids, use with channel_for_external_user_ids to indicate you are sending a push or email or sms. . [optional]  # noqa: E501
             include_email_tokens ([str]): Recommended for Sending Emails - Target specific email addresses. If an email does not correspond to an existing user, a new user will be created. Example: nick@catfac.ts Limit of 2,000 entries per REST API call . [optional]  # noqa: E501
@@ -318,18 +280,6 @@ class NotificationTarget(ModelComposed):
                                 _visited_composed_classes = (Animal,)
             included_segments ([str]): The segment names you want to target. Users in these segments will receive a notification. This targeting parameter is only compatible with excluded_segments. Example: [\"Active Users\", \"Inactive Users\"] . [optional]  # noqa: E501
             excluded_segments ([str]): Segment that will be excluded when sending. Users in these segments will not receive a notification, even if they were included in included_segments. This targeting parameter is only compatible with included_segments. Example: [\"Active Users\", \"Inactive Users\"] . [optional]  # noqa: E501
-            last_session (str): relation = \">\" or \"<\" hours_ago = number of hours before or after the users last session. Example: \"1.1\" . [optional]  # noqa: E501
-            first_session (str): relation = \">\" or \"<\" hours_ago = number of hours before or after the users first session. Example: \"1.1\" . [optional]  # noqa: E501
-            session_count (str): relation = \">\", \"<\", \"=\" or \"!=\" value = number sessions. Example: \"1\" . [optional]  # noqa: E501
-            session_time (str): relation = \">\", \"<\", \"=\" or \"!=\" value = Time in seconds the user has been in your app. Example: \"3600\" . [optional]  # noqa: E501
-            amount_spent (str): relation = \">\", \"<\", or \"=\" value = Amount in USD a user has spent on IAP (In App Purchases). Example: \"0.99\" . [optional]  # noqa: E501
-            bought_sku (str): relation = \">\", \"<\" or \"=\" key = SKU purchased in your app as an IAP (In App Purchases). Example: \"com.domain.100coinpack\" value = value of SKU to compare to. Example: \"0.99\" . [optional]  # noqa: E501
-            tag (str): relation = \">\", \"<\", \"=\", \"!=\", \"exists\", \"not_exists\", \"time_elapsed_gt\" (paid plan only) or \"time_elapsed_lt\" (paid plan only) See Time Operators key = Tag key to compare. value = Tag value to compare. Not required for \"exists\" or \"not_exists\". Example: See Formatting Filters . [optional]  # noqa: E501
-            language (str): relation = \"=\" or \"!=\" value = 2 character language code. Example: \"en\". For a list of all language codes see Language & Localization. . [optional]  # noqa: E501
-            app_version (str): relation = \">\", \"<\", \"=\" or \"!=\" value = app version. Example: \"1.0.0\" . [optional]  # noqa: E501
-            location (str): radius = in meters lat = latitude long = longitude . [optional]  # noqa: E501
-            email (str): value = email address Only for sending Push Notifications Use this for targeting push subscribers associated with an email set with all SDK setEmail methods To send emails to specific email addresses use include_email_tokens parameter . [optional]  # noqa: E501
-            country (str): relation = \"=\" value = 2-digit Country code Example: \"field\": \"country\", \"relation\": \"=\", \"value\", \"US\" . [optional]  # noqa: E501
             include_player_ids ([str], none_type): Specific playerids to send your notification to. _Does not require API Auth Key. Do not combine with other targeting parameters. Not compatible with any other targeting parameters. Example: [\"1dd608f2-c6a1-11e3-851d-000c2940e62c\"] Limit of 2,000 entries per REST API call . [optional]  # noqa: E501
             include_external_user_ids ([str], none_type): Target specific devices by custom user IDs assigned via API. Not compatible with any other targeting parameters Example: [\"custom-id-assigned-by-api\"] REQUIRED: REST API Key Authentication Limit of 2,000 entries per REST API call. Note: If targeting push, email, or sms subscribers with same ids, use with channel_for_external_user_ids to indicate you are sending a push or email or sms. . [optional]  # noqa: E501
             include_email_tokens ([str]): Recommended for Sending Emails - Target specific email addresses. If an email does not correspond to an existing user, a new user will be created. Example: nick@catfac.ts Limit of 2,000 entries per REST API call . [optional]  # noqa: E501
@@ -407,7 +357,6 @@ class NotificationTarget(ModelComposed):
         lazy_import()
         return {
           'anyOf': [
-              FilterNotificationTarget,
               PlayerNotificationTarget,
               SegmentNotificationTarget,
           ],

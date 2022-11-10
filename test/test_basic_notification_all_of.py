@@ -15,9 +15,11 @@ import unittest
 import onesignal
 from onesignal.model.basic_notification_all_of_android_background_layout import BasicNotificationAllOfAndroidBackgroundLayout
 from onesignal.model.button import Button
+from onesignal.model.filter import Filter
 from onesignal.model.string_map import StringMap
 globals()['BasicNotificationAllOfAndroidBackgroundLayout'] = BasicNotificationAllOfAndroidBackgroundLayout
 globals()['Button'] = Button
+globals()['Filter'] = Filter
 globals()['StringMap'] = StringMap
 from onesignal.model.basic_notification_all_of import BasicNotificationAllOf
 

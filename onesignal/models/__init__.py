@@ -34,7 +34,6 @@ from onesignal.model.export_players_request_body import ExportPlayersRequestBody
 from onesignal.model.export_players_success_response import ExportPlayersSuccessResponse
 from onesignal.model.filter import Filter
 from onesignal.model.filter_expressions import FilterExpressions
-from onesignal.model.filter_notification_target import FilterNotificationTarget
 from onesignal.model.get_notification_request_body import GetNotificationRequestBody
 from onesignal.model.invalid_identifier_error import InvalidIdentifierError
 from onesignal.model.no_subscribers_error import NoSubscribersError

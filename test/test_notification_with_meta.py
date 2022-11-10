@@ -17,6 +17,7 @@ from onesignal.model.basic_notification import BasicNotification
 from onesignal.model.basic_notification_all_of_android_background_layout import BasicNotificationAllOfAndroidBackgroundLayout
 from onesignal.model.button import Button
 from onesignal.model.delivery_data import DeliveryData
+from onesignal.model.filter import Filter
 from onesignal.model.notification_with_meta_all_of import NotificationWithMetaAllOf
 from onesignal.model.outcome_data import OutcomeData
 from onesignal.model.outcomes_data import OutcomesData
@@ -26,6 +27,7 @@ globals()['BasicNotification'] = BasicNotification
 globals()['BasicNotificationAllOfAndroidBackgroundLayout'] = BasicNotificationAllOfAndroidBackgroundLayout
 globals()['Button'] = Button
 globals()['DeliveryData'] = DeliveryData
+globals()['Filter'] = Filter
 globals()['NotificationWithMetaAllOf'] = NotificationWithMetaAllOf
 globals()['OutcomeData'] = OutcomeData
 globals()['OutcomesData'] = OutcomesData
