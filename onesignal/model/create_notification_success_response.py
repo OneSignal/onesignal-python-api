@@ -90,7 +90,7 @@ class CreateNotificationSuccessResponse(ModelNormal):
         return {
             'id': (str,),  # noqa: E501
             'recipients': (int,),  # noqa: E501
-            'external_id': (str,),  # noqa: E501
+            'external_id': (str, none_type,),  # noqa: E501
             'errors': (Notification200Errors,),  # noqa: E501
         }
 
@@ -151,7 +151,7 @@ class CreateNotificationSuccessResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            external_id (str): [optional]  # noqa: E501
+            external_id (str, none_type): [optional]  # noqa: E501
             errors (Notification200Errors): [optional]  # noqa: E501
         """
 
@@ -244,7 +244,7 @@ class CreateNotificationSuccessResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            external_id (str): [optional]  # noqa: E501
+            external_id (str, none_type): [optional]  # noqa: E501
             errors (Notification200Errors): [optional]  # noqa: E501
         """
 
