@@ -17,7 +17,7 @@
 A powerful way to send personalized messages at scale and build effective customer engagement strategies. Learn more at onesignal.com
 
 - API version: 1.0.1
-- Package version: 1.0.0
+- Package version: 1.0.1
 - Build package: org.openapitools.codegen.languages.PythonClientCodegen
 
 ## Requirements.
