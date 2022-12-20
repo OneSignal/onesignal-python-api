@@ -4,6 +4,7 @@ All URIs are relative to *https://onesignal.com/api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**begin_live_activity**](DefaultApi.md#begin_live_activity) | **POST** /apps/{app_id}/live_activities/{activity_id}/token | Start Live Activity
 [**cancel_notification**](DefaultApi.md#cancel_notification) | **DELETE** /notifications/{notification_id} | Stop a scheduled or currently outgoing notification
 [**create_app**](DefaultApi.md#create_app) | **POST** /apps | Create an app
 [**create_notification**](DefaultApi.md#create_notification) | **POST** /notifications | Create notification
@@ -11,6 +12,7 @@ Method | HTTP request | Description
 [**create_segments**](DefaultApi.md#create_segments) | **POST** /apps/{app_id}/segments | Create Segments
 [**delete_player**](DefaultApi.md#delete_player) | **DELETE** /players/{player_id} | Delete a user record
 [**delete_segments**](DefaultApi.md#delete_segments) | **DELETE** /apps/{app_id}/segments/{segment_id} | Delete Segments
+[**end_live_activity**](DefaultApi.md#end_live_activity) | **DELETE** /apps/{app_id}/live_activities/{activity_id}/token/{subscription_id} | Stop Live Activity
 [**export_players**](DefaultApi.md#export_players) | **POST** /players/csv_export?app_id&#x3D;{app_id} | CSV export
 [**get_app**](DefaultApi.md#get_app) | **GET** /apps/{app_id} | View an app
 [**get_apps**](DefaultApi.md#get_apps) | **GET** /apps | View apps
@@ -21,9 +23,79 @@ Method | HTTP request | Description
 [**get_player**](DefaultApi.md#get_player) | **GET** /players/{player_id} | View device
 [**get_players**](DefaultApi.md#get_players) | **GET** /players | View devices
 [**update_app**](DefaultApi.md#update_app) | **PUT** /apps/{app_id} | Update an app
+[**update_live_activity**](DefaultApi.md#update_live_activity) | **POST** /apps/{app_id}/live_activities/{activity_id}/notifications | Update a Live Activity via Push
 [**update_player**](DefaultApi.md#update_player) | **PUT** /players/{player_id} | Edit device
 [**update_player_tags**](DefaultApi.md#update_player_tags) | **PUT** /apps/{app_id}/users/{external_user_id} | Edit tags with external user id
 
+
+# **begin_live_activity**
+> begin_live_activity(app_id, activity_id, begin_live_activity_request)
+
+Start Live Activity
+
+Starts a Live Activity
+
+### Example
+
+* Bearer Authentication (app_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.begin_live_activity_request import BeginLiveActivityRequest
+from onesignal.model.bad_request_error import BadRequestError
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "app_id_example" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    activity_id = "activity_id_example" # Live Activity record ID 
+    begin_live_activity_request = BeginLiveActivityRequest(
+        push_token="push_token_example",
+        subscription_id="subscription_id_example",
+    ) 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Start Live Activity
+        api_instance.begin_live_activity(app_id, activity_id, begin_live_activity_request)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->begin_live_activity: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| The OneSignal App ID for your app.  Available in Keys &amp; IDs. |
+ **activity_id** | **str**| Live Activity record ID |
+ **begin_live_activity_request** | [**BeginLiveActivityRequest**](BeginLiveActivityRequest.md)|  |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[app_key](../README.md#app_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **cancel_notification**
 > CancelNotificationSuccessResponse cancel_notification(app_id, notification_id)
@@ -40,6 +112,7 @@ Used to stop a scheduled or currently outgoing notification
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.cancel_notification_success_response import CancelNotificationSuccessResponse
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -85,6 +158,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -103,6 +177,7 @@ Creates a new OneSignal app
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.app import App
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -122,6 +197,10 @@ with onesignal.ApiClient(configuration) as api_client:
         apns_p12_password="apns_p12_password_example",
         safari_apns_p12="safari_apns_p12_example",
         safari_apns_p12_password="safari_apns_p12_password_example",
+        apns_key_id="apns_key_id_example",
+        apns_team_id="apns_team_id_example",
+        apns_bundle_id="apns_bundle_id_example",
+        apns_p8="apns_p8_example",
         safari_site_origin="safari_site_origin_example",
         safari_icon_256_256="safari_icon_256_256_example",
         site_name="site_name_example",
@@ -164,6 +243,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -183,7 +263,7 @@ import onesignal
 from onesignal.api import default_api
 from onesignal.model.notification import Notification
 from onesignal.model.create_notification_success_response import CreateNotificationSuccessResponse
-from onesignal.model.create_notification_bad_request_response import CreateNotificationBadRequestResponse
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -247,6 +327,7 @@ import onesignal
 from onesignal.api import default_api
 from onesignal.model.player import Player
 from onesignal.model.create_player_success_response import CreatePlayerSuccessResponse
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -316,6 +397,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -336,7 +418,7 @@ from onesignal.api import default_api
 from onesignal.model.create_segment_success_response import CreateSegmentSuccessResponse
 from onesignal.model.create_segment_conflict_response import CreateSegmentConflictResponse
 from onesignal.model.segment import Segment
-from onesignal.model.create_segment_bad_request_response import CreateSegmentBadRequestResponse
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -418,7 +500,7 @@ import onesignal
 from onesignal.api import default_api
 from onesignal.model.delete_player_not_found_response import DeletePlayerNotFoundResponse
 from onesignal.model.delete_player_success_response import DeletePlayerSuccessResponse
-from onesignal.model.delete_player_bad_request_response import DeletePlayerBadRequestResponse
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -484,8 +566,8 @@ Delete segments (not user devices) - Required: OneSignal Paid Plan You can delet
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.delete_segment_success_response import DeleteSegmentSuccessResponse
-from onesignal.model.delete_segment_bad_request_response import DeleteSegmentBadRequestResponse
 from onesignal.model.delete_segment_not_found_response import DeleteSegmentNotFoundResponse
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -536,6 +618,71 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **end_live_activity**
+> end_live_activity(app_id, activity_id, subscription_id)
+
+Stop Live Activity
+
+Stops a Live Activity
+
+### Example
+
+* Bearer Authentication (app_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.bad_request_error import BadRequestError
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "app_id_example" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    activity_id = "activity_id_example" # Live Activity record ID 
+    subscription_id = "subscription_id_example" # Subscription ID 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Stop Live Activity
+        api_instance.end_live_activity(app_id, activity_id, subscription_id)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->end_live_activity: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| The OneSignal App ID for your app.  Available in Keys &amp; IDs. |
+ **activity_id** | **str**| Live Activity record ID |
+ **subscription_id** | **str**| Subscription ID |
+
+### Return type
+
+void (empty response body)
+
+### Authorization
+
+[app_key](../README.md#app_key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**204** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **export_players**
 > ExportPlayersSuccessResponse export_players(app_id)
 
@@ -552,6 +699,7 @@ import onesignal
 from onesignal.api import default_api
 from onesignal.model.export_players_success_response import ExportPlayersSuccessResponse
 from onesignal.model.export_players_request_body import ExportPlayersRequestBody
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -631,6 +779,7 @@ View the details of a single OneSignal app
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.app import App
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -674,6 +823,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -692,6 +842,7 @@ View the details of all of your current OneSignal apps
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.apps import Apps
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -731,6 +882,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -748,6 +900,7 @@ View the details of a single notification and outcomes associated with it
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.bad_request_error import BadRequestError
 from onesignal.model.notification_with_meta import NotificationWithMeta
 from pprint import pprint
 
@@ -794,6 +947,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -813,7 +967,7 @@ import onesignal
 from onesignal.api import default_api
 from onesignal.model.notification_history_success_response import NotificationHistorySuccessResponse
 from onesignal.model.get_notification_request_body import GetNotificationRequestBody
-from onesignal.model.notification_history_bad_request_response import NotificationHistoryBadRequestResponse
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -882,6 +1036,7 @@ View the details of multiple notifications
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.notification_slice import NotificationSlice
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -940,6 +1095,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -958,6 +1114,7 @@ View the details of all the outcomes associated with your app  &#x1F6A7; Require
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.outcomes_data import OutcomesData
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1020,6 +1177,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1038,6 +1196,7 @@ View the details of an existing device in one of your OneSignal apps
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.player import Player
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1094,6 +1253,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1111,6 +1271,7 @@ View the details of multiple devices in one of your OneSignal apps Unavailable f
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.bad_request_error import BadRequestError
 from onesignal.model.player_slice import PlayerSlice
 from pprint import pprint
 
@@ -1168,6 +1329,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1186,6 +1348,7 @@ Updates the name or configuration settings of an existing OneSignal app
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.app import App
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1206,6 +1369,10 @@ with onesignal.ApiClient(configuration) as api_client:
         apns_p12_password="apns_p12_password_example",
         safari_apns_p12="safari_apns_p12_example",
         safari_apns_p12_password="safari_apns_p12_password_example",
+        apns_key_id="apns_key_id_example",
+        apns_team_id="apns_team_id_example",
+        apns_bundle_id="apns_bundle_id_example",
+        apns_p8="apns_p8_example",
         safari_site_origin="safari_site_origin_example",
         safari_icon_256_256="safari_icon_256_256_example",
         site_name="site_name_example",
@@ -1249,6 +1416,80 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_live_activity**
+> UpdateLiveActivitySuccessResponse update_live_activity(app_id, activity_id, update_live_activity_request)
+
+Update a Live Activity via Push
+
+Updates a specified live activity.
+
+### Example
+
+* Bearer Authentication (app_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.update_live_activity_request import UpdateLiveActivityRequest
+from onesignal.model.update_live_activity_success_response import UpdateLiveActivitySuccessResponse
+from onesignal.model.bad_request_error import BadRequestError
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "app_id_example" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    activity_id = "activity_id_example" # Live Activity record ID 
+    update_live_activity_request = UpdateLiveActivityRequest(
+        name="headings",
+        event="update",
+        event_updates={},
+        dismiss_at=3.14,
+    ) 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Update a Live Activity via Push
+        api_response = api_instance.update_live_activity(app_id, activity_id, update_live_activity_request)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->update_live_activity: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| The OneSignal App ID for your app.  Available in Keys &amp; IDs. |
+ **activity_id** | **str**| Live Activity record ID |
+ **update_live_activity_request** | [**UpdateLiveActivityRequest**](UpdateLiveActivityRequest.md)|  |
+
+### Return type
+
+[**UpdateLiveActivitySuccessResponse**](UpdateLiveActivitySuccessResponse.md)
+
+### Authorization
+
+[app_key](../README.md#app_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1268,6 +1509,7 @@ import onesignal
 from onesignal.api import default_api
 from onesignal.model.player import Player
 from onesignal.model.update_player_success_response import UpdatePlayerSuccessResponse
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1339,6 +1581,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1358,6 +1601,7 @@ import onesignal
 from onesignal.api import default_api
 from onesignal.model.update_player_tags_request_body import UpdatePlayerTagsRequestBody
 from onesignal.model.update_player_tags_success_response import UpdatePlayerTagsSuccessResponse
+from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1416,6 +1660,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
