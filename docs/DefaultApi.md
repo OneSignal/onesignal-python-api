@@ -18,7 +18,8 @@ Method | HTTP request | Description
 [**delete_subscription**](DefaultApi.md#delete_subscription) | **DELETE** /apps/{app_id}/subscriptions/{subscription_id} | 
 [**delete_user**](DefaultApi.md#delete_user) | **DELETE** /apps/{app_id}/users/by/{alias_label}/{alias_id} | 
 [**end_live_activity**](DefaultApi.md#end_live_activity) | **DELETE** /apps/{app_id}/live_activities/{activity_id}/token/{subscription_id} | Stop Live Activity
-[**export_players**](DefaultApi.md#export_players) | **POST** /players/csv_export?app_id&#x3D;{app_id} | CSV export
+[**export_events**](DefaultApi.md#export_events) | **POST** /notifications/{notification_id}/export_events?app_id&#x3D;{app_id} | Export CSV of Events
+[**export_players**](DefaultApi.md#export_players) | **POST** /players/csv_export?app_id&#x3D;{app_id} | Export CSV of Players
 [**fetch_aliases**](DefaultApi.md#fetch_aliases) | **GET** /apps/{app_id}/subscriptions/{subscription_id}/user/identity | 
 [**fetch_user**](DefaultApi.md#fetch_user) | **GET** /apps/{app_id}/users/by/{alias_label}/{alias_id} | 
 [**fetch_user_identity**](DefaultApi.md#fetch_user_identity) | **GET** /apps/{app_id}/users/by/{alias_label}/{alias_id}/identity | 
@@ -56,8 +57,9 @@ Starts a Live Activity
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.begin_live_activity_request import BeginLiveActivityRequest
-from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -108,6 +110,7 @@ void (empty response body)
 |-------------|-------------|------------------|
 **204** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -125,8 +128,9 @@ Used to stop a scheduled or currently outgoing notification
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.cancel_notification_success_response import CancelNotificationSuccessResponse
-from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -173,6 +177,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -191,7 +196,8 @@ Creates a new OneSignal app
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.app import App
-from onesignal.model.bad_request_error import BadRequestError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -258,6 +264,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -275,9 +282,10 @@ Sends notifications to your users
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.notification import Notification
 from onesignal.model.create_notification_success_response import CreateNotificationSuccessResponse
-from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -322,6 +330,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK, invalid_player_ids, invalid_external_user_ids or No Subscribed Players If a message was successfully created, you will get a 200 response and an id for the notification. If the 200 response contains \&quot;invalid_player_ids\&quot; or \&quot;invalid_external_user_ids\&quot; this will mark devices that exist in the provided app_id but are no longer subscribed. If no id is returned, then a message was not created and the targeted User IDs do not exist under the provided app_id. Any User IDs sent in the request that do not exist under the specified app_id will be ignored.  |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -341,7 +350,8 @@ import onesignal
 from onesignal.api import default_api
 from onesignal.model.player import Player
 from onesignal.model.create_player_success_response import CreatePlayerSuccessResponse
-from onesignal.model.bad_request_error import BadRequestError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -412,6 +422,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**409** | Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -432,7 +444,8 @@ from onesignal.api import default_api
 from onesignal.model.create_segment_success_response import CreateSegmentSuccessResponse
 from onesignal.model.create_segment_conflict_response import CreateSegmentConflictResponse
 from onesignal.model.segment import Segment
-from onesignal.model.bad_request_error import BadRequestError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -495,6 +508,7 @@ Name | Type | Description  | Notes
 **201** | Created |  -  |
 **400** | Bad Request |  -  |
 **409** | Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -513,6 +527,8 @@ Creates a new Subscription under the User provided. Useful to add email addresse
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.inline_response201 import InlineResponse201
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.create_subscription_request_body import CreateSubscriptionRequestBody
 from pprint import pprint
 
@@ -584,6 +600,9 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **201** | CREATED |  -  |
 **202** | ACCEPTED |  -  |
+**400** | Bad Request |  -  |
+**409** | Operation is not permitted due to user having the maximum number of subscriptions assigned |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -602,6 +621,8 @@ Creates a User, optionally Subscriptions owned by the User as well as Aliases. A
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.user import User
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.create_user_conflict_response import CreateUserConflictResponse
 from pprint import pprint
 
@@ -692,9 +713,12 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+**200** | CREATED |  -  |
 **201** | CREATED |  -  |
 **202** | ACCEPTED |  -  |
+**400** | Bad Request |  -  |
 **409** | Multiple User Identity Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -712,6 +736,8 @@ Deletes an alias by alias label
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.inline_response200 import InlineResponse200
 from pprint import pprint
 
@@ -761,6 +787,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
+**409** | Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -778,9 +807,10 @@ Delete player - Required: Used to delete a single, specific Player ID record fro
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.delete_player_not_found_response import DeletePlayerNotFoundResponse
 from onesignal.model.delete_player_success_response import DeletePlayerSuccessResponse
-from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -828,6 +858,7 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
 **404** | Not Found |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -846,8 +877,9 @@ Delete segments (not user devices) - Required: OneSignal Paid Plan You can delet
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.delete_segment_success_response import DeleteSegmentSuccessResponse
+from onesignal.model.generic_error import GenericError
 from onesignal.model.delete_segment_not_found_response import DeleteSegmentNotFoundResponse
-from onesignal.model.bad_request_error import BadRequestError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -895,6 +927,7 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
 **404** | Not Found |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -912,6 +945,8 @@ Deletes the Subscription.
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -947,7 +982,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
@@ -955,6 +990,9 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | ACCEPTED |  -  |
+**400** | Bad Request |  -  |
+**409** | Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -971,6 +1009,8 @@ Removes the User identified by (:alias_label, :alias_id), and all Subscriptions 
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1008,7 +1048,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
@@ -1016,6 +1056,9 @@ No authorization required
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
+**409** | Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1033,7 +1076,8 @@ Stops a Live Activity
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.bad_request_error import BadRequestError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1081,13 +1125,82 @@ void (empty response body)
 |-------------|-------------|------------------|
 **204** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **export_events**
+> ExportEventsSuccessResponse export_events(notification_id, app_id)
+
+Export CSV of Events
+
+Generate a compressed CSV report of all of the events data for a notification. This will return a URL immediately upon success but it may take several minutes for the CSV to become available at that URL depending on the volume of data. Only one export can be in-progress per OneSignal account at any given time.
+
+### Example
+
+* Bearer Authentication (app_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.export_events_success_response import ExportEventsSuccessResponse
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    notification_id = "notification_id_example" # The ID of the notification to export events from. 
+    app_id = "app_id_example" # The ID of the app that the notification belongs to. 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Export CSV of Events
+        api_response = api_instance.export_events(notification_id, app_id)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->export_events: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **notification_id** | **str**| The ID of the notification to export events from. |
+ **app_id** | **str**| The ID of the app that the notification belongs to. |
+
+### Return type
+
+[**ExportEventsSuccessResponse**](ExportEventsSuccessResponse.md)
+
+### Authorization
+
+[app_key](../README.md#app_key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **export_players**
 > ExportPlayersSuccessResponse export_players(app_id)
 
-CSV export
+Export CSV of Players
 
 Generate a compressed CSV export of all of your current user data This method can be used to generate a compressed CSV export of all of your current user data. It is a much faster alternative than retrieving this data using the /players API endpoint. The file will be compressed using GZip. The file may take several minutes to generate depending on the number of users in your app. The URL generated will be available for 3 days and includes random v4 uuid as part of the resource name to be unguessable. &#x1F6A7; 403 Error Responses          You can test if it is complete by making a GET request to the csv_file_url value. This file may take time to generate depending on how many device records are being pulled. If the file is not ready, a 403 error will be returned. Otherwise the file itself will be returned. &#x1F6A7; Requires Authentication Key Requires your OneSignal App's REST API Key, available in Keys & IDs. &#x1F6A7; Concurrent Exports Only one concurrent export is allowed per OneSignal account. Please ensure you have successfully downloaded the .csv.gz file before exporting another app. CSV File Format: - Default Columns:   | Field | Details |   | --- | --- |   | id | OneSignal Player Id |   | identifier | Push Token |   | session_count | Number of times they visited the app or site   | language | Device language code |   | timezone | Number of seconds away from UTC. Example: -28800 |   | game_version | Version of your mobile app gathered from Android Studio versionCode in your App/build.gradle and iOS uses kCFBundleVersionKey in Xcode. |   | device_os | Device Operating System Version. Example: 80 = Chrome 80, 9 = Android 9 |   | device_type | Device Operating System Type |   | device_model | Device Hardware String Code. Example: Mobile Web Subscribers will have `Linux armv` |   | ad_id | Based on the Google Advertising Id for Android, identifierForVendor for iOS. OptedOut means user turned off Advertising tracking on the device. |   | tags | Current OneSignal Data Tags on the device. |   | last_active | Date and time the user last opened the mobile app or visited the site. |   | playtime | Total amount of time in seconds the user had the mobile app open. |   | amount_spent |  Mobile only - amount spent in USD on In-App Purchases. |    | created_at | Date and time the device record was created in OneSignal. Mobile - first time they opened the app with OneSignal SDK. Web - first time the user subscribed to the site. |   | invalid_identifier | t = unsubscribed, f = subscibed |   | badge_count | Current number of badges on the device | - Extra Columns:   | Field | Details |   | --- | --- |   | external_user_id | Your User Id set on the device |   | notification_types | Notification types |   | location | Location points (Latitude and Longitude) set on the device. |   | country | Country code |   | rooted | Android device rooted or not |   | ip | IP Address of the device if being tracked. See Handling Personal Data. |   | web_auth | Web Only authorization key. |   | web_p256 | Web Only p256 key. | 
 
@@ -1099,8 +1212,9 @@ Generate a compressed CSV export of all of your current user data This method ca
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.export_players_success_response import ExportPlayersSuccessResponse
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.export_players_request_body import ExportPlayersRequestBody
-from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1118,7 +1232,7 @@ with onesignal.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # CSV export
+        # Export CSV of Players
         api_response = api_instance.export_players(app_id)
         pprint(api_response)
     except onesignal.ApiException as e:
@@ -1127,7 +1241,7 @@ with onesignal.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # CSV export
+        # Export CSV of Players
         api_response = api_instance.export_players(app_id, export_players_request_body=export_players_request_body)
         pprint(api_response)
     except onesignal.ApiException as e:
@@ -1162,6 +1276,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1179,6 +1294,7 @@ Lists all Aliases for the User identified by :subscription_id.
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.generic_error import GenericError
 from onesignal.model.user_identity_response import UserIdentityResponse
 from pprint import pprint
 
@@ -1224,6 +1340,7 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1242,6 +1359,8 @@ Returns the User’s properties, Aliases, and Subscriptions.
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.user import User
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1288,6 +1407,8 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1305,6 +1426,8 @@ Lists all Aliases for the User identified by (:alias_label, :alias_id).
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.inline_response200 import InlineResponse200
 from pprint import pprint
 
@@ -1352,6 +1475,8 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1370,7 +1495,8 @@ View the details of a single OneSignal app
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.app import App
-from onesignal.model.bad_request_error import BadRequestError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1415,6 +1541,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1433,7 +1560,8 @@ View the details of all of your current OneSignal apps
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.apps import Apps
-from onesignal.model.bad_request_error import BadRequestError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1474,6 +1602,7 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1492,6 +1621,8 @@ Manifest of In-App Messages the Subscription is eligible to display by the SDK.
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.inline_response2003 import InlineResponse2003
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1536,6 +1667,8 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1553,7 +1686,8 @@ View the details of a single notification and outcomes associated with it
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.bad_request_error import BadRequestError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.notification_with_meta import NotificationWithMeta
 from pprint import pprint
 
@@ -1601,6 +1735,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1620,7 +1755,8 @@ import onesignal
 from onesignal.api import default_api
 from onesignal.model.notification_history_success_response import NotificationHistorySuccessResponse
 from onesignal.model.get_notification_request_body import GetNotificationRequestBody
-from onesignal.model.bad_request_error import BadRequestError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1671,6 +1807,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1689,7 +1826,8 @@ View the details of multiple notifications
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.notification_slice import NotificationSlice
-from onesignal.model.bad_request_error import BadRequestError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1749,6 +1887,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1767,7 +1906,8 @@ View the details of all the outcomes associated with your app  &#x1F6A7; Require
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.outcomes_data import OutcomesData
-from onesignal.model.bad_request_error import BadRequestError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1831,6 +1971,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1849,7 +1990,8 @@ View the details of an existing device in one of your OneSignal apps
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.player import Player
-from onesignal.model.bad_request_error import BadRequestError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1907,6 +2049,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1924,7 +2067,8 @@ View the details of multiple devices in one of your OneSignal apps Unavailable f
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.bad_request_error import BadRequestError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.player_slice import PlayerSlice
 from pprint import pprint
 
@@ -1983,6 +2127,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2000,8 +2145,9 @@ Upserts one or more Aliases to an existing User identified by (:alias_label, :al
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.identify_user_conflict_response import IdentifyUserConflictResponse
 from onesignal.model.user_identity_request_body import UserIdentityRequestBody
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.inline_response200 import InlineResponse200
 from pprint import pprint
 
@@ -2053,7 +2199,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 **409** | Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2071,8 +2219,9 @@ Upserts one or more Aliases for the User identified by :subscription_id.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.identify_user_conflict_response import IdentifyUserConflictResponse
 from onesignal.model.user_identity_request_body import UserIdentityRequestBody
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.user_identity_response import UserIdentityResponse
 from pprint import pprint
 
@@ -2122,7 +2271,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
 **409** | Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2141,6 +2292,8 @@ Transfers this Subscription to the User identified by the identity in the payloa
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.transfer_subscription_request_body import TransferSubscriptionRequestBody
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.user_identity_response import UserIdentityResponse
 from pprint import pprint
 
@@ -2190,6 +2343,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
+**409** | Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2208,7 +2364,8 @@ Updates the name or configuration settings of an existing OneSignal app
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.app import App
-from onesignal.model.bad_request_error import BadRequestError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -2277,6 +2434,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2296,7 +2454,8 @@ import onesignal
 from onesignal.api import default_api
 from onesignal.model.update_live_activity_request import UpdateLiveActivityRequest
 from onesignal.model.update_live_activity_success_response import UpdateLiveActivitySuccessResponse
-from onesignal.model.bad_request_error import BadRequestError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -2350,6 +2509,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2368,8 +2528,9 @@ Update an existing device in one of your OneSignal apps
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.player import Player
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.update_player_success_response import UpdatePlayerSuccessResponse
-from onesignal.model.bad_request_error import BadRequestError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -2442,6 +2603,8 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**409** | Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2459,6 +2622,8 @@ Update an existing device's tags in one of your OneSignal apps using the Externa
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.update_player_tags_request_body import UpdatePlayerTagsRequestBody
 from onesignal.model.update_player_tags_success_response import UpdatePlayerTagsSuccessResponse
 from pprint import pprint
@@ -2519,6 +2684,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | OK |  -  |
+**400** | Bad Request |  -  |
+**409** | Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2537,6 +2705,8 @@ Updates an existing Subscription’s properties.
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.update_subscription_request_body import UpdateSubscriptionRequestBody
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -2594,7 +2764,7 @@ void (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: application/json
- - **Accept**: Not defined
+ - **Accept**: application/json
 
 
 ### HTTP response details
@@ -2602,6 +2772,9 @@ void (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | ACCEPTED |  -  |
+**400** | Bad Request |  -  |
+**409** | Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2621,6 +2794,8 @@ import onesignal
 from onesignal.api import default_api
 from onesignal.model.update_user_request import UpdateUserRequest
 from onesignal.model.inline_response202 import InlineResponse202
+from onesignal.model.generic_error import GenericError
+from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -2703,6 +2878,9 @@ Name | Type | Description  | Notes
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **202** | ACCEPTED |  -  |
+**400** | Bad Request |  -  |
+**409** | Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
