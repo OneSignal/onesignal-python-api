@@ -1,6 +1,6 @@
 # onesignal.DefaultApi
 
-All URIs are relative to *https://onesignal.com/api/v1*
+All URIs are relative to *https://api.onesignal.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -1005,6 +1005,7 @@ Removes the User identified by (:alias_label, :alias_id), and all Subscriptions 
 
 ### Example
 
+* Bearer Authentication (app_key):
 
 ```python
 import onesignal
@@ -1014,7 +1015,7 @@ from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
-with onesignal.ApiClient() as api_client:
+with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     app_id = "app_id_example" 
@@ -1043,7 +1044,7 @@ void (empty response body)
 
 ### Authorization
 
-No authorization required
+[app_key](../README.md#app_key)
 
 ### HTTP request headers
 

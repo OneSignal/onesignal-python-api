@@ -16,8 +16,8 @@
 
 A powerful way to send personalized messages at scale and build effective customer engagement strategies. Learn more at onesignal.com
 
-- API version: 1.2.2
-- Package version: 2.0.2
+- API version: 1.3.0
+- Package version: 2.1.0
 - Build package: org.openapitools.codegen.languages.PythonClientCodegen
 
 ## Requirements.
@@ -79,7 +79,7 @@ with onesignal.ApiClient(configuration) as api_client:
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://onesignal.com/api/v1*
+All URIs are relative to *https://api.onesignal.com*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
