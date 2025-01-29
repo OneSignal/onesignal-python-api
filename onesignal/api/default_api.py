@@ -912,7 +912,7 @@ class DefaultApi(object):
                 'auth': [
                     'app_key'
                 ],
-                'endpoint_path': '/notifications/{notification_id}/export_events?app_id={app_id}',
+                'endpoint_path': '/notifications/{notification_id}/export_events',
                 'operation_id': 'export_events',
                 'http_method': 'POST',
                 'servers': None,
@@ -969,7 +969,7 @@ class DefaultApi(object):
                 'auth': [
                     'app_key'
                 ],
-                'endpoint_path': '/players/csv_export?app_id={app_id}',
+                'endpoint_path': '/players/csv_export',
                 'operation_id': 'export_players',
                 'http_method': 'POST',
                 'servers': None,
