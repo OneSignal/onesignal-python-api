@@ -58,23 +58,45 @@ sudo python setup.py install
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```python
+
+from pprint import pprint
+
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.filter import Filter
+from onesignal.model.notification import Notification
+
+APP_ID = "YOUR_ONE_SIGNAL_APP_ID"
 
 # See configuration.py for a list of all supported configuration parameters.
 # Some of the OneSignal endpoints require USER_KEY bearer token for authorization as long as others require APP_KEY
 # (also knows as REST_API_KEY). We recommend adding both of them in the configuration page so that you will not need
 # to figure it yourself.
 configuration = onesignal.Configuration(
-    app_key = "YOUR_APP_KEY",
-    user_key = "YOUR_USER_KEY"
+    app_key=REST_API_KEY,  # also knows as REST_API_KEY
+    user_key=USER_KEY
 )
-
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
+
+    notification = Notification(
+        app_id=APP_ID,
+        contents={"en": "This is the content for English"},
+        headings={"en": "This is the title for English"},
+
+        # We want to reach all users having OSVersion at 16.6
+        filters=[Filter(field="tag", key="OSVersion", relation="=", value="16.6")],
+    )
+
+    try:
+        # Create notification
+        api_response = api_instance.create_notification(notification)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->create_notification: %s\n" % e)
+
 ```
 
 ## Documentation for API Endpoints
