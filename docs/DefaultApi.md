@@ -4,118 +4,40 @@ All URIs are relative to *https://api.onesignal.com*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**begin_live_activity**](DefaultApi.md#begin_live_activity) | **POST** /apps/{app_id}/live_activities/{activity_id}/token | Start Live Activity
 [**cancel_notification**](DefaultApi.md#cancel_notification) | **DELETE** /notifications/{notification_id} | Stop a scheduled or currently outgoing notification
+[**create_alias**](DefaultApi.md#create_alias) | **PATCH** /apps/{app_id}/users/by/{alias_label}/{alias_id}/identity | 
+[**create_alias_by_subscription**](DefaultApi.md#create_alias_by_subscription) | **PATCH** /apps/{app_id}/subscriptions/{subscription_id}/user/identity | 
 [**create_app**](DefaultApi.md#create_app) | **POST** /apps | Create an app
 [**create_notification**](DefaultApi.md#create_notification) | **POST** /notifications | Create notification
-[**create_player**](DefaultApi.md#create_player) | **POST** /players | Add a device
-[**create_segments**](DefaultApi.md#create_segments) | **POST** /apps/{app_id}/segments | Create Segments
+[**create_segment**](DefaultApi.md#create_segment) | **POST** /apps/{app_id}/segments | Create Segment
 [**create_subscription**](DefaultApi.md#create_subscription) | **POST** /apps/{app_id}/users/by/{alias_label}/{alias_id}/subscriptions | 
 [**create_user**](DefaultApi.md#create_user) | **POST** /apps/{app_id}/users | 
 [**delete_alias**](DefaultApi.md#delete_alias) | **DELETE** /apps/{app_id}/users/by/{alias_label}/{alias_id}/identity/{alias_label_to_delete} | 
-[**delete_player**](DefaultApi.md#delete_player) | **DELETE** /players/{player_id} | Delete a user record
-[**delete_segments**](DefaultApi.md#delete_segments) | **DELETE** /apps/{app_id}/segments/{segment_id} | Delete Segments
+[**delete_segment**](DefaultApi.md#delete_segment) | **DELETE** /apps/{app_id}/segments/{segment_id} | Delete Segment
 [**delete_subscription**](DefaultApi.md#delete_subscription) | **DELETE** /apps/{app_id}/subscriptions/{subscription_id} | 
 [**delete_user**](DefaultApi.md#delete_user) | **DELETE** /apps/{app_id}/users/by/{alias_label}/{alias_id} | 
-[**end_live_activity**](DefaultApi.md#end_live_activity) | **DELETE** /apps/{app_id}/live_activities/{activity_id}/token/{subscription_id} | Stop Live Activity
 [**export_events**](DefaultApi.md#export_events) | **POST** /notifications/{notification_id}/export_events?app_id&#x3D;{app_id} | Export CSV of Events
-[**export_players**](DefaultApi.md#export_players) | **POST** /players/csv_export?app_id&#x3D;{app_id} | Export CSV of Players
-[**fetch_aliases**](DefaultApi.md#fetch_aliases) | **GET** /apps/{app_id}/subscriptions/{subscription_id}/user/identity | 
-[**fetch_user**](DefaultApi.md#fetch_user) | **GET** /apps/{app_id}/users/by/{alias_label}/{alias_id} | 
-[**fetch_user_identity**](DefaultApi.md#fetch_user_identity) | **GET** /apps/{app_id}/users/by/{alias_label}/{alias_id}/identity | 
+[**export_subscriptions**](DefaultApi.md#export_subscriptions) | **POST** /players/csv_export?app_id&#x3D;{app_id} | Export CSV of Subscriptions
+[**get_aliases**](DefaultApi.md#get_aliases) | **GET** /apps/{app_id}/users/by/{alias_label}/{alias_id}/identity | 
+[**get_aliases_by_subscription**](DefaultApi.md#get_aliases_by_subscription) | **GET** /apps/{app_id}/subscriptions/{subscription_id}/user/identity | 
 [**get_app**](DefaultApi.md#get_app) | **GET** /apps/{app_id} | View an app
 [**get_apps**](DefaultApi.md#get_apps) | **GET** /apps | View apps
-[**get_eligible_iams**](DefaultApi.md#get_eligible_iams) | **GET** /apps/{app_id}/subscriptions/{subscription_id}/iams | 
 [**get_notification**](DefaultApi.md#get_notification) | **GET** /notifications/{notification_id} | View notification
 [**get_notification_history**](DefaultApi.md#get_notification_history) | **POST** /notifications/{notification_id}/history | Notification History
 [**get_notifications**](DefaultApi.md#get_notifications) | **GET** /notifications | View notifications
 [**get_outcomes**](DefaultApi.md#get_outcomes) | **GET** /apps/{app_id}/outcomes | View Outcomes
-[**get_player**](DefaultApi.md#get_player) | **GET** /players/{player_id} | View device
-[**get_players**](DefaultApi.md#get_players) | **GET** /players | View devices
-[**identify_user_by_alias**](DefaultApi.md#identify_user_by_alias) | **PATCH** /apps/{app_id}/users/by/{alias_label}/{alias_id}/identity | 
-[**identify_user_by_subscription_id**](DefaultApi.md#identify_user_by_subscription_id) | **PATCH** /apps/{app_id}/subscriptions/{subscription_id}/user/identity | 
+[**get_segments**](DefaultApi.md#get_segments) | **GET** /apps/{app_id}/segments | Get Segments
+[**get_user**](DefaultApi.md#get_user) | **GET** /apps/{app_id}/users/by/{alias_label}/{alias_id} | 
 [**transfer_subscription**](DefaultApi.md#transfer_subscription) | **PATCH** /apps/{app_id}/subscriptions/{subscription_id}/owner | 
+[**unsubscribe_email_with_token**](DefaultApi.md#unsubscribe_email_with_token) | **POST** /apps/{app_id}/notifications/{notification_id}/unsubscribe | Unsubscribe with token
 [**update_app**](DefaultApi.md#update_app) | **PUT** /apps/{app_id} | Update an app
 [**update_live_activity**](DefaultApi.md#update_live_activity) | **POST** /apps/{app_id}/live_activities/{activity_id}/notifications | Update a Live Activity via Push
-[**update_player**](DefaultApi.md#update_player) | **PUT** /players/{player_id} | Edit device
-[**update_player_tags**](DefaultApi.md#update_player_tags) | **PUT** /apps/{app_id}/users/{external_user_id} | Edit tags with external user id
 [**update_subscription**](DefaultApi.md#update_subscription) | **PATCH** /apps/{app_id}/subscriptions/{subscription_id} | 
 [**update_user**](DefaultApi.md#update_user) | **PATCH** /apps/{app_id}/users/by/{alias_label}/{alias_id} | 
 
 
-# **begin_live_activity**
-> begin_live_activity(app_id, activity_id, begin_live_activity_request)
-
-Start Live Activity
-
-Starts a Live Activity
-
-### Example
-
-* Bearer Authentication (app_key):
-
-```python
-import onesignal
-from onesignal.api import default_api
-from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from onesignal.model.begin_live_activity_request import BeginLiveActivityRequest
-from pprint import pprint
-
-# Enter a context with an instance of the API client
-with onesignal.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # The OneSignal App ID for your app.  Available in Keys & IDs. 
-    activity_id = "activity_id_example" # Live Activity record ID 
-    begin_live_activity_request = BeginLiveActivityRequest(
-        push_token="push_token_example",
-        subscription_id="subscription_id_example",
-    ) 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Start Live Activity
-        api_instance.begin_live_activity(app_id, activity_id, begin_live_activity_request)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->begin_live_activity: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **app_id** | **str**| The OneSignal App ID for your app.  Available in Keys &amp; IDs. |
- **activity_id** | **str**| Live Activity record ID |
- **begin_live_activity_request** | [**BeginLiveActivityRequest**](BeginLiveActivityRequest.md)|  |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[app_key](../README.md#app_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | OK |  -  |
-**400** | Bad Request |  -  |
-**429** | Rate Limit Exceeded |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **cancel_notification**
-> CancelNotificationSuccessResponse cancel_notification(app_id, notification_id)
+> GenericSuccessBoolResponse cancel_notification(app_id, notification_id)
 
 Stop a scheduled or currently outgoing notification
 
@@ -123,14 +45,14 @@ Used to stop a scheduled or currently outgoing notification
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from onesignal.model.cancel_notification_success_response import CancelNotificationSuccessResponse
+from onesignal.model.generic_success_bool_response import GenericSuccessBoolResponse
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -159,11 +81,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CancelNotificationSuccessResponse**](CancelNotificationSuccessResponse.md)
+[**GenericSuccessBoolResponse**](GenericSuccessBoolResponse.md)
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -177,6 +99,157 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**404** | Not Found |  -  |
+**429** | Rate Limit Exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_alias**
+> UserIdentityBody create_alias(app_id, alias_label, alias_id, user_identity_body)
+
+
+
+Upserts one or more Aliases to an existing User identified by (:alias_label, :alias_id).
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.rate_limit_error import RateLimitError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.user_identity_body import UserIdentityBody
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "app_id_example" 
+    alias_label = "alias_label_example" 
+    alias_id = "alias_id_example" 
+    user_identity_body = UserIdentityBody(
+        identity=IdentityObject(
+            key="key_example",
+        ),
+    ) 
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.create_alias(app_id, alias_label, alias_id, user_identity_body)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->create_alias: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**|  |
+ **alias_label** | **str**|  |
+ **alias_id** | **str**|  |
+ **user_identity_body** | [**UserIdentityBody**](UserIdentityBody.md)|  |
+
+### Return type
+
+[**UserIdentityBody**](UserIdentityBody.md)
+
+### Authorization
+
+[rest_api_key](../README.md#rest_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
+**409** | Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_alias_by_subscription**
+> UserIdentityBody create_alias_by_subscription(app_id, subscription_id, user_identity_body)
+
+
+
+Upserts one or more Aliases for the User identified by :subscription_id.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.rate_limit_error import RateLimitError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.user_identity_body import UserIdentityBody
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "app_id_example" 
+    subscription_id = "subscription_id_example" 
+    user_identity_body = UserIdentityBody(
+        identity=IdentityObject(
+            key="key_example",
+        ),
+    ) 
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.create_alias_by_subscription(app_id, subscription_id, user_identity_body)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->create_alias_by_subscription: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**|  |
+ **subscription_id** | **str**|  |
+ **user_identity_body** | [**UserIdentityBody**](UserIdentityBody.md)|  |
+
+### Return type
+
+[**UserIdentityBody**](UserIdentityBody.md)
+
+### Authorization
+
+[rest_api_key](../README.md#rest_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
+**409** | Conflict |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -190,14 +263,14 @@ Creates a new OneSignal app
 
 ### Example
 
-* Bearer Authentication (user_key):
+* Bearer Authentication (user_auth_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.app import App
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -250,7 +323,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[user_key](../README.md#user_key)
+[user_auth_key](../README.md#user_auth_key)
 
 ### HTTP request headers
 
@@ -277,13 +350,13 @@ Sends notifications to your users
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.notification import Notification
 from onesignal.model.create_notification_success_response import CreateNotificationSuccessResponse
 from pprint import pprint
@@ -316,7 +389,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -328,115 +401,22 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK, invalid_player_ids, invalid_external_user_ids or No Subscribed Players If a message was successfully created, you will get a 200 response and an id for the notification. If the 200 response contains \&quot;invalid_player_ids\&quot; or \&quot;invalid_external_user_ids\&quot; this will mark devices that exist in the provided app_id but are no longer subscribed. If no id is returned, then a message was not created and the targeted User IDs do not exist under the provided app_id. Any User IDs sent in the request that do not exist under the specified app_id will be ignored.  |  -  |
+**200** | OK, invalid_aliases, or No Subscribed Players If a message was successfully created, you will get a 200 response and an id for the notification. If the 200 response contains \&quot;invalid_aliases\&quot; this will mark devices that exist in the provided app_id but are no longer subscribed. If no id is returned, then a message was not created and the targeted User IDs do not exist under the provided app_id. Any User IDs sent in the request that do not exist under the specified app_id will be ignored.  |  -  |
 **400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_player**
-> CreatePlayerSuccessResponse create_player(player)
+# **create_segment**
+> CreateSegmentSuccessResponse create_segment(app_id)
 
-Add a device
+Create Segment
 
-Register a new device to one of your OneSignal apps &#x1F6A7; Don't use this This API endpoint is designed to be used from our open source Mobile and Web Push SDKs. It is not designed for developers to use it directly, unless instructed to do so by OneSignal support. If you use this method instead of our SDKs, many OneSignal features such as conversion tracking, timezone tracking, language detection, and rich-push won't work out of the box. It will also make it harder to identify possible setup issues. This method is used to register a new device with OneSignal. If a device is already registered with the specified identifier, then this will update the existing device record instead of creating a new one. The returned player is a player / user ID. Use the returned ID to send push notifications to this specific user later, or to include this player when sending to a set of users. &#x1F6A7; iOS Must set test_type to 1 when building your iOS app as development. Omit this field in your production app builds. 
-
-### Example
-
-* Bearer Authentication (app_key):
-
-```python
-import onesignal
-from onesignal.api import default_api
-from onesignal.model.player import Player
-from onesignal.model.create_player_success_response import CreatePlayerSuccessResponse
-from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from pprint import pprint
-
-# Enter a context with an instance of the API client
-with onesignal.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    player = Player(
-        app_id="app_id_example",
-        device_type=1,
-        external_user_id="external_user_id_example",
-        external_user_id_auth_hash="external_user_id_auth_hash_example",
-        email_auth_hash="email_auth_hash_example",
-        identifier="identifier_example",
-        language="language_example",
-        timezone=1,
-        game_version="game_version_example",
-        device_model="device_model_example",
-        device_os="device_os_example",
-        ad_id="ad_id_example",
-        sdk="sdk_example",
-        session_count=1,
-        tags={},
-        amount_spent=3.14,
-        created_at=1,
-        playtime=1,
-        badge_count=1,
-        last_active=1,
-        notification_types=1,
-        test_type=1,
-        long=3.14,
-        lat=3.14,
-        country="country_example",
-    ) 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Add a device
-        api_response = api_instance.create_player(player)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->create_player: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **player** | [**Player**](Player.md)|  |
-
-### Return type
-
-[**CreatePlayerSuccessResponse**](CreatePlayerSuccessResponse.md)
-
-### Authorization
-
-[app_key](../README.md#app_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**400** | Bad Request |  -  |
-**409** | Conflict |  -  |
-**429** | Rate Limit Exceeded |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **create_segments**
-> CreateSegmentSuccessResponse create_segments(app_id)
-
-Create Segments
-
-Create segments visible and usable in the dashboard and API - Required: OneSignal Paid Plan The Create Segment method is used when you want your server to programmatically create a segment instead of using the OneSignal Dashboard UI. Just like creating Segments from the dashboard you can pass in filters with multiple \"AND\" or \"OR\" operator's. &#x1F6A7; Does Not Update Segments This endpoint will only create segments, it does not edit or update currently created Segments. You will need to use the Delete Segments endpoint and re-create it with this endpoint to edit. 
+Create a segment visible and usable in the dashboard and API - Required: OneSignal Paid Plan The Create Segment method is used when you want your server to programmatically create a segment instead of using the OneSignal Dashboard UI. Just like creating Segments from the dashboard you can pass in filters with multiple \"AND\" or \"OR\" operator's. &#x1F6A7; Does Not Update Segments This endpoint will only create segments, it does not edit or update currently created Segments. You will need to use the Delete Segment endpoint and re-create it with this endpoint to edit. 
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
@@ -444,8 +424,8 @@ from onesignal.api import default_api
 from onesignal.model.create_segment_success_response import CreateSegmentSuccessResponse
 from onesignal.model.create_segment_conflict_response import CreateSegmentConflictResponse
 from onesignal.model.segment import Segment
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -457,26 +437,26 @@ with onesignal.ApiClient(configuration) as api_client:
         id="id_example",
         name="name_example",
         filters=[
-            FilterExpressions(None),
+            FilterExpression(None),
         ],
     ) 
 
     # example passing only required values which don't have defaults set
     try:
-        # Create Segments
-        api_response = api_instance.create_segments(app_id)
+        # Create Segment
+        api_response = api_instance.create_segment(app_id)
         pprint(api_response)
     except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->create_segments: %s\n" % e)
+        print("Exception when calling DefaultApi->create_segment: %s\n" % e)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Create Segments
-        api_response = api_instance.create_segments(app_id, segment=segment)
+        # Create Segment
+        api_response = api_instance.create_segment(app_id, segment=segment)
         pprint(api_response)
     except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->create_segments: %s\n" % e)
+        print("Exception when calling DefaultApi->create_segment: %s\n" % e)
 ```
 
 
@@ -493,7 +473,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -513,7 +493,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_subscription**
-> InlineResponse201 create_subscription(app_id, alias_label, alias_id, create_subscription_request_body)
+> SubscriptionBody create_subscription(app_id, alias_label, alias_id, subscription_body)
 
 
 
@@ -521,15 +501,14 @@ Creates a new Subscription under the User provided. Useful to add email addresse
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.inline_response201 import InlineResponse201
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from onesignal.model.create_subscription_request_body import CreateSubscriptionRequestBody
+from onesignal.model.subscription_body import SubscriptionBody
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -539,32 +518,31 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "app_id_example" 
     alias_label = "alias_label_example" 
     alias_id = "alias_id_example" 
-    create_subscription_request_body = CreateSubscriptionRequestBody(
-        subscription=SubscriptionObject(
+    subscription_body = SubscriptionBody(
+        subscription=Subscription(
             id="id_example",
             type="iOSPush",
             token="token_example",
             enabled=True,
-            notification_types=3.14,
-            session_time=3.14,
-            session_count=3.14,
+            notification_types=1,
+            session_time=1,
+            session_count=1,
             sdk="sdk_example",
             device_model="device_model_example",
             device_os="device_os_example",
             rooted=True,
-            test_type=3.14,
+            test_type=1,
             app_version="app_version_example",
-            net_type=3.14,
+            net_type=1,
             carrier="carrier_example",
             web_auth="web_auth_example",
             web_p256="web_p256_example",
         ),
-        retain_previous_owner=True,
     ) 
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.create_subscription(app_id, alias_label, alias_id, create_subscription_request_body)
+        api_response = api_instance.create_subscription(app_id, alias_label, alias_id, subscription_body)
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->create_subscription: %s\n" % e)
@@ -578,15 +556,15 @@ Name | Type | Description  | Notes
  **app_id** | **str**|  |
  **alias_label** | **str**|  |
  **alias_id** | **str**|  |
- **create_subscription_request_body** | [**CreateSubscriptionRequestBody**](CreateSubscriptionRequestBody.md)|  |
+ **subscription_body** | [**SubscriptionBody**](SubscriptionBody.md)|  |
 
 ### Return type
 
-[**InlineResponse201**](InlineResponse201.md)
+[**SubscriptionBody**](SubscriptionBody.md)
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -601,6 +579,7 @@ Name | Type | Description  | Notes
 **201** | CREATED |  -  |
 **202** | ACCEPTED |  -  |
 **400** | Bad Request |  -  |
+**404** | Not Found |  -  |
 **409** | Operation is not permitted due to user having the maximum number of subscriptions assigned |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
@@ -615,14 +594,14 @@ Creates a User, optionally Subscriptions owned by the User as well as Aliases. A
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.user import User
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.create_user_conflict_response import CreateUserConflictResponse
 from pprint import pprint
 
@@ -639,44 +618,43 @@ with onesignal.ApiClient(configuration) as api_client:
             lat=3.14,
             long=3.14,
             country="country_example",
-            first_active=3.14,
-            last_active=3.14,
+            first_active=1,
+            last_active=1,
             amount_spent=3.14,
             purchases=[
                 Purchase(
                     sku="sku_example",
                     amount="amount_example",
                     iso="iso_example",
-                    count=3.14,
+                    count=1,
                 ),
             ],
             ip="ip_example",
         ),
-        identity=IdentityObject(),
+        identity=IdentityObject(
+            key="key_example",
+        ),
         subscriptions=[
-            SubscriptionObject(
+            Subscription(
                 id="id_example",
                 type="iOSPush",
                 token="token_example",
                 enabled=True,
-                notification_types=3.14,
-                session_time=3.14,
-                session_count=3.14,
+                notification_types=1,
+                session_time=1,
+                session_count=1,
                 sdk="sdk_example",
                 device_model="device_model_example",
                 device_os="device_os_example",
                 rooted=True,
-                test_type=3.14,
+                test_type=1,
                 app_version="app_version_example",
-                net_type=3.14,
+                net_type=1,
                 carrier="carrier_example",
                 web_auth="web_auth_example",
                 web_p256="web_p256_example",
             ),
         ],
-        subscription_options=UserSubscriptionOptions(
-            retain_previous_owner=True,
-        ),
     ) 
 
     # example passing only required values which don't have defaults set
@@ -701,7 +679,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -723,7 +701,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete_alias**
-> InlineResponse200 delete_alias(app_id, alias_label, alias_id, alias_label_to_delete)
+> UserIdentityBody delete_alias(app_id, alias_label, alias_id, alias_label_to_delete)
 
 
 
@@ -731,14 +709,14 @@ Deletes an alias by alias label
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from onesignal.model.inline_response200 import InlineResponse200
+from onesignal.model.user_identity_body import UserIdentityBody
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -770,80 +748,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**UserIdentityBody**](UserIdentityBody.md)
 
 ### Authorization
 
-[app_key](../README.md#app_key)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**400** | Bad Request |  -  |
-**409** | Conflict |  -  |
-**429** | Rate Limit Exceeded |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **delete_player**
-> DeletePlayerSuccessResponse delete_player(app_id, player_id)
-
-Delete a user record
-
-Delete player - Required: Used to delete a single, specific Player ID record from a specific OneSignal app. 
-
-### Example
-
-* Bearer Authentication (app_key):
-
-```python
-import onesignal
-from onesignal.api import default_api
-from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from onesignal.model.delete_player_not_found_response import DeletePlayerNotFoundResponse
-from onesignal.model.delete_player_success_response import DeletePlayerSuccessResponse
-from pprint import pprint
-
-# Enter a context with an instance of the API client
-with onesignal.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # The OneSignal App ID for your app.  Available in Keys & IDs. 
-    player_id = "player_id_example" # The OneSignal player_id 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Delete a user record
-        api_response = api_instance.delete_player(app_id, player_id)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->delete_player: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **app_id** | **str**| The OneSignal App ID for your app.  Available in Keys &amp; IDs. |
- **player_id** | **str**| The OneSignal player_id |
-
-### Return type
-
-[**DeletePlayerSuccessResponse**](DeletePlayerSuccessResponse.md)
-
-### Authorization
-
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -858,28 +767,28 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
 **404** | Not Found |  -  |
+**409** | Conflict |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_segments**
-> DeleteSegmentSuccessResponse delete_segments(app_id, segment_id)
+# **delete_segment**
+> GenericSuccessBoolResponse delete_segment(app_id, segment_id)
 
-Delete Segments
+Delete Segment
 
-Delete segments (not user devices) - Required: OneSignal Paid Plan You can delete a segment under your app by calling this API. You must provide an API key in the Authorization header that has admin access on the app. The segment_id can be found in the URL of the segment when viewing it in the dashboard. 
+Delete a segment (not user devices) - Required: OneSignal Paid Plan You can delete a segment under your app by calling this API. You must provide an API key in the Authorization header that has admin access on the app. The segment_id can be found in the URL of the segment when viewing it in the dashboard. 
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.delete_segment_success_response import DeleteSegmentSuccessResponse
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.delete_segment_not_found_response import DeleteSegmentNotFoundResponse
-from onesignal.model.rate_limiter_error import RateLimiterError
+from onesignal.model.generic_success_bool_response import GenericSuccessBoolResponse
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -891,11 +800,11 @@ with onesignal.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # Delete Segments
-        api_response = api_instance.delete_segments(app_id, segment_id)
+        # Delete Segment
+        api_response = api_instance.delete_segment(app_id, segment_id)
         pprint(api_response)
     except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->delete_segments: %s\n" % e)
+        print("Exception when calling DefaultApi->delete_segment: %s\n" % e)
 ```
 
 
@@ -908,11 +817,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DeleteSegmentSuccessResponse**](DeleteSegmentSuccessResponse.md)
+[**GenericSuccessBoolResponse**](GenericSuccessBoolResponse.md)
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -940,13 +849,13 @@ Deletes the Subscription.
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -977,7 +886,7 @@ void (empty response body)
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -991,6 +900,7 @@ void (empty response body)
 |-------------|-------------|------------------|
 **202** | ACCEPTED |  -  |
 **400** | Bad Request |  -  |
+**404** | Not Found |  -  |
 **409** | Conflict |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
@@ -1005,13 +915,13 @@ Removes the User identified by (:alias_label, :alias_id), and all Subscriptions 
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1044,7 +954,7 @@ void (empty response body)
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -1063,73 +973,6 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **end_live_activity**
-> end_live_activity(app_id, activity_id, subscription_id)
-
-Stop Live Activity
-
-Stops a Live Activity
-
-### Example
-
-* Bearer Authentication (app_key):
-
-```python
-import onesignal
-from onesignal.api import default_api
-from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from pprint import pprint
-
-# Enter a context with an instance of the API client
-with onesignal.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # The OneSignal App ID for your app.  Available in Keys & IDs. 
-    activity_id = "activity_id_example" # Live Activity record ID 
-    subscription_id = "subscription_id_example" # Subscription ID 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Stop Live Activity
-        api_instance.end_live_activity(app_id, activity_id, subscription_id)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->end_live_activity: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **app_id** | **str**| The OneSignal App ID for your app.  Available in Keys &amp; IDs. |
- **activity_id** | **str**| Live Activity record ID |
- **subscription_id** | **str**| Subscription ID |
-
-### Return type
-
-void (empty response body)
-
-### Authorization
-
-[app_key](../README.md#app_key)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**204** | OK |  -  |
-**400** | Bad Request |  -  |
-**429** | Rate Limit Exceeded |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **export_events**
 > ExportEventsSuccessResponse export_events(notification_id, app_id)
 
@@ -1139,14 +982,14 @@ Generate a compressed CSV report of all of the events data for a notification. T
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.export_events_success_response import ExportEventsSuccessResponse
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1179,7 +1022,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -1198,24 +1041,24 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **export_players**
-> ExportPlayersSuccessResponse export_players(app_id)
+# **export_subscriptions**
+> ExportSubscriptionsSuccessResponse export_subscriptions(app_id)
 
-Export CSV of Players
+Export CSV of Subscriptions
 
 Generate a compressed CSV export of all of your current user data This method can be used to generate a compressed CSV export of all of your current user data. It is a much faster alternative than retrieving this data using the /players API endpoint. The file will be compressed using GZip. The file may take several minutes to generate depending on the number of users in your app. The URL generated will be available for 3 days and includes random v4 uuid as part of the resource name to be unguessable. &#x1F6A7; 403 Error Responses          You can test if it is complete by making a GET request to the csv_file_url value. This file may take time to generate depending on how many device records are being pulled. If the file is not ready, a 403 error will be returned. Otherwise the file itself will be returned. &#x1F6A7; Requires Authentication Key Requires your OneSignal App's REST API Key, available in Keys & IDs. &#x1F6A7; Concurrent Exports Only one concurrent export is allowed per OneSignal account. Please ensure you have successfully downloaded the .csv.gz file before exporting another app. CSV File Format: - Default Columns:   | Field | Details |   | --- | --- |   | id | OneSignal Player Id |   | identifier | Push Token |   | session_count | Number of times they visited the app or site   | language | Device language code |   | timezone | Number of seconds away from UTC. Example: -28800 |   | game_version | Version of your mobile app gathered from Android Studio versionCode in your App/build.gradle and iOS uses kCFBundleVersionKey in Xcode. |   | device_os | Device Operating System Version. Example: 80 = Chrome 80, 9 = Android 9 |   | device_type | Device Operating System Type |   | device_model | Device Hardware String Code. Example: Mobile Web Subscribers will have `Linux armv` |   | ad_id | Based on the Google Advertising Id for Android, identifierForVendor for iOS. OptedOut means user turned off Advertising tracking on the device. |   | tags | Current OneSignal Data Tags on the device. |   | last_active | Date and time the user last opened the mobile app or visited the site. |   | playtime | Total amount of time in seconds the user had the mobile app open. |   | amount_spent |  Mobile only - amount spent in USD on In-App Purchases. |    | created_at | Date and time the device record was created in OneSignal. Mobile - first time they opened the app with OneSignal SDK. Web - first time the user subscribed to the site. |   | invalid_identifier | t = unsubscribed, f = subscibed |   | badge_count | Current number of badges on the device | - Extra Columns:   | Field | Details |   | --- | --- |   | external_user_id | Your User Id set on the device |   | notification_types | Notification types |   | location | Location points (Latitude and Longitude) set on the device. |   | country | Country code |   | rooted | Android device rooted or not |   | ip | IP Address of the device if being tracked. See Handling Personal Data. |   | web_auth | Web Only authorization key. |   | web_p256 | Web Only p256 key. | 
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.export_players_success_response import ExportPlayersSuccessResponse
+from onesignal.model.export_subscriptions_success_response import ExportSubscriptionsSuccessResponse
+from onesignal.model.export_subscriptions_request_body import ExportSubscriptionsRequestBody
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from onesignal.model.export_players_request_body import ExportPlayersRequestBody
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1223,7 +1066,7 @@ with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     app_id = "app_id_example" # The app ID that you want to export devices from 
-    export_players_request_body = ExportPlayersRequestBody(
+    export_subscriptions_request_body = ExportSubscriptionsRequestBody(
         extra_fields=[
             "extra_fields_example",
         ],
@@ -1233,20 +1076,20 @@ with onesignal.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        # Export CSV of Players
-        api_response = api_instance.export_players(app_id)
+        # Export CSV of Subscriptions
+        api_response = api_instance.export_subscriptions(app_id)
         pprint(api_response)
     except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->export_players: %s\n" % e)
+        print("Exception when calling DefaultApi->export_subscriptions: %s\n" % e)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # Export CSV of Players
-        api_response = api_instance.export_players(app_id, export_players_request_body=export_players_request_body)
+        # Export CSV of Subscriptions
+        api_response = api_instance.export_subscriptions(app_id, export_subscriptions_request_body=export_subscriptions_request_body)
         pprint(api_response)
     except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->export_players: %s\n" % e)
+        print("Exception when calling DefaultApi->export_subscriptions: %s\n" % e)
 ```
 
 
@@ -1255,15 +1098,15 @@ with onesignal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **app_id** | **str**| The app ID that you want to export devices from |
- **export_players_request_body** | [**ExportPlayersRequestBody**](ExportPlayersRequestBody.md)|  | [optional]
+ **export_subscriptions_request_body** | [**ExportSubscriptionsRequestBody**](ExportSubscriptionsRequestBody.md)|  | [optional]
 
 ### Return type
 
-[**ExportPlayersSuccessResponse**](ExportPlayersSuccessResponse.md)
+[**ExportSubscriptionsSuccessResponse**](ExportSubscriptionsSuccessResponse.md)
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -1281,8 +1124,77 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **fetch_aliases**
-> UserIdentityResponse fetch_aliases(app_id, subscription_id)
+# **get_aliases**
+> UserIdentityBody get_aliases(app_id, alias_label, alias_id)
+
+
+
+Lists all Aliases for the User identified by (:alias_label, :alias_id).
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.rate_limit_error import RateLimitError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.user_identity_body import UserIdentityBody
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "app_id_example" 
+    alias_label = "alias_label_example" 
+    alias_id = "alias_id_example" 
+
+    # example passing only required values which don't have defaults set
+    try:
+        api_response = api_instance.get_aliases(app_id, alias_label, alias_id)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->get_aliases: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**|  |
+ **alias_label** | **str**|  |
+ **alias_id** | **str**|  |
+
+### Return type
+
+[**UserIdentityBody**](UserIdentityBody.md)
+
+### Authorization
+
+[rest_api_key](../README.md#rest_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
+**429** | Rate Limit Exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_aliases_by_subscription**
+> UserIdentityBody get_aliases_by_subscription(app_id, subscription_id)
 
 
 
@@ -1290,13 +1202,13 @@ Lists all Aliases for the User identified by :subscription_id.
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.generic_error import GenericError
-from onesignal.model.user_identity_response import UserIdentityResponse
+from onesignal.model.user_identity_body import UserIdentityBody
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1308,10 +1220,10 @@ with onesignal.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.fetch_aliases(app_id, subscription_id)
+        api_response = api_instance.get_aliases_by_subscription(app_id, subscription_id)
         pprint(api_response)
     except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->fetch_aliases: %s\n" % e)
+        print("Exception when calling DefaultApi->get_aliases_by_subscription: %s\n" % e)
 ```
 
 
@@ -1324,11 +1236,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserIdentityResponse**](UserIdentityResponse.md)
+[**UserIdentityBody**](UserIdentityBody.md)
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -1342,142 +1254,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **fetch_user**
-> User fetch_user(app_id, alias_label, alias_id)
-
-
-
-Returns the User’s properties, Aliases, and Subscriptions.
-
-### Example
-
-* Bearer Authentication (app_key):
-
-```python
-import onesignal
-from onesignal.api import default_api
-from onesignal.model.user import User
-from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from pprint import pprint
-
-# Enter a context with an instance of the API client
-with onesignal.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    alias_label = "alias_label_example" 
-    alias_id = "alias_id_example" 
-
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.fetch_user(app_id, alias_label, alias_id)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->fetch_user: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **app_id** | **str**|  |
- **alias_label** | **str**|  |
- **alias_id** | **str**|  |
-
-### Return type
-
-[**User**](User.md)
-
-### Authorization
-
-[app_key](../README.md#app_key)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**400** | Bad Request |  -  |
-**429** | Rate Limit Exceeded |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **fetch_user_identity**
-> InlineResponse200 fetch_user_identity(app_id, alias_label, alias_id)
-
-
-
-Lists all Aliases for the User identified by (:alias_label, :alias_id).
-
-### Example
-
-* Bearer Authentication (app_key):
-
-```python
-import onesignal
-from onesignal.api import default_api
-from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from onesignal.model.inline_response200 import InlineResponse200
-from pprint import pprint
-
-# Enter a context with an instance of the API client
-with onesignal.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    alias_label = "alias_label_example" 
-    alias_id = "alias_id_example" 
-
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.fetch_user_identity(app_id, alias_label, alias_id)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->fetch_user_identity: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **app_id** | **str**|  |
- **alias_label** | **str**|  |
- **alias_id** | **str**|  |
-
-### Return type
-
-[**InlineResponse200**](InlineResponse200.md)
-
-### Authorization
-
-[app_key](../README.md#app_key)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**400** | Bad Request |  -  |
-**429** | Rate Limit Exceeded |  -  |
+**404** | Not Found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1490,14 +1267,14 @@ View the details of a single OneSignal app
 
 ### Example
 
-* Bearer Authentication (user_key):
+* Bearer Authentication (user_auth_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.app import App
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1528,7 +1305,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[user_key](../README.md#user_key)
+[user_auth_key](../README.md#user_auth_key)
 
 ### HTTP request headers
 
@@ -1555,14 +1332,14 @@ View the details of all of your current OneSignal apps
 
 ### Example
 
-* Bearer Authentication (user_key):
+* Bearer Authentication (user_auth_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.apps import Apps
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1589,73 +1366,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[user_key](../README.md#user_key)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**400** | Bad Request |  -  |
-**429** | Rate Limit Exceeded |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_eligible_iams**
-> InlineResponse2003 get_eligible_iams(app_id, subscription_id)
-
-
-
-Manifest of In-App Messages the Subscription is eligible to display by the SDK.
-
-### Example
-
-* Bearer Authentication (app_key):
-
-```python
-import onesignal
-from onesignal.api import default_api
-from onesignal.model.inline_response2003 import InlineResponse2003
-from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from pprint import pprint
-
-# Enter a context with an instance of the API client
-with onesignal.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    subscription_id = "subscription_id_example" 
-
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.get_eligible_iams(app_id, subscription_id)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->get_eligible_iams: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **app_id** | **str**|  |
- **subscription_id** | **str**|  |
-
-### Return type
-
-[**InlineResponse2003**](InlineResponse2003.md)
-
-### Authorization
-
-[app_key](../README.md#app_key)
+[user_auth_key](../README.md#user_auth_key)
 
 ### HTTP request headers
 
@@ -1682,13 +1393,13 @@ View the details of a single notification and outcomes associated with it
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
 from onesignal.model.notification_with_meta import NotificationWithMeta
 from pprint import pprint
 
@@ -1722,7 +1433,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -1736,12 +1447,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**404** | Not Found |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_notification_history**
-> NotificationHistorySuccessResponse get_notification_history(notification_id, get_notification_request_body)
+> NotificationHistorySuccessResponse get_notification_history(notification_id, get_notification_history_request_body)
 
 Notification History
 
@@ -1749,15 +1461,15 @@ Notification History
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.notification_history_success_response import NotificationHistorySuccessResponse
-from onesignal.model.get_notification_request_body import GetNotificationRequestBody
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
+from onesignal.model.get_notification_history_request_body import GetNotificationHistoryRequestBody
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1765,7 +1477,7 @@ with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     notification_id = "notification_id_example" # The \"id\" of the message found in the Notification object 
-    get_notification_request_body = GetNotificationRequestBody(
+    get_notification_history_request_body = GetNotificationHistoryRequestBody(
         events="sent",
         email="email_example",
         app_id="app_id_example",
@@ -1774,7 +1486,7 @@ with onesignal.ApiClient(configuration) as api_client:
     # example passing only required values which don't have defaults set
     try:
         # Notification History
-        api_response = api_instance.get_notification_history(notification_id, get_notification_request_body)
+        api_response = api_instance.get_notification_history(notification_id, get_notification_history_request_body)
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->get_notification_history: %s\n" % e)
@@ -1786,7 +1498,7 @@ with onesignal.ApiClient(configuration) as api_client:
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **notification_id** | **str**| The \&quot;id\&quot; of the message found in the Notification object |
- **get_notification_request_body** | [**GetNotificationRequestBody**](GetNotificationRequestBody.md)|  |
+ **get_notification_history_request_body** | [**GetNotificationHistoryRequestBody**](GetNotificationHistoryRequestBody.md)|  |
 
 ### Return type
 
@@ -1794,7 +1506,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -1808,6 +1520,7 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**404** | Not Found |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -1821,14 +1534,14 @@ View the details of multiple notifications
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.notification_slice import NotificationSlice
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1874,7 +1587,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -1901,14 +1614,14 @@ View the details of all the outcomes associated with your app  &#x1F6A7; Require
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.outcomes_data import OutcomesData
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -1958,7 +1671,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -1976,49 +1689,49 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_player**
-> Player get_player(app_id, player_id)
+# **get_segments**
+> GetSegmentsSuccessResponse get_segments(app_id)
 
-View device
+Get Segments
 
-View the details of an existing device in one of your OneSignal apps
+Returns an array of segments from an app.
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.player import Player
+from onesignal.model.get_segments_success_response import GetSegmentsSuccessResponse
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # Your app_id for this device 
-    player_id = "player_id_example" # Player's OneSignal ID 
-    email_auth_hash = "email_auth_hash_example"  # Email - Only required if you have enabled Identity Verification and device_type is email (11). (optional) 
+    app_id = "app_id_example" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    offset = 1  # Segments are listed in ascending order of created_at date. offset will omit that number of segments from the beginning of the list. Eg offset 5, will remove the 5 earliest created Segments. (optional) 
+    limit = 1  # The amount of Segments in the response. Maximum 300. (optional) 
 
     # example passing only required values which don't have defaults set
     try:
-        # View device
-        api_response = api_instance.get_player(app_id, player_id)
+        # Get Segments
+        api_response = api_instance.get_segments(app_id)
         pprint(api_response)
     except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->get_player: %s\n" % e)
+        print("Exception when calling DefaultApi->get_segments: %s\n" % e)
 
     # example passing only required values which don't have defaults set
     # and optional values
     try:
-        # View device
-        api_response = api_instance.get_player(app_id, player_id, email_auth_hash=email_auth_hash)
+        # Get Segments
+        api_response = api_instance.get_segments(app_id, offset=offset, limit=limit)
         pprint(api_response)
     except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->get_player: %s\n" % e)
+        print("Exception when calling DefaultApi->get_segments: %s\n" % e)
 ```
 
 
@@ -2026,17 +1739,17 @@ with onesignal.ApiClient(configuration) as api_client:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **app_id** | **str**| Your app_id for this device |
- **player_id** | **str**| Player&#39;s OneSignal ID |
- **email_auth_hash** | **str**| Email - Only required if you have enabled Identity Verification and device_type is email (11). | [optional]
+ **app_id** | **str**| The OneSignal App ID for your app.  Available in Keys &amp; IDs. |
+ **offset** | **int**| Segments are listed in ascending order of created_at date. offset will omit that number of segments from the beginning of the list. Eg offset 5, will remove the 5 earliest created Segments. | [optional]
+ **limit** | **int**| The amount of Segments in the response. Maximum 300. | [optional]
 
 ### Return type
 
-[**Player**](Player.md)
+[**GetSegmentsSuccessResponse**](GetSegmentsSuccessResponse.md)
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -2048,108 +1761,29 @@ Name | Type | Description  | Notes
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | OK |  -  |
+**201** | OK |  -  |
 **400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_players**
-> PlayerSlice get_players(app_id)
+# **get_user**
+> User get_user(app_id, alias_label, alias_id)
 
-View devices
 
-View the details of multiple devices in one of your OneSignal apps Unavailable for Apps Over 80,000 Users For performance reasons, this method is not available for larger apps. Larger apps should use the CSV export API endpoint, which is much more performant. 
+
+Returns the User’s properties, Aliases, and Subscriptions.
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
+from onesignal.model.user import User
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from onesignal.model.player_slice import PlayerSlice
-from pprint import pprint
-
-# Enter a context with an instance of the API client
-with onesignal.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # The app ID that you want to view players from 
-    limit = 1  # How many devices to return. Max is 300. Default is 300 (optional) 
-    offset = 1  # Result offset. Default is 0. Results are sorted by id; (optional) 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # View devices
-        api_response = api_instance.get_players(app_id)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->get_players: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # View devices
-        api_response = api_instance.get_players(app_id, limit=limit, offset=offset)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->get_players: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **app_id** | **str**| The app ID that you want to view players from |
- **limit** | **int**| How many devices to return. Max is 300. Default is 300 | [optional]
- **offset** | **int**| Result offset. Default is 0. Results are sorted by id; | [optional]
-
-### Return type
-
-[**PlayerSlice**](PlayerSlice.md)
-
-### Authorization
-
-[app_key](../README.md#app_key)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**400** | Bad Request |  -  |
-**429** | Rate Limit Exceeded |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **identify_user_by_alias**
-> InlineResponse200 identify_user_by_alias(app_id, alias_label, alias_id, user_identity_request_body)
-
-
-
-Upserts one or more Aliases to an existing User identified by (:alias_label, :alias_id).
-
-### Example
-
-* Bearer Authentication (app_key):
-
-```python
-import onesignal
-from onesignal.api import default_api
-from onesignal.model.user_identity_request_body import UserIdentityRequestBody
-from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from onesignal.model.inline_response200 import InlineResponse200
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -2159,16 +1793,13 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "app_id_example" 
     alias_label = "alias_label_example" 
     alias_id = "alias_id_example" 
-    user_identity_request_body = UserIdentityRequestBody(
-        identity=IdentityObject(),
-    ) 
 
     # example passing only required values which don't have defaults set
     try:
-        api_response = api_instance.identify_user_by_alias(app_id, alias_label, alias_id, user_identity_request_body)
+        api_response = api_instance.get_user(app_id, alias_label, alias_id)
         pprint(api_response)
     except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->identify_user_by_alias: %s\n" % e)
+        print("Exception when calling DefaultApi->get_user: %s\n" % e)
 ```
 
 
@@ -2179,19 +1810,18 @@ Name | Type | Description  | Notes
  **app_id** | **str**|  |
  **alias_label** | **str**|  |
  **alias_id** | **str**|  |
- **user_identity_request_body** | [**UserIdentityRequestBody**](UserIdentityRequestBody.md)|  |
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+[**User**](User.md)
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
- - **Content-Type**: application/json
+ - **Content-Type**: Not defined
  - **Accept**: application/json
 
 
@@ -2201,85 +1831,13 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
-**409** | Conflict |  -  |
-**429** | Rate Limit Exceeded |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **identify_user_by_subscription_id**
-> UserIdentityResponse identify_user_by_subscription_id(app_id, subscription_id, user_identity_request_body)
-
-
-
-Upserts one or more Aliases for the User identified by :subscription_id.
-
-### Example
-
-* Bearer Authentication (app_key):
-
-```python
-import onesignal
-from onesignal.api import default_api
-from onesignal.model.user_identity_request_body import UserIdentityRequestBody
-from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from onesignal.model.user_identity_response import UserIdentityResponse
-from pprint import pprint
-
-# Enter a context with an instance of the API client
-with onesignal.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    subscription_id = "subscription_id_example" 
-    user_identity_request_body = UserIdentityRequestBody(
-        identity=IdentityObject(),
-    ) 
-
-    # example passing only required values which don't have defaults set
-    try:
-        api_response = api_instance.identify_user_by_subscription_id(app_id, subscription_id, user_identity_request_body)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->identify_user_by_subscription_id: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **app_id** | **str**|  |
- **subscription_id** | **str**|  |
- **user_identity_request_body** | [**UserIdentityRequestBody**](UserIdentityRequestBody.md)|  |
-
-### Return type
-
-[**UserIdentityResponse**](UserIdentityResponse.md)
-
-### Authorization
-
-[app_key](../README.md#app_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**400** | Bad Request |  -  |
-**409** | Conflict |  -  |
+**404** | Not Found |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **transfer_subscription**
-> UserIdentityResponse transfer_subscription(app_id, subscription_id, transfer_subscription_request_body)
+> UserIdentityBody transfer_subscription(app_id, subscription_id, transfer_subscription_request_body)
 
 
 
@@ -2287,15 +1845,15 @@ Transfers this Subscription to the User identified by the identity in the payloa
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.transfer_subscription_request_body import TransferSubscriptionRequestBody
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from onesignal.model.user_identity_response import UserIdentityResponse
+from onesignal.model.user_identity_body import UserIdentityBody
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -2305,7 +1863,9 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "app_id_example" 
     subscription_id = "subscription_id_example" 
     transfer_subscription_request_body = TransferSubscriptionRequestBody(
-        identity=IdentityObject(),
+        identity={
+            "key": "key_example",
+        },
     ) 
 
     # example passing only required values which don't have defaults set
@@ -2327,11 +1887,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserIdentityResponse**](UserIdentityResponse.md)
+[**UserIdentityBody**](UserIdentityBody.md)
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -2345,7 +1905,77 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**404** | Not Found |  -  |
 **409** | Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **unsubscribe_email_with_token**
+> GenericSuccessBoolResponse unsubscribe_email_with_token(app_id, notification_id, token)
+
+Unsubscribe with token
+
+Unsubscribe an email with a token when using your own custom email unsubscribe landing page
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.rate_limit_error import RateLimitError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.generic_success_bool_response import GenericSuccessBoolResponse
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "app_id_example" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    notification_id = "notification_id_example" # The id of the message found in the creation notification POST response, View Notifications GET response, or URL within the Message Report. 
+    token = "token_example" # The unsubscribe token that is generated via liquid syntax in {{subscription.unsubscribe_token}} when personalizing an email. 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Unsubscribe with token
+        api_response = api_instance.unsubscribe_email_with_token(app_id, notification_id, token)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->unsubscribe_email_with_token: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| The OneSignal App ID for your app.  Available in Keys &amp; IDs. |
+ **notification_id** | **str**| The id of the message found in the creation notification POST response, View Notifications GET response, or URL within the Message Report. |
+ **token** | **str**| The unsubscribe token that is generated via liquid syntax in {{subscription.unsubscribe_token}} when personalizing an email. |
+
+### Return type
+
+[**GenericSuccessBoolResponse**](GenericSuccessBoolResponse.md)
+
+### Authorization
+
+[rest_api_key](../README.md#rest_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | OK |  -  |
+**400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -2359,14 +1989,14 @@ Updates the name or configuration settings of an existing OneSignal app
 
 ### Example
 
-* Bearer Authentication (user_key):
+* Bearer Authentication (user_auth_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.app import App
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -2421,7 +2051,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[user_key](../README.md#user_key)
+[user_auth_key](../README.md#user_auth_key)
 
 ### HTTP request headers
 
@@ -2448,15 +2078,15 @@ Updates a specified live activity.
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.update_live_activity_request import UpdateLiveActivityRequest
 from onesignal.model.update_live_activity_success_response import UpdateLiveActivitySuccessResponse
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -2466,10 +2096,103 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "app_id_example" # The OneSignal App ID for your app.  Available in Keys & IDs. 
     activity_id = "activity_id_example" # Live Activity record ID 
     update_live_activity_request = UpdateLiveActivityRequest(
-        name="headings",
+        name="name_example",
         event="update",
         event_updates={},
-        dismiss_at=3.14,
+        contents=LanguageStringMap(
+            en="en_example",
+            ar="ar_example",
+            bs="bs_example",
+            bg="bg_example",
+            ca="ca_example",
+            zh_hans="zh_hans_example",
+            zh_hant="zh_hant_example",
+            zh="zh_example",
+            hr="hr_example",
+            cs="cs_example",
+            da="da_example",
+            nl="nl_example",
+            et="et_example",
+            fi="fi_example",
+            fr="fr_example",
+            ka="ka_example",
+            de="de_example",
+            el="el_example",
+            hi="hi_example",
+            he="he_example",
+            hu="hu_example",
+            id="id_example",
+            it="it_example",
+            ja="ja_example",
+            ko="ko_example",
+            lv="lv_example",
+            lt="lt_example",
+            ms="ms_example",
+            nb="nb_example",
+            pl="pl_example",
+            fa="fa_example",
+            pt="pt_example",
+            pa="pa_example",
+            ro="ro_example",
+            ru="ru_example",
+            sr="sr_example",
+            sk="sk_example",
+            es="es_example",
+            sv="sv_example",
+            th="th_example",
+            tr="tr_example",
+            uk="uk_example",
+            vi="vi_example",
+        ),
+        headings=LanguageStringMap(
+            en="en_example",
+            ar="ar_example",
+            bs="bs_example",
+            bg="bg_example",
+            ca="ca_example",
+            zh_hans="zh_hans_example",
+            zh_hant="zh_hant_example",
+            zh="zh_example",
+            hr="hr_example",
+            cs="cs_example",
+            da="da_example",
+            nl="nl_example",
+            et="et_example",
+            fi="fi_example",
+            fr="fr_example",
+            ka="ka_example",
+            de="de_example",
+            el="el_example",
+            hi="hi_example",
+            he="he_example",
+            hu="hu_example",
+            id="id_example",
+            it="it_example",
+            ja="ja_example",
+            ko="ko_example",
+            lv="lv_example",
+            lt="lt_example",
+            ms="ms_example",
+            nb="nb_example",
+            pl="pl_example",
+            fa="fa_example",
+            pt="pt_example",
+            pa="pa_example",
+            ro="ro_example",
+            ru="ru_example",
+            sr="sr_example",
+            sk="sk_example",
+            es="es_example",
+            sv="sv_example",
+            th="th_example",
+            tr="tr_example",
+            uk="uk_example",
+            vi="vi_example",
+        ),
+        sound="sound_example",
+        stale_date=1,
+        dismissal_date=1,
+        priority=1,
     ) 
 
     # example passing only required values which don't have defaults set
@@ -2496,7 +2219,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -2510,189 +2233,12 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
-**429** | Rate Limit Exceeded |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_player**
-> UpdatePlayerSuccessResponse update_player(player_id, player)
-
-Edit device
-
-Update an existing device in one of your OneSignal apps
-
-### Example
-
-* Bearer Authentication (app_key):
-
-```python
-import onesignal
-from onesignal.api import default_api
-from onesignal.model.player import Player
-from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from onesignal.model.update_player_success_response import UpdatePlayerSuccessResponse
-from pprint import pprint
-
-# Enter a context with an instance of the API client
-with onesignal.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    player_id = "player_id_example" # Player's OneSignal ID 
-    player = Player(
-        app_id="app_id_example",
-        device_type=1,
-        external_user_id="external_user_id_example",
-        external_user_id_auth_hash="external_user_id_auth_hash_example",
-        email_auth_hash="email_auth_hash_example",
-        identifier="identifier_example",
-        language="language_example",
-        timezone=1,
-        game_version="game_version_example",
-        device_model="device_model_example",
-        device_os="device_os_example",
-        ad_id="ad_id_example",
-        sdk="sdk_example",
-        session_count=1,
-        tags={},
-        amount_spent=3.14,
-        created_at=1,
-        playtime=1,
-        badge_count=1,
-        last_active=1,
-        notification_types=1,
-        test_type=1,
-        long=3.14,
-        lat=3.14,
-        country="country_example",
-    ) 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Edit device
-        api_response = api_instance.update_player(player_id, player)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->update_player: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **player_id** | **str**| Player&#39;s OneSignal ID |
- **player** | [**Player**](Player.md)|  |
-
-### Return type
-
-[**UpdatePlayerSuccessResponse**](UpdatePlayerSuccessResponse.md)
-
-### Authorization
-
-[app_key](../README.md#app_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**400** | Bad Request |  -  |
-**409** | Conflict |  -  |
-**429** | Rate Limit Exceeded |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_player_tags**
-> UpdatePlayerTagsSuccessResponse update_player_tags(app_id, external_user_id)
-
-Edit tags with external user id
-
-Update an existing device's tags in one of your OneSignal apps using the External User ID. Warning - Android SDK Data Synchronization Tags added through the Android SDK tagging methods may not update if using the API to change or update the same tag. For example, if you use SDK method sendTag(\"key\", \"value1\") then update the tag value to \"value2\" with this API endpoint. You will not be able to set the value back to \"value1\" through the SDK, you will need to change it to something different through the SDK to be reset. Recommendations if using this Endpoint on Android Mobile Apps: 1 - Do not use the same tag keys for SDK and API updates 2 - If you want to use the same key for both SDK and API updates, call the SDK getTags method first to update the device's tags. This is only applicable on the Android Mobile App SDKs. &#128216; Deleting Tags To delete a tag, include its key and set its value to blank. Omitting a key/value will not delete it. For example, if I wanted to delete two existing tags rank and category while simultaneously adding a new tag class, the tags JSON would look like the following: \"tags\": {    \"rank\": \"\",    \"category\": \"\",    \"class\": \"my_new_value\" } 
-
-### Example
-
-* Bearer Authentication (app_key):
-
-```python
-import onesignal
-from onesignal.api import default_api
-from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
-from onesignal.model.update_player_tags_request_body import UpdatePlayerTagsRequestBody
-from onesignal.model.update_player_tags_success_response import UpdatePlayerTagsSuccessResponse
-from pprint import pprint
-
-# Enter a context with an instance of the API client
-with onesignal.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # The OneSignal App ID the user record is found under. 
-    external_user_id = "external_user_id_example" # The External User ID mapped to teh device record in OneSignal.  Must be actively set on the device to be updated. 
-    update_player_tags_request_body = UpdatePlayerTagsRequestBody(
-        tags={},
-    ) 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Edit tags with external user id
-        api_response = api_instance.update_player_tags(app_id, external_user_id)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->update_player_tags: %s\n" % e)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Edit tags with external user id
-        api_response = api_instance.update_player_tags(app_id, external_user_id, update_player_tags_request_body=update_player_tags_request_body)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->update_player_tags: %s\n" % e)
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **app_id** | **str**| The OneSignal App ID the user record is found under. |
- **external_user_id** | **str**| The External User ID mapped to teh device record in OneSignal.  Must be actively set on the device to be updated. |
- **update_player_tags_request_body** | [**UpdatePlayerTagsRequestBody**](UpdatePlayerTagsRequestBody.md)|  | [optional]
-
-### Return type
-
-[**UpdatePlayerTagsSuccessResponse**](UpdatePlayerTagsSuccessResponse.md)
-
-### Authorization
-
-[app_key](../README.md#app_key)
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**400** | Bad Request |  -  |
-**409** | Conflict |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_subscription**
-> update_subscription(app_id, subscription_id, update_subscription_request_body)
+> update_subscription(app_id, subscription_id, subscription_body)
 
 
 
@@ -2700,14 +2246,14 @@ Updates an existing Subscription’s properties.
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.update_subscription_request_body import UpdateSubscriptionRequestBody
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
+from onesignal.model.subscription_body import SubscriptionBody
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -2716,22 +2262,22 @@ with onesignal.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     app_id = "app_id_example" 
     subscription_id = "subscription_id_example" 
-    update_subscription_request_body = UpdateSubscriptionRequestBody(
-        subscription=SubscriptionObject(
+    subscription_body = SubscriptionBody(
+        subscription=Subscription(
             id="id_example",
             type="iOSPush",
             token="token_example",
             enabled=True,
-            notification_types=3.14,
-            session_time=3.14,
-            session_count=3.14,
+            notification_types=1,
+            session_time=1,
+            session_count=1,
             sdk="sdk_example",
             device_model="device_model_example",
             device_os="device_os_example",
             rooted=True,
-            test_type=3.14,
+            test_type=1,
             app_version="app_version_example",
-            net_type=3.14,
+            net_type=1,
             carrier="carrier_example",
             web_auth="web_auth_example",
             web_p256="web_p256_example",
@@ -2740,7 +2286,7 @@ with onesignal.ApiClient(configuration) as api_client:
 
     # example passing only required values which don't have defaults set
     try:
-        api_instance.update_subscription(app_id, subscription_id, update_subscription_request_body)
+        api_instance.update_subscription(app_id, subscription_id, subscription_body)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->update_subscription: %s\n" % e)
 ```
@@ -2752,7 +2298,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **app_id** | **str**|  |
  **subscription_id** | **str**|  |
- **update_subscription_request_body** | [**UpdateSubscriptionRequestBody**](UpdateSubscriptionRequestBody.md)|  |
+ **subscription_body** | [**SubscriptionBody**](SubscriptionBody.md)|  |
 
 ### Return type
 
@@ -2760,7 +2306,7 @@ void (empty response body)
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
@@ -2772,15 +2318,16 @@ void (empty response body)
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**202** | ACCEPTED |  -  |
+**200** | OK |  -  |
 **400** | Bad Request |  -  |
+**404** | Not Found |  -  |
 **409** | Conflict |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update_user**
-> InlineResponse202 update_user(app_id, alias_label, alias_id, update_user_request)
+> PropertiesBody update_user(app_id, alias_label, alias_id, update_user_request)
 
 
 
@@ -2788,15 +2335,15 @@ Updates an existing User’s properties.
 
 ### Example
 
-* Bearer Authentication (app_key):
+* Bearer Authentication (rest_api_key):
 
 ```python
 import onesignal
 from onesignal.api import default_api
 from onesignal.model.update_user_request import UpdateUserRequest
-from onesignal.model.inline_response202 import InlineResponse202
+from onesignal.model.properties_body import PropertiesBody
+from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
-from onesignal.model.rate_limiter_error import RateLimiterError
 from pprint import pprint
 
 # Enter a context with an instance of the API client
@@ -2814,29 +2361,29 @@ with onesignal.ApiClient(configuration) as api_client:
             lat=3.14,
             long=3.14,
             country="country_example",
-            first_active=3.14,
-            last_active=3.14,
+            first_active=1,
+            last_active=1,
             amount_spent=3.14,
             purchases=[
                 Purchase(
                     sku="sku_example",
                     amount="amount_example",
                     iso="iso_example",
-                    count=3.14,
+                    count=1,
                 ),
             ],
             ip="ip_example",
         ),
         refresh_device_metadata=False,
         deltas=PropertiesDeltas(
-            session_time=3.14,
-            session_count=3.14,
+            session_time=1,
+            session_count=1,
             purchases=[
                 Purchase(
                     sku="sku_example",
                     amount="amount_example",
                     iso="iso_example",
-                    count=3.14,
+                    count=1,
                 ),
             ],
         ),
@@ -2862,11 +2409,11 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**InlineResponse202**](InlineResponse202.md)
+[**PropertiesBody**](PropertiesBody.md)
 
 ### Authorization
 
-[app_key](../README.md#app_key)
+[rest_api_key](../README.md#rest_api_key)
 
 ### HTTP request headers
 
