@@ -66,8 +66,8 @@ from onesignal.api import default_api
 # (also knows as REST_API_KEY). We recommend adding both of them in the configuration page so that you will not need
 # to figure it yourself.
 configuration = onesignal.Configuration(
-    app_key = "YOUR_APP_KEY",
-    user_key = "YOUR_USER_KEY"
+    app_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    user_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
