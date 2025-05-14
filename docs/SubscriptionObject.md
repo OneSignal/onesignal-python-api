@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **type** | **str** |  | [optional] 
 **token** | **str** |  | [optional] 
 **enabled** | **bool** |  | [optional] 
-**notification_types** | **float** |  | [optional] 
+**notification_types** | **int** |  | [optional]
 **session_time** | **float** |  | [optional] 
 **session_count** | **float** |  | [optional] 
 **sdk** | **str** |  | [optional] 

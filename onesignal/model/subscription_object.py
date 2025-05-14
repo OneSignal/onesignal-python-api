@@ -101,7 +101,7 @@ class SubscriptionObject(ModelNormal):
             'type': (str,),  # noqa: E501
             'token': (str,),  # noqa: E501
             'enabled': (bool,),  # noqa: E501
-            'notification_types': (float,),  # noqa: E501
+            'notification_types': (int,),  # noqa: E501
             'session_time': (float,),  # noqa: E501
             'session_count': (float,),  # noqa: E501
             'sdk': (str,),  # noqa: E501
@@ -186,7 +186,7 @@ class SubscriptionObject(ModelNormal):
             type (str): [optional]  # noqa: E501
             token (str): [optional]  # noqa: E501
             enabled (bool): [optional]  # noqa: E501
-            notification_types (float): [optional]  # noqa: E501
+            notification_types (int): [optional]  # noqa: E501
             session_time (float): [optional]  # noqa: E501
             session_count (float): [optional]  # noqa: E501
             sdk (str): [optional]  # noqa: E501
@@ -288,7 +288,7 @@ class SubscriptionObject(ModelNormal):
             type (str): [optional]  # noqa: E501
             token (str): [optional]  # noqa: E501
             enabled (bool): [optional]  # noqa: E501
-            notification_types (float): [optional]  # noqa: E501
+            notification_types (int): [optional]  # noqa: E501
             session_time (float): [optional]  # noqa: E501
             session_count (float): [optional]  # noqa: E501
             sdk (str): [optional]  # noqa: E501
