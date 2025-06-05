@@ -16,8 +16,8 @@
 
 A powerful way to send personalized messages at scale and build effective customer engagement strategies. Learn more at onesignal.com
 
-- API version: 5.0.1
-- Package version: 5.0.0-beta1
+- API version: 5.1.0
+- Package version: 5.1.0-beta1
 - Build package: org.openapitools.codegen.languages.PythonClientCodegen
 
 ## Requirements.
@@ -62,12 +62,11 @@ import onesignal
 from onesignal.api import default_api
 
 # See configuration.py for a list of all supported configuration parameters.
-# Some of the OneSignal endpoints require USER_KEY bearer token for authorization as long as others require APP_KEY
-# (also knows as REST_API_KEY). We recommend adding both of them in the configuration page so that you will not need
-# to figure it yourself.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
-    app_key = "YOUR_APP_KEY",
-    user_key = "YOUR_USER_KEY"
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 

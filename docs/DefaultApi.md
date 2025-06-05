@@ -263,7 +263,7 @@ Creates a new OneSignal app
 
 ### Example
 
-* Bearer Authentication (user_auth_key):
+* Bearer Authentication (organization_api_key):
 
 ```python
 import onesignal
@@ -323,7 +323,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[user_auth_key](../README.md#user_auth_key)
+[organization_api_key](../README.md#organization_api_key)
 
 ### HTTP request headers
 
@@ -1267,7 +1267,7 @@ View the details of a single OneSignal app
 
 ### Example
 
-* Bearer Authentication (user_auth_key):
+* Bearer Authentication (organization_api_key):
 
 ```python
 import onesignal
@@ -1305,7 +1305,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[user_auth_key](../README.md#user_auth_key)
+[organization_api_key](../README.md#organization_api_key)
 
 ### HTTP request headers
 
@@ -1332,7 +1332,7 @@ View the details of all of your current OneSignal apps
 
 ### Example
 
-* Bearer Authentication (user_auth_key):
+* Bearer Authentication (organization_api_key):
 
 ```python
 import onesignal
@@ -1366,7 +1366,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[user_auth_key](../README.md#user_auth_key)
+[organization_api_key](../README.md#organization_api_key)
 
 ### HTTP request headers
 
@@ -1989,7 +1989,7 @@ Updates the name or configuration settings of an existing OneSignal app
 
 ### Example
 
-* Bearer Authentication (user_auth_key):
+* Bearer Authentication (organization_api_key):
 
 ```python
 import onesignal
@@ -2051,7 +2051,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[user_auth_key](../README.md#user_auth_key)
+[organization_api_key](../README.md#organization_api_key)
 
 ### HTTP request headers
 
