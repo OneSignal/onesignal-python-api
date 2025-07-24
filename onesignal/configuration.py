@@ -84,8 +84,8 @@ class Configuration(object):
 
     def __init__(self, host=None,
                  api_key=None, api_key_prefix=None,
-                 app_key=None,
-                 user_key=None,
+                 rest_api_key=None,
+                 organization_api_key=None,
                  username=None, password=None,
                  discard_unknown_keys=False,
                  disabled_client_side_validations="",
@@ -110,8 +110,8 @@ class Configuration(object):
         """Temp file folder for downloading files
         """
         # Authentication Settings
-        self.app_key = app_key
-        self.user_key = user_key
+        self.rest_api_key = rest_api_key
+        self.organization_api_key = organization_api_key
         self.api_key = {}
         if api_key:
             self.api_key = api_key
@@ -400,7 +400,7 @@ class Configuration(object):
                "OS: {env}\n"\
                "Python Version: {pyversion}\n"\
                "Version of the API: 5.2.0\n"\
-               "SDK Package Version: 5.2.0-beta1".\
+               "SDK Package Version: 5.2.1-beta1".\
                format(env=sys.platform, pyversion=sys.version)
 
     def get_host_settings(self):
