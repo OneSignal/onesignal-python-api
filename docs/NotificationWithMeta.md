@@ -123,6 +123,7 @@ Name | Type | Description | Notes
 **send_after** | **int, none_type** | Unix timestamp indicating when notification delivery should begin. | [optional] 
 **completed_at** | **int, none_type** | Unix timestamp indicating when notification delivery completed. The delivery duration from start to finish can be calculated with completed_at - send_after. | [optional] 
 **platform_delivery_stats** | [**PlatformDeliveryData**](PlatformDeliveryData.md) |  | [optional] 
+**canceled** | **bool** | Indicates whether the notification was canceled before it could be sent. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
