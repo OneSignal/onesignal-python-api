@@ -5,16 +5,22 @@ All URIs are relative to *https://api.onesignal.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**cancel_notification**](DefaultApi.md#cancel_notification) | **DELETE** /notifications/{notification_id} | Stop a scheduled or currently outgoing notification
+[**copy_template_to_app**](DefaultApi.md#copy_template_to_app) | **POST** /templates/{template_id}/copy_to_app | Copy template to another app
 [**create_alias**](DefaultApi.md#create_alias) | **PATCH** /apps/{app_id}/users/by/{alias_label}/{alias_id}/identity | 
 [**create_alias_by_subscription**](DefaultApi.md#create_alias_by_subscription) | **PATCH** /apps/{app_id}/subscriptions/{subscription_id}/user/identity | 
+[**create_api_key**](DefaultApi.md#create_api_key) | **POST** /apps/{app_id}/auth/tokens | Create API key
 [**create_app**](DefaultApi.md#create_app) | **POST** /apps | Create an app
+[**create_custom_events**](DefaultApi.md#create_custom_events) | **POST** /apps/{app_id}/integrations/custom_events | Create custom events
 [**create_notification**](DefaultApi.md#create_notification) | **POST** /notifications | Create notification
 [**create_segment**](DefaultApi.md#create_segment) | **POST** /apps/{app_id}/segments | Create Segment
 [**create_subscription**](DefaultApi.md#create_subscription) | **POST** /apps/{app_id}/users/by/{alias_label}/{alias_id}/subscriptions | 
+[**create_template**](DefaultApi.md#create_template) | **POST** /templates | Create template
 [**create_user**](DefaultApi.md#create_user) | **POST** /apps/{app_id}/users | 
 [**delete_alias**](DefaultApi.md#delete_alias) | **DELETE** /apps/{app_id}/users/by/{alias_label}/{alias_id}/identity/{alias_label_to_delete} | 
+[**delete_api_key**](DefaultApi.md#delete_api_key) | **DELETE** /apps/{app_id}/auth/tokens/{token_id} | Delete API key
 [**delete_segment**](DefaultApi.md#delete_segment) | **DELETE** /apps/{app_id}/segments/{segment_id} | Delete Segment
 [**delete_subscription**](DefaultApi.md#delete_subscription) | **DELETE** /apps/{app_id}/subscriptions/{subscription_id} | 
+[**delete_template**](DefaultApi.md#delete_template) | **DELETE** /templates/{template_id} | Delete template
 [**delete_user**](DefaultApi.md#delete_user) | **DELETE** /apps/{app_id}/users/by/{alias_label}/{alias_id} | 
 [**export_events**](DefaultApi.md#export_events) | **POST** /notifications/{notification_id}/export_events?app_id&#x3D;{app_id} | Export CSV of Events
 [**export_subscriptions**](DefaultApi.md#export_subscriptions) | **POST** /players/csv_export?app_id&#x3D;{app_id} | Export CSV of Subscriptions
@@ -28,12 +34,20 @@ Method | HTTP request | Description
 [**get_outcomes**](DefaultApi.md#get_outcomes) | **GET** /apps/{app_id}/outcomes | View Outcomes
 [**get_segments**](DefaultApi.md#get_segments) | **GET** /apps/{app_id}/segments | Get Segments
 [**get_user**](DefaultApi.md#get_user) | **GET** /apps/{app_id}/users/by/{alias_label}/{alias_id} | 
+[**rotate_api_key**](DefaultApi.md#rotate_api_key) | **POST** /apps/{app_id}/auth/tokens/{token_id}/rotate | Rotate API key
+[**start_live_activity**](DefaultApi.md#start_live_activity) | **POST** /apps/{app_id}/activities/activity/{activity_type} | Start Live Activity
 [**transfer_subscription**](DefaultApi.md#transfer_subscription) | **PATCH** /apps/{app_id}/subscriptions/{subscription_id}/owner | 
 [**unsubscribe_email_with_token**](DefaultApi.md#unsubscribe_email_with_token) | **POST** /apps/{app_id}/notifications/{notification_id}/unsubscribe | Unsubscribe with token
+[**update_api_key**](DefaultApi.md#update_api_key) | **PATCH** /apps/{app_id}/auth/tokens/{token_id} | Update API key
 [**update_app**](DefaultApi.md#update_app) | **PUT** /apps/{app_id} | Update an app
 [**update_live_activity**](DefaultApi.md#update_live_activity) | **POST** /apps/{app_id}/live_activities/{activity_id}/notifications | Update a Live Activity via Push
 [**update_subscription**](DefaultApi.md#update_subscription) | **PATCH** /apps/{app_id}/subscriptions/{subscription_id} | 
+[**update_subscription_by_token**](DefaultApi.md#update_subscription_by_token) | **PATCH** /apps/{app_id}/subscriptions_by_token/{token_type}/{token} | Update subscription by token
+[**update_template**](DefaultApi.md#update_template) | **PATCH** /templates/{template_id} | Update template
 [**update_user**](DefaultApi.md#update_user) | **PATCH** /apps/{app_id}/users/by/{alias_label}/{alias_id} | 
+[**view_api_keys**](DefaultApi.md#view_api_keys) | **GET** /apps/{app_id}/auth/tokens | View API keys
+[**view_template**](DefaultApi.md#view_template) | **GET** /templates/{template_id} | View template
+[**view_templates**](DefaultApi.md#view_templates) | **GET** /templates | View templates
 
 
 # **cancel_notification**
@@ -101,6 +115,76 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **404** | Not Found |  -  |
 **429** | Rate Limit Exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **copy_template_to_app**
+> TemplateResource copy_template_to_app(template_id, app_id, copy_template_request)
+
+Copy template to another app
+
+Copy a template to a destination app.
+
+### Example
+
+* Bearer Authentication (organization_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.copy_template_request import CopyTemplateRequest
+from onesignal.model.template_resource import TemplateResource
+from onesignal.model.generic_error import GenericError
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    template_id = "template_id_example" 
+    app_id = "app_id_example" 
+    copy_template_request = CopyTemplateRequest(
+        target_app_id="target_app_id_example",
+    ) 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Copy template to another app
+        api_response = api_instance.copy_template_to_app(template_id, app_id, copy_template_request)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->copy_template_to_app: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **template_id** | **str**|  |
+ **app_id** | **str**|  |
+ **copy_template_request** | [**CopyTemplateRequest**](CopyTemplateRequest.md)|  |
+
+### Return type
+
+[**TemplateResource**](TemplateResource.md)
+
+### Authorization
+
+[organization_api_key](../README.md#organization_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -254,6 +338,78 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **create_api_key**
+> CreateApiKeyResponse create_api_key(app_id, create_api_key_request)
+
+Create API key
+
+Use this API to create a new App API Key (also called a Rich Authentication Token) for a specific OneSignal app. These keys are used to authenticate API requests at the app level and offer enhanced security features, including optional IP allowlisting.
+
+### Example
+
+* Bearer Authentication (organization_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.create_api_key_response import CreateApiKeyResponse
+from onesignal.model.create_api_key_request import CreateApiKeyRequest
+from onesignal.model.generic_error import GenericError
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "app_id_example" 
+    create_api_key_request = CreateApiKeyRequest(
+        name="name_example",
+        ip_allowlist_mode="disabled",
+        ip_allowlist=[
+            "ip_allowlist_example",
+        ],
+    ) 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Create API key
+        api_response = api_instance.create_api_key(app_id, create_api_key_request)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->create_api_key: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**|  |
+ **create_api_key_request** | [**CreateApiKeyRequest**](CreateApiKeyRequest.md)|  |
+
+### Return type
+
+[**CreateApiKeyResponse**](CreateApiKeyResponse.md)
+
+### Authorization
+
+[organization_api_key](../README.md#organization_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **create_app**
 > App create_app(app)
 
@@ -337,6 +493,84 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_custom_events**
+> {str: (bool, date, datetime, dict, float, int, list, str, none_type)} create_custom_events(app_id, custom_events_request)
+
+Create custom events
+
+The Custom Events API allows you to record user events. Custom events can represent any action users take in your application, such as completing a purchase, viewing content, or achieving milestones.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.custom_events_request import CustomEventsRequest
+from onesignal.model.rate_limit_error import RateLimitError
+from onesignal.model.generic_error import GenericError
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "app_id_example" # Your OneSignal App ID in UUID v4 format. 
+    custom_events_request = CustomEventsRequest(
+        events=[
+            CustomEvent(
+                name="name_example",
+                external_id="external_id_example",
+                onesignal_id="onesignal_id_example",
+                timestamp=dateutil_parser('1970-01-01T00:00:00.00Z'),
+                payload={},
+            ),
+        ],
+    ) 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Create custom events
+        api_response = api_instance.create_custom_events(app_id, custom_events_request)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->create_custom_events: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| Your OneSignal App ID in UUID v4 format. |
+ **custom_events_request** | [**CustomEventsRequest**](CustomEventsRequest.md)|  |
+
+### Return type
+
+**{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**
+
+### Authorization
+
+[rest_api_key](../README.md#rest_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**401** | Unauthorized |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -585,6 +819,124 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **create_template**
+> TemplateResource create_template(create_template_request)
+
+Create template
+
+Create reusable message templates for push, email, and SMS channels.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.create_template_request import CreateTemplateRequest
+from onesignal.model.template_resource import TemplateResource
+from onesignal.model.generic_error import GenericError
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    create_template_request = CreateTemplateRequest(
+        app_id="app_id_example",
+        name="name_example",
+        contents=LanguageStringMap(
+            en="en_example",
+            ar="ar_example",
+            bs="bs_example",
+            bg="bg_example",
+            ca="ca_example",
+            zh_hans="zh_hans_example",
+            zh_hant="zh_hant_example",
+            zh="zh_example",
+            hr="hr_example",
+            cs="cs_example",
+            da="da_example",
+            nl="nl_example",
+            et="et_example",
+            fi="fi_example",
+            fr="fr_example",
+            ka="ka_example",
+            de="de_example",
+            el="el_example",
+            hi="hi_example",
+            he="he_example",
+            hu="hu_example",
+            id="id_example",
+            it="it_example",
+            ja="ja_example",
+            ko="ko_example",
+            lv="lv_example",
+            lt="lt_example",
+            ms="ms_example",
+            nb="nb_example",
+            pl="pl_example",
+            fa="fa_example",
+            pt="pt_example",
+            pa="pa_example",
+            ro="ro_example",
+            ru="ru_example",
+            sr="sr_example",
+            sk="sk_example",
+            es="es_example",
+            sv="sv_example",
+            th="th_example",
+            tr="tr_example",
+            uk="uk_example",
+            vi="vi_example",
+        ),
+        is_email=True,
+        email_subject="email_subject_example",
+        email_body="email_body_example",
+        is_sms=True,
+        dynamic_content="dynamic_content_example",
+    ) 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Create template
+        api_response = api_instance.create_template(create_template_request)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->create_template: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **create_template_request** | [**CreateTemplateRequest**](CreateTemplateRequest.md)|  |
+
+### Return type
+
+[**TemplateResource**](TemplateResource.md)
+
+### Authorization
+
+[rest_api_key](../README.md#rest_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**422** | Unprocessable Entity |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **create_user**
 > User create_user(app_id, user)
 
@@ -772,6 +1124,70 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **delete_api_key**
+> {str: (bool, date, datetime, dict, float, int, list, str, none_type)} delete_api_key(app_id, token_id)
+
+Delete API key
+
+Delete a specific Rich Authentication Token (App API Key) for a OneSignal app. Requires your Organization API Key and the token’s unique ID, not the token value itself.
+
+### Example
+
+* Bearer Authentication (organization_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.generic_error import GenericError
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "app_id_example" 
+    token_id = "token_id_example" 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Delete API key
+        api_response = api_instance.delete_api_key(app_id, token_id)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->delete_api_key: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**|  |
+ **token_id** | **str**|  |
+
+### Return type
+
+**{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**
+
+### Authorization
+
+[organization_api_key](../README.md#organization_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **delete_segment**
 > GenericSuccessBoolResponse delete_segment(app_id, segment_id)
 
@@ -903,6 +1319,72 @@ void (empty response body)
 **404** | Not Found |  -  |
 **409** | Conflict |  -  |
 **429** | Rate Limit Exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete_template**
+> GenericSuccessBoolResponse delete_template(template_id, app_id)
+
+Delete template
+
+Delete a template by id.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.generic_error import GenericError
+from onesignal.model.generic_success_bool_response import GenericSuccessBoolResponse
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    template_id = "template_id_example" 
+    app_id = "app_id_example" 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Delete template
+        api_response = api_instance.delete_template(template_id, app_id)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->delete_template: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **template_id** | **str**|  |
+ **app_id** | **str**|  |
+
+### Return type
+
+[**GenericSuccessBoolResponse**](GenericSuccessBoolResponse.md)
+
+### Authorization
+
+[rest_api_key](../README.md#rest_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -1836,6 +2318,258 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **rotate_api_key**
+> CreateApiKeyResponse rotate_api_key(app_id, token_id)
+
+Rotate API key
+
+Rotate a Rich Authentication Token (App API Key) for a OneSignal app. Rotating a key revokes the current token and generates a new one under the same configuration—ideal when a token is lost or compromised but you don’t want to recreate and reconfigure it from scratch.
+
+### Example
+
+* Bearer Authentication (organization_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.create_api_key_response import CreateApiKeyResponse
+from onesignal.model.generic_error import GenericError
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "app_id_example" 
+    token_id = "token_id_example" 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Rotate API key
+        api_response = api_instance.rotate_api_key(app_id, token_id)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->rotate_api_key: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**|  |
+ **token_id** | **str**|  |
+
+### Return type
+
+[**CreateApiKeyResponse**](CreateApiKeyResponse.md)
+
+### Authorization
+
+[organization_api_key](../README.md#organization_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **start_live_activity**
+> StartLiveActivitySuccessResponse start_live_activity(app_id, activity_type, start_live_activity_request)
+
+Start Live Activity
+
+Remotely start a Live Activity on iOS devices via OneSignal’s REST API.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.start_live_activity_success_response import StartLiveActivitySuccessResponse
+from onesignal.model.rate_limit_error import RateLimitError
+from onesignal.model.generic_error import GenericError
+from onesignal.model.start_live_activity_request import StartLiveActivityRequest
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "app_id_example" # Your OneSignal App ID in UUID v4 format. 
+    activity_type = "activity_type_example" # The name of the Live Activity defined in your app. This should match the attributes struct used in your app's Live Activity implementation. 
+    start_live_activity_request = StartLiveActivityRequest(
+        name="name_example",
+        event="start",
+        activity_id="activity_id_example",
+        event_attributes={},
+        event_updates={},
+        contents=LanguageStringMap(
+            en="en_example",
+            ar="ar_example",
+            bs="bs_example",
+            bg="bg_example",
+            ca="ca_example",
+            zh_hans="zh_hans_example",
+            zh_hant="zh_hant_example",
+            zh="zh_example",
+            hr="hr_example",
+            cs="cs_example",
+            da="da_example",
+            nl="nl_example",
+            et="et_example",
+            fi="fi_example",
+            fr="fr_example",
+            ka="ka_example",
+            de="de_example",
+            el="el_example",
+            hi="hi_example",
+            he="he_example",
+            hu="hu_example",
+            id="id_example",
+            it="it_example",
+            ja="ja_example",
+            ko="ko_example",
+            lv="lv_example",
+            lt="lt_example",
+            ms="ms_example",
+            nb="nb_example",
+            pl="pl_example",
+            fa="fa_example",
+            pt="pt_example",
+            pa="pa_example",
+            ro="ro_example",
+            ru="ru_example",
+            sr="sr_example",
+            sk="sk_example",
+            es="es_example",
+            sv="sv_example",
+            th="th_example",
+            tr="tr_example",
+            uk="uk_example",
+            vi="vi_example",
+        ),
+        headings=LanguageStringMap(
+            en="en_example",
+            ar="ar_example",
+            bs="bs_example",
+            bg="bg_example",
+            ca="ca_example",
+            zh_hans="zh_hans_example",
+            zh_hant="zh_hant_example",
+            zh="zh_example",
+            hr="hr_example",
+            cs="cs_example",
+            da="da_example",
+            nl="nl_example",
+            et="et_example",
+            fi="fi_example",
+            fr="fr_example",
+            ka="ka_example",
+            de="de_example",
+            el="el_example",
+            hi="hi_example",
+            he="he_example",
+            hu="hu_example",
+            id="id_example",
+            it="it_example",
+            ja="ja_example",
+            ko="ko_example",
+            lv="lv_example",
+            lt="lt_example",
+            ms="ms_example",
+            nb="nb_example",
+            pl="pl_example",
+            fa="fa_example",
+            pt="pt_example",
+            pa="pa_example",
+            ro="ro_example",
+            ru="ru_example",
+            sr="sr_example",
+            sk="sk_example",
+            es="es_example",
+            sv="sv_example",
+            th="th_example",
+            tr="tr_example",
+            uk="uk_example",
+            vi="vi_example",
+        ),
+        stale_date=1,
+        priority=1,
+        ios_relevance_score=3.14,
+        idempotency_key="idempotency_key_example",
+        include_aliases=IncludeAliases(
+            key=[
+                "key_example",
+            ],
+        ),
+        include_subscription_ids=[
+            "include_subscription_ids_example",
+        ],
+        included_segments=[
+            "included_segments_example",
+        ],
+        excluded_segments=[
+            "excluded_segments_example",
+        ],
+        filters=[
+            FilterExpression(None),
+        ],
+    ) 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Start Live Activity
+        api_response = api_instance.start_live_activity(app_id, activity_type, start_live_activity_request)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->start_live_activity: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| Your OneSignal App ID in UUID v4 format. |
+ **activity_type** | **str**| The name of the Live Activity defined in your app. This should match the attributes struct used in your app&#39;s Live Activity implementation. |
+ **start_live_activity_request** | [**StartLiveActivityRequest**](StartLiveActivityRequest.md)|  |
+
+### Return type
+
+[**StartLiveActivitySuccessResponse**](StartLiveActivitySuccessResponse.md)
+
+### Authorization
+
+[rest_api_key](../README.md#rest_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **transfer_subscription**
 > UserIdentityBody transfer_subscription(app_id, subscription_id, transfer_subscription_request_body)
 
@@ -1977,6 +2711,79 @@ Name | Type | Description  | Notes
 **202** | OK |  -  |
 **400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_api_key**
+> {str: (bool, date, datetime, dict, float, int, list, str, none_type)} update_api_key(app_id, token_id, update_api_key_request)
+
+Update API key
+
+Update a Rich Authentication Token (App API Key) for a OneSignal app.
+
+### Example
+
+* Bearer Authentication (organization_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.update_api_key_request import UpdateApiKeyRequest
+from onesignal.model.generic_error import GenericError
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "app_id_example" 
+    token_id = "token_id_example" 
+    update_api_key_request = UpdateApiKeyRequest(
+        name="name_example",
+        ip_allowlist_mode="disabled",
+        ip_allowlist=[
+            "ip_allowlist_example",
+        ],
+    ) 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Update API key
+        api_response = api_instance.update_api_key(app_id, token_id, update_api_key_request)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->update_api_key: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**|  |
+ **token_id** | **str**|  |
+ **update_api_key_request** | [**UpdateApiKeyRequest**](UpdateApiKeyRequest.md)|  |
+
+### Return type
+
+**{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**
+
+### Authorization
+
+[organization_api_key](../README.md#organization_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -2326,6 +3133,216 @@ void (empty response body)
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **update_subscription_by_token**
+> {str: (bool, date, datetime, dict, float, int, list, str, none_type)} update_subscription_by_token(app_id, token_type, token, subscription_body)
+
+Update subscription by token
+
+Update properties on an existing OneSignal subscription using its token.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.generic_error import GenericError
+from onesignal.model.subscription_body import SubscriptionBody
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "app_id_example" # Your OneSignal App ID in UUID v4 format. 
+    token_type = "token_type_example" # The type of token to use when looking up the subscription. See Subscription Types. 
+    token = "token_example" # The value of the token to lookup by (e.g., email address, phone number). 
+    subscription_body = SubscriptionBody(
+        subscription=Subscription(
+            id="id_example",
+            type="iOSPush",
+            token="token_example",
+            enabled=True,
+            notification_types=1,
+            session_time=1,
+            session_count=1,
+            sdk="sdk_example",
+            device_model="device_model_example",
+            device_os="device_os_example",
+            rooted=True,
+            test_type=1,
+            app_version="app_version_example",
+            net_type=1,
+            carrier="carrier_example",
+            web_auth="web_auth_example",
+            web_p256="web_p256_example",
+        ),
+    ) 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Update subscription by token
+        api_response = api_instance.update_subscription_by_token(app_id, token_type, token, subscription_body)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->update_subscription_by_token: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| Your OneSignal App ID in UUID v4 format. |
+ **token_type** | **str**| The type of token to use when looking up the subscription. See Subscription Types. |
+ **token** | **str**| The value of the token to lookup by (e.g., email address, phone number). |
+ **subscription_body** | [**SubscriptionBody**](SubscriptionBody.md)|  |
+
+### Return type
+
+**{str: (bool, date, datetime, dict, float, int, list, str, none_type)}**
+
+### Authorization
+
+[rest_api_key](../README.md#rest_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**202** | ACCEPTED |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_template**
+> TemplateResource update_template(template_id, app_id, update_template_request)
+
+Update template
+
+Update an existing template.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.update_template_request import UpdateTemplateRequest
+from onesignal.model.template_resource import TemplateResource
+from onesignal.model.generic_error import GenericError
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    template_id = "template_id_example" 
+    app_id = "app_id_example" 
+    update_template_request = UpdateTemplateRequest(
+        name="name_example",
+        contents=LanguageStringMap(
+            en="en_example",
+            ar="ar_example",
+            bs="bs_example",
+            bg="bg_example",
+            ca="ca_example",
+            zh_hans="zh_hans_example",
+            zh_hant="zh_hant_example",
+            zh="zh_example",
+            hr="hr_example",
+            cs="cs_example",
+            da="da_example",
+            nl="nl_example",
+            et="et_example",
+            fi="fi_example",
+            fr="fr_example",
+            ka="ka_example",
+            de="de_example",
+            el="el_example",
+            hi="hi_example",
+            he="he_example",
+            hu="hu_example",
+            id="id_example",
+            it="it_example",
+            ja="ja_example",
+            ko="ko_example",
+            lv="lv_example",
+            lt="lt_example",
+            ms="ms_example",
+            nb="nb_example",
+            pl="pl_example",
+            fa="fa_example",
+            pt="pt_example",
+            pa="pa_example",
+            ro="ro_example",
+            ru="ru_example",
+            sr="sr_example",
+            sk="sk_example",
+            es="es_example",
+            sv="sv_example",
+            th="th_example",
+            tr="tr_example",
+            uk="uk_example",
+            vi="vi_example",
+        ),
+        is_email=True,
+        email_subject="email_subject_example",
+        email_body="email_body_example",
+        is_sms=True,
+        dynamic_content="dynamic_content_example",
+    ) 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # Update template
+        api_response = api_instance.update_template(template_id, app_id, update_template_request)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->update_template: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **template_id** | **str**|  |
+ **app_id** | **str**|  |
+ **update_template_request** | [**UpdateTemplateRequest**](UpdateTemplateRequest.md)|  |
+
+### Return type
+
+[**TemplateResource**](TemplateResource.md)
+
+### Authorization
+
+[rest_api_key](../README.md#rest_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_user**
 > PropertiesBody update_user(app_id, alias_label, alias_id, update_user_request)
 
@@ -2428,6 +3445,215 @@ Name | Type | Description  | Notes
 **202** | ACCEPTED |  -  |
 **400** | Bad Request |  -  |
 **409** | Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **view_api_keys**
+> ApiKeyTokensListResponse view_api_keys(app_id)
+
+View API keys
+
+View the details of all of your current app API keys (Rich Authentication Token) for a single OneSignal app.
+
+### Example
+
+* Bearer Authentication (organization_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.api_key_tokens_list_response import ApiKeyTokensListResponse
+from onesignal.model.generic_error import GenericError
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "app_id_example" 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # View API keys
+        api_response = api_instance.view_api_keys(app_id)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->view_api_keys: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**|  |
+
+### Return type
+
+[**ApiKeyTokensListResponse**](ApiKeyTokensListResponse.md)
+
+### Authorization
+
+[organization_api_key](../README.md#organization_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **view_template**
+> TemplateResource view_template(template_id, app_id)
+
+View template
+
+Fetch a single template by id.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.template_resource import TemplateResource
+from onesignal.model.generic_error import GenericError
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    template_id = "template_id_example" 
+    app_id = "app_id_example" 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # View template
+        api_response = api_instance.view_template(template_id, app_id)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->view_template: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **template_id** | **str**|  |
+ **app_id** | **str**|  |
+
+### Return type
+
+[**TemplateResource**](TemplateResource.md)
+
+### Authorization
+
+[rest_api_key](../README.md#rest_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **view_templates**
+> TemplatesListResponse view_templates(app_id)
+
+View templates
+
+List templates for an app.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.templates_list_response import TemplatesListResponse
+from onesignal.model.rate_limit_error import RateLimitError
+from onesignal.model.generic_error import GenericError
+from pprint import pprint
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "app_id_example" # Your OneSignal App ID in UUID v4 format. 
+    limit = 50  # Maximum number of templates. Default and max is 50. (optional) 
+    offset = 0  # Pagination offset. (optional) 
+    channel = "push"  # Filter by delivery channel. (optional) 
+
+    # example passing only required values which don't have defaults set
+    try:
+        # View templates
+        api_response = api_instance.view_templates(app_id)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->view_templates: %s\n" % e)
+
+    # example passing only required values which don't have defaults set
+    # and optional values
+    try:
+        # View templates
+        api_response = api_instance.view_templates(app_id, limit=limit, offset=offset, channel=channel)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->view_templates: %s\n" % e)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| Your OneSignal App ID in UUID v4 format. |
+ **limit** | **int**| Maximum number of templates. Default and max is 50. | [optional] if omitted the server will use the default value of 50
+ **offset** | **int**| Pagination offset. | [optional] if omitted the server will use the default value of 0
+ **channel** | **str**| Filter by delivery channel. | [optional]
+
+### Return type
+
+[**TemplatesListResponse**](TemplatesListResponse.md)
+
+### Authorization
+
+[rest_api_key](../README.md#rest_api_key)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
