@@ -72,6 +72,21 @@ class BasicNotificationAllOf(ModelNormal):
             'SUM': "sum",
             'COUNT': "count",
         },
+        ('huawei_category',): {
+            'None': None,
+            'IM': "IM",
+            'VOIP': "VOIP",
+            'SUBSCRIPTION': "SUBSCRIPTION",
+            'TRAVEL': "TRAVEL",
+            'HEALTH': "HEALTH",
+            'WORK': "WORK",
+            'ACCOUNT': "ACCOUNT",
+            'EXPRESS': "EXPRESS",
+            'FINANCE': "FINANCE",
+            'DEVICE_REMINDER': "DEVICE_REMINDER",
+            'MAIL': "MAIL",
+            'MARKETING': "MARKETING",
+        },
     }
 
     validations = {
@@ -188,6 +203,7 @@ class BasicNotificationAllOf(ModelNormal):
             'email_body': (str,),  # noqa: E501
             'email_from_name': (str, none_type,),  # noqa: E501
             'email_from_address': (str, none_type,),  # noqa: E501
+            'email_reply_to_address': (str, none_type,),  # noqa: E501
             'email_preheader': (str, none_type,),  # noqa: E501
             'disable_email_click_tracking': (bool, none_type,),  # noqa: E501
             'include_unsubscribed': (bool,),  # noqa: E501
@@ -195,6 +211,11 @@ class BasicNotificationAllOf(ModelNormal):
             'sms_media_urls': ([str], none_type,),  # noqa: E501
             'filters': ([FilterExpression], none_type,),  # noqa: E501
             'custom_data': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type,),  # noqa: E501
+            'huawei_badge_class': (str, none_type,),  # noqa: E501
+            'huawei_badge_add_num': (int, none_type,),  # noqa: E501
+            'huawei_badge_set_num': (int, none_type,),  # noqa: E501
+            'huawei_category': (str, none_type,),  # noqa: E501
+            'huawei_bi_tag': (str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -291,6 +312,7 @@ class BasicNotificationAllOf(ModelNormal):
         'email_body': 'email_body',  # noqa: E501
         'email_from_name': 'email_from_name',  # noqa: E501
         'email_from_address': 'email_from_address',  # noqa: E501
+        'email_reply_to_address': 'email_reply_to_address',  # noqa: E501
         'email_preheader': 'email_preheader',  # noqa: E501
         'disable_email_click_tracking': 'disable_email_click_tracking',  # noqa: E501
         'include_unsubscribed': 'include_unsubscribed',  # noqa: E501
@@ -298,6 +320,11 @@ class BasicNotificationAllOf(ModelNormal):
         'sms_media_urls': 'sms_media_urls',  # noqa: E501
         'filters': 'filters',  # noqa: E501
         'custom_data': 'custom_data',  # noqa: E501
+        'huawei_badge_class': 'huawei_badge_class',  # noqa: E501
+        'huawei_badge_add_num': 'huawei_badge_add_num',  # noqa: E501
+        'huawei_badge_set_num': 'huawei_badge_set_num',  # noqa: E501
+        'huawei_category': 'huawei_category',  # noqa: E501
+        'huawei_bi_tag': 'huawei_bi_tag',  # noqa: E501
     }
 
     read_only_vars = {
@@ -431,6 +458,7 @@ class BasicNotificationAllOf(ModelNormal):
             email_body (str): Channel: Email Required unless template_id is set. HTML suported The body of the email you wish to send. Typically, customers include their own HTML templates here. Must include [unsubscribe_url] in an <a> tag somewhere in the email. Note: any malformed HTML content will be sent to users. Please double-check your HTML is valid. . [optional]  # noqa: E501
             email_from_name (str, none_type): Channel: Email The name the email is from. If not specified, will default to \"from name\" set in the OneSignal Dashboard Email Settings. . [optional]  # noqa: E501
             email_from_address (str, none_type): Channel: Email The email address the email is from. If not specified, will default to \"from email\" set in the OneSignal Dashboard Email Settings. . [optional]  # noqa: E501
+            email_reply_to_address (str, none_type): Channel: Email The email address where replies should be sent. If not specified, replies will go to the from address. . [optional]  # noqa: E501
             email_preheader (str, none_type): Channel: Email The preheader text of the email. Preheader is the preview text displayed immediately after an email subject that provides additional context about the email content. If not specified, will default to null. . [optional]  # noqa: E501
             disable_email_click_tracking (bool, none_type): Channel: Email Default is `false`. If set to `true`, the URLs sent within the email will not include link tracking and will be the same as originally set; otherwise, all the URLs in the email will be tracked.. [optional]  # noqa: E501
             include_unsubscribed (bool): Channel: Email Default is `false`. This field is used to send transactional notifications. If set to `true`, this notification will also be sent to unsubscribed emails. If a `template_id` is provided, the `include_unsubscribed` value from the template will be inherited. If you are using a third-party ESP, this field requires the ESP's list of unsubscribed emails to be cleared.. [optional]  # noqa: E501
@@ -438,6 +466,11 @@ class BasicNotificationAllOf(ModelNormal):
             sms_media_urls ([str], none_type): Channel: SMS URLs for the media files to be attached to the SMS content. Limit: 10 media urls with a total max. size of 5MBs. . [optional]  # noqa: E501
             filters ([FilterExpression], none_type): [optional]  # noqa: E501
             custom_data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Channel: All JSON object that can be used as a source of message personalization data for fields that support tag variable substitution. Push, SMS: Can accept up to 2048 bytes of valid JSON. Email: Can accept up to 10000 bytes of valid JSON. Example: {\"order_id\": 123, \"currency\": \"USD\", \"amount\": 25} . [optional]  # noqa: E501
+            huawei_badge_class (str, none_type): Channel: Push Notifications Platform: Huawei Full path of the app entry activity class. [optional]  # noqa: E501
+            huawei_badge_add_num (int, none_type): Channel: Push Notifications Platform: Huawei Accumulative badge number, which is an integer ranging from 1 to 99. [optional]  # noqa: E501
+            huawei_badge_set_num (int, none_type): Channel: Push Notifications Platform: Huawei Badge number, which is an integer ranging from 0 to 99. [optional]  # noqa: E501
+            huawei_category (str, none_type): Channel: Push Notifications Platform: Huawei Category of the push notification for HMS classification.. [optional]  # noqa: E501
+            huawei_bi_tag (str, none_type): Channel: Push Notifications Platform: Huawei A tag used for Huawei business intelligence and analytics.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -611,6 +644,7 @@ class BasicNotificationAllOf(ModelNormal):
             email_body (str): Channel: Email Required unless template_id is set. HTML suported The body of the email you wish to send. Typically, customers include their own HTML templates here. Must include [unsubscribe_url] in an <a> tag somewhere in the email. Note: any malformed HTML content will be sent to users. Please double-check your HTML is valid. . [optional]  # noqa: E501
             email_from_name (str, none_type): Channel: Email The name the email is from. If not specified, will default to \"from name\" set in the OneSignal Dashboard Email Settings. . [optional]  # noqa: E501
             email_from_address (str, none_type): Channel: Email The email address the email is from. If not specified, will default to \"from email\" set in the OneSignal Dashboard Email Settings. . [optional]  # noqa: E501
+            email_reply_to_address (str, none_type): Channel: Email The email address where replies should be sent. If not specified, replies will go to the from address. . [optional]  # noqa: E501
             email_preheader (str, none_type): Channel: Email The preheader text of the email. Preheader is the preview text displayed immediately after an email subject that provides additional context about the email content. If not specified, will default to null. . [optional]  # noqa: E501
             disable_email_click_tracking (bool, none_type): Channel: Email Default is `false`. If set to `true`, the URLs sent within the email will not include link tracking and will be the same as originally set; otherwise, all the URLs in the email will be tracked.. [optional]  # noqa: E501
             include_unsubscribed (bool): Channel: Email Default is `false`. This field is used to send transactional notifications. If set to `true`, this notification will also be sent to unsubscribed emails. If a `template_id` is provided, the `include_unsubscribed` value from the template will be inherited. If you are using a third-party ESP, this field requires the ESP's list of unsubscribed emails to be cleared.. [optional]  # noqa: E501
@@ -618,6 +652,11 @@ class BasicNotificationAllOf(ModelNormal):
             sms_media_urls ([str], none_type): Channel: SMS URLs for the media files to be attached to the SMS content. Limit: 10 media urls with a total max. size of 5MBs. . [optional]  # noqa: E501
             filters ([FilterExpression], none_type): [optional]  # noqa: E501
             custom_data ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type): Channel: All JSON object that can be used as a source of message personalization data for fields that support tag variable substitution. Push, SMS: Can accept up to 2048 bytes of valid JSON. Email: Can accept up to 10000 bytes of valid JSON. Example: {\"order_id\": 123, \"currency\": \"USD\", \"amount\": 25} . [optional]  # noqa: E501
+            huawei_badge_class (str, none_type): Channel: Push Notifications Platform: Huawei Full path of the app entry activity class. [optional]  # noqa: E501
+            huawei_badge_add_num (int, none_type): Channel: Push Notifications Platform: Huawei Accumulative badge number, which is an integer ranging from 1 to 99. [optional]  # noqa: E501
+            huawei_badge_set_num (int, none_type): Channel: Push Notifications Platform: Huawei Badge number, which is an integer ranging from 0 to 99. [optional]  # noqa: E501
+            huawei_category (str, none_type): Channel: Push Notifications Platform: Huawei Category of the push notification for HMS classification.. [optional]  # noqa: E501
+            huawei_bi_tag (str, none_type): Channel: Push Notifications Platform: Huawei A tag used for Huawei business intelligence and analytics.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
