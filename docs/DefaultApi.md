@@ -69,6 +69,15 @@ from onesignal.model.generic_error import GenericError
 from onesignal.model.generic_success_bool_response import GenericSuccessBoolResponse
 from pprint import pprint
 
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
@@ -99,7 +108,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -116,7 +125,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **copy_template_to_app**
 > TemplateResource copy_template_to_app(template_id, app_id, copy_template_request)
@@ -136,6 +145,15 @@ from onesignal.model.copy_template_request import CopyTemplateRequest
 from onesignal.model.template_resource import TemplateResource
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -171,7 +189,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[organization_api_key](../README.md#organization_api_key)
+[organization_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -186,7 +204,7 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **create_alias**
 > UserIdentityBody create_alias(app_id, alias_label, alias_id, user_identity_body)
@@ -206,6 +224,15 @@ from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from onesignal.model.user_identity_body import UserIdentityBody
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -244,7 +271,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -262,7 +289,7 @@ Name | Type | Description  | Notes
 **409** | Conflict |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **create_alias_by_subscription**
 > UserIdentityBody create_alias_by_subscription(app_id, subscription_id, user_identity_body)
@@ -282,6 +309,15 @@ from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from onesignal.model.user_identity_body import UserIdentityBody
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -318,7 +354,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -336,7 +372,7 @@ Name | Type | Description  | Notes
 **409** | Conflict |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **create_api_key**
 > CreateApiKeyResponse create_api_key(app_id, create_api_key_request)
@@ -356,6 +392,15 @@ from onesignal.model.create_api_key_response import CreateApiKeyResponse
 from onesignal.model.create_api_key_request import CreateApiKeyRequest
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -393,7 +438,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[organization_api_key](../README.md#organization_api_key)
+[organization_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -408,7 +453,7 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **create_app**
 > App create_app(app)
@@ -428,6 +473,15 @@ from onesignal.model.app import App
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -479,7 +533,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[organization_api_key](../README.md#organization_api_key)
+[organization_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -495,7 +549,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **create_custom_events**
 > {str: (bool, date, datetime, dict, float, int, list, str, none_type)} create_custom_events(app_id, custom_events_request)
@@ -515,6 +569,15 @@ from onesignal.model.custom_events_request import CustomEventsRequest
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -556,7 +619,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -573,7 +636,7 @@ Name | Type | Description  | Notes
 **401** | Unauthorized |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **create_notification**
 > CreateNotificationSuccessResponse create_notification(notification)
@@ -594,6 +657,15 @@ from onesignal.model.generic_error import GenericError
 from onesignal.model.notification import Notification
 from onesignal.model.create_notification_success_response import CreateNotificationSuccessResponse
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -623,7 +695,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -639,7 +711,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **create_segment**
 > CreateSegmentSuccessResponse create_segment(app_id)
@@ -661,6 +733,15 @@ from onesignal.model.segment import Segment
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -707,7 +788,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -724,7 +805,7 @@ Name | Type | Description  | Notes
 **409** | Conflict |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **create_subscription**
 > SubscriptionBody create_subscription(app_id, alias_label, alias_id, subscription_body)
@@ -744,6 +825,15 @@ from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from onesignal.model.subscription_body import SubscriptionBody
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -798,7 +888,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -817,7 +907,7 @@ Name | Type | Description  | Notes
 **409** | Operation is not permitted due to user having the maximum number of subscriptions assigned |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **create_template**
 > TemplateResource create_template(create_template_request)
@@ -837,6 +927,15 @@ from onesignal.model.create_template_request import CreateTemplateRequest
 from onesignal.model.template_resource import TemplateResource
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -919,7 +1018,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -935,7 +1034,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **422** | Unprocessable Entity |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **create_user**
 > User create_user(app_id, user)
@@ -956,6 +1055,15 @@ from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from onesignal.model.create_user_conflict_response import CreateUserConflictResponse
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -1031,7 +1139,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -1050,7 +1158,7 @@ Name | Type | Description  | Notes
 **409** | Multiple User Identity Conflict |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **delete_alias**
 > UserIdentityBody delete_alias(app_id, alias_label, alias_id, alias_label_to_delete)
@@ -1070,6 +1178,15 @@ from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from onesignal.model.user_identity_body import UserIdentityBody
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -1104,7 +1221,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -1122,7 +1239,7 @@ Name | Type | Description  | Notes
 **409** | Conflict |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **delete_api_key**
 > {str: (bool, date, datetime, dict, float, int, list, str, none_type)} delete_api_key(app_id, token_id)
@@ -1140,6 +1257,15 @@ import onesignal
 from onesignal.api import default_api
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -1171,7 +1297,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[organization_api_key](../README.md#organization_api_key)
+[organization_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -1186,7 +1312,7 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **delete_segment**
 > GenericSuccessBoolResponse delete_segment(app_id, segment_id)
@@ -1206,6 +1332,15 @@ from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from onesignal.model.generic_success_bool_response import GenericSuccessBoolResponse
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -1237,7 +1372,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -1254,7 +1389,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **delete_subscription**
 > delete_subscription(app_id, subscription_id)
@@ -1273,6 +1408,15 @@ from onesignal.api import default_api
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -1302,7 +1446,7 @@ void (empty response body)
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -1320,7 +1464,7 @@ void (empty response body)
 **409** | Conflict |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **delete_template**
 > GenericSuccessBoolResponse delete_template(template_id, app_id)
@@ -1339,6 +1483,15 @@ from onesignal.api import default_api
 from onesignal.model.generic_error import GenericError
 from onesignal.model.generic_success_bool_response import GenericSuccessBoolResponse
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -1370,7 +1523,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -1386,7 +1539,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **404** | Not Found |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **delete_user**
 > delete_user(app_id, alias_label, alias_id)
@@ -1405,6 +1558,15 @@ from onesignal.api import default_api
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -1436,7 +1598,7 @@ void (empty response body)
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -1453,7 +1615,7 @@ void (empty response body)
 **409** | Conflict |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **export_events**
 > ExportEventsSuccessResponse export_events(notification_id, app_id)
@@ -1473,6 +1635,15 @@ from onesignal.model.export_events_success_response import ExportEventsSuccessRe
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -1504,7 +1675,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -1521,7 +1692,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **export_subscriptions**
 > ExportSubscriptionsSuccessResponse export_subscriptions(app_id)
@@ -1542,6 +1713,15 @@ from onesignal.model.export_subscriptions_request_body import ExportSubscription
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -1588,7 +1768,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -1604,7 +1784,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **get_aliases**
 > UserIdentityBody get_aliases(app_id, alias_label, alias_id)
@@ -1624,6 +1804,15 @@ from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from onesignal.model.user_identity_body import UserIdentityBody
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -1656,7 +1845,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -1673,7 +1862,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **get_aliases_by_subscription**
 > UserIdentityBody get_aliases_by_subscription(app_id, subscription_id)
@@ -1692,6 +1881,15 @@ from onesignal.api import default_api
 from onesignal.model.generic_error import GenericError
 from onesignal.model.user_identity_body import UserIdentityBody
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -1722,7 +1920,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -1738,7 +1936,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **404** | Not Found |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **get_app**
 > App get_app(app_id)
@@ -1758,6 +1956,15 @@ from onesignal.model.app import App
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -1787,7 +1994,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[organization_api_key](../README.md#organization_api_key)
+[organization_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -1803,7 +2010,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **get_apps**
 > Apps get_apps()
@@ -1823,6 +2030,15 @@ from onesignal.model.apps import Apps
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -1848,7 +2064,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[organization_api_key](../README.md#organization_api_key)
+[organization_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -1864,7 +2080,7 @@ This endpoint does not need any parameter.
 **400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **get_notification**
 > NotificationWithMeta get_notification(app_id, notification_id)
@@ -1884,6 +2100,15 @@ from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from onesignal.model.notification_with_meta import NotificationWithMeta
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -1915,7 +2140,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -1932,7 +2157,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **get_notification_history**
 > NotificationHistorySuccessResponse get_notification_history(notification_id, get_notification_history_request_body)
@@ -1953,6 +2178,15 @@ from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from onesignal.model.get_notification_history_request_body import GetNotificationHistoryRequestBody
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -1988,7 +2222,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -2005,7 +2239,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **get_notifications**
 > NotificationSlice get_notifications(app_id)
@@ -2025,6 +2259,15 @@ from onesignal.model.notification_slice import NotificationSlice
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -2069,7 +2312,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -2085,7 +2328,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **get_outcomes**
 > OutcomesData get_outcomes(app_id, outcome_names)
@@ -2105,6 +2348,15 @@ from onesignal.model.outcomes_data import OutcomesData
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -2153,7 +2405,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -2169,7 +2421,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **get_segments**
 > GetSegmentsSuccessResponse get_segments(app_id)
@@ -2189,6 +2441,15 @@ from onesignal.model.get_segments_success_response import GetSegmentsSuccessResp
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -2231,7 +2492,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -2247,7 +2508,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **get_user**
 > User get_user(app_id, alias_label, alias_id)
@@ -2267,6 +2528,15 @@ from onesignal.model.user import User
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -2299,7 +2569,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -2316,7 +2586,7 @@ Name | Type | Description  | Notes
 **404** | Not Found |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **rotate_api_key**
 > CreateApiKeyResponse rotate_api_key(app_id, token_id)
@@ -2335,6 +2605,15 @@ from onesignal.api import default_api
 from onesignal.model.create_api_key_response import CreateApiKeyResponse
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -2366,7 +2645,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[organization_api_key](../README.md#organization_api_key)
+[organization_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -2381,7 +2660,7 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **start_live_activity**
 > StartLiveActivitySuccessResponse start_live_activity(app_id, activity_type, start_live_activity_request)
@@ -2402,6 +2681,15 @@ from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from onesignal.model.start_live_activity_request import StartLiveActivityRequest
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -2552,7 +2840,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -2568,7 +2856,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **transfer_subscription**
 > UserIdentityBody transfer_subscription(app_id, subscription_id, transfer_subscription_request_body)
@@ -2589,6 +2877,15 @@ from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from onesignal.model.user_identity_body import UserIdentityBody
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -2625,7 +2922,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -2643,7 +2940,7 @@ Name | Type | Description  | Notes
 **409** | Conflict |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **unsubscribe_email_with_token**
 > GenericSuccessBoolResponse unsubscribe_email_with_token(app_id, notification_id, token)
@@ -2663,6 +2960,15 @@ from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from onesignal.model.generic_success_bool_response import GenericSuccessBoolResponse
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -2696,7 +3002,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -2712,7 +3018,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **update_api_key**
 > {str: (bool, date, datetime, dict, float, int, list, str, none_type)} update_api_key(app_id, token_id, update_api_key_request)
@@ -2731,6 +3037,15 @@ from onesignal.api import default_api
 from onesignal.model.update_api_key_request import UpdateApiKeyRequest
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -2770,7 +3085,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[organization_api_key](../README.md#organization_api_key)
+[organization_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -2785,7 +3100,7 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **update_app**
 > App update_app(app_id, app)
@@ -2805,6 +3120,15 @@ from onesignal.model.app import App
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -2858,7 +3182,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[organization_api_key](../README.md#organization_api_key)
+[organization_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -2874,7 +3198,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **update_live_activity**
 > UpdateLiveActivitySuccessResponse update_live_activity(app_id, activity_id, update_live_activity_request)
@@ -2895,6 +3219,15 @@ from onesignal.model.update_live_activity_success_response import UpdateLiveActi
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -3026,7 +3359,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -3042,7 +3375,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **update_subscription**
 > update_subscription(app_id, subscription_id, subscription_body)
@@ -3062,6 +3395,15 @@ from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from onesignal.model.subscription_body import SubscriptionBody
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -3113,7 +3455,7 @@ void (empty response body)
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -3131,7 +3473,7 @@ void (empty response body)
 **409** | Conflict |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **update_subscription_by_token**
 > {str: (bool, date, datetime, dict, float, int, list, str, none_type)} update_subscription_by_token(app_id, token_type, token, subscription_body)
@@ -3150,6 +3492,15 @@ from onesignal.api import default_api
 from onesignal.model.generic_error import GenericError
 from onesignal.model.subscription_body import SubscriptionBody
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -3205,7 +3556,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -3221,7 +3572,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **404** | Not Found |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **update_template**
 > TemplateResource update_template(template_id, app_id, update_template_request)
@@ -3241,6 +3592,15 @@ from onesignal.model.update_template_request import UpdateTemplateRequest
 from onesignal.model.template_resource import TemplateResource
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -3326,7 +3686,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -3341,7 +3701,7 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **update_user**
 > PropertiesBody update_user(app_id, alias_label, alias_id, update_user_request)
@@ -3362,6 +3722,15 @@ from onesignal.model.properties_body import PropertiesBody
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -3430,7 +3799,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -3447,7 +3816,7 @@ Name | Type | Description  | Notes
 **409** | Conflict |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **view_api_keys**
 > ApiKeyTokensListResponse view_api_keys(app_id)
@@ -3466,6 +3835,15 @@ from onesignal.api import default_api
 from onesignal.model.api_key_tokens_list_response import ApiKeyTokensListResponse
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -3495,7 +3873,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[organization_api_key](../README.md#organization_api_key)
+[organization_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -3510,7 +3888,7 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **view_template**
 > TemplateResource view_template(template_id, app_id)
@@ -3529,6 +3907,15 @@ from onesignal.api import default_api
 from onesignal.model.template_resource import TemplateResource
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -3560,7 +3947,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -3576,7 +3963,7 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **404** | Not Found |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
 # **view_templates**
 > TemplatesListResponse view_templates(app_id)
@@ -3596,6 +3983,15 @@ from onesignal.model.templates_list_response import TemplatesListResponse
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.generic_error import GenericError
 from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
 
 # Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
@@ -3640,7 +4036,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[rest_api_key](../README.md#rest_api_key)
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
 
 ### HTTP request headers
 
@@ -3656,5 +4052,5 @@ Name | Type | Description  | Notes
 **400** | Bad Request |  -  |
 **429** | Rate Limit Exceeded |  -  |
 
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
