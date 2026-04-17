@@ -6,6 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | Updated name of the template. | [optional] 
 **contents** | [**LanguageStringMap**](LanguageStringMap.md) |  | [optional] 
+**headings** | [**LanguageStringMap**](LanguageStringMap.md) |  | [optional] 
+**subtitle** | [**LanguageStringMap**](LanguageStringMap.md) |  | [optional] 
 **is_email** | **bool** | Set true for an Email template. | [optional] 
 **email_subject** | **str, none_type** | Subject of the email. | [optional] 
 **email_body** | **str, none_type** | Body of the email (HTML supported). | [optional] 
