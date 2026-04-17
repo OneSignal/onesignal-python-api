@@ -91,6 +91,8 @@ class CreateTemplateRequest(ModelNormal):
             'app_id': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'contents': (LanguageStringMap,),  # noqa: E501
+            'headings': (LanguageStringMap,),  # noqa: E501
+            'subtitle': (LanguageStringMap,),  # noqa: E501
             'is_email': (bool,),  # noqa: E501
             'email_subject': (str, none_type,),  # noqa: E501
             'email_body': (str, none_type,),  # noqa: E501
@@ -107,6 +109,8 @@ class CreateTemplateRequest(ModelNormal):
         'app_id': 'app_id',  # noqa: E501
         'name': 'name',  # noqa: E501
         'contents': 'contents',  # noqa: E501
+        'headings': 'headings',  # noqa: E501
+        'subtitle': 'subtitle',  # noqa: E501
         'is_email': 'isEmail',  # noqa: E501
         'email_subject': 'email_subject',  # noqa: E501
         'email_body': 'email_body',  # noqa: E501
@@ -160,6 +164,8 @@ class CreateTemplateRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            headings (LanguageStringMap): [optional]  # noqa: E501
+            subtitle (LanguageStringMap): [optional]  # noqa: E501
             is_email (bool): Set true for an Email template.. [optional]  # noqa: E501
             email_subject (str, none_type): Subject of the email.. [optional]  # noqa: E501
             email_body (str, none_type): Body of the email (HTML supported).. [optional]  # noqa: E501
@@ -258,6 +264,8 @@ class CreateTemplateRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            headings (LanguageStringMap): [optional]  # noqa: E501
+            subtitle (LanguageStringMap): [optional]  # noqa: E501
             is_email (bool): Set true for an Email template.. [optional]  # noqa: E501
             email_subject (str, none_type): Subject of the email.. [optional]  # noqa: E501
             email_body (str, none_type): Body of the email (HTML supported).. [optional]  # noqa: E501
