@@ -652,10 +652,8 @@ Sends notifications to your users
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.model.language_string_map import LanguageStringMap
 from onesignal.model.notification import Notification
-from onesignal.model.create_notification_success_response import CreateNotificationSuccessResponse
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -667,21 +665,23 @@ configuration = onesignal.Configuration(
 )
 
 
-# Enter a context with an instance of the API client
 with onesignal.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    notification = Notification(None) 
-
-    # example passing only required values which don't have defaults set
+    notification = Notification(
+        app_id='YOUR_APP_ID',
+        contents=LanguageStringMap(en='Hello from OneSignal!'),
+        include_aliases={'external_id': ['YOUR_USER_EXTERNAL_ID']},
+        target_channel='push',
+    )
     try:
-        # Create notification
         api_response = api_instance.create_notification(notification)
-        pprint(api_response)
+        if not api_response.id:
+            print('Notification was not created:', api_response.errors)
+        else:
+            pprint(api_response)
     except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->create_notification: %s\n" % e)
+        print('Exception when calling DefaultApi->create_notification: %s\n' % e)
 ```
-
 
 ### Parameters
 
