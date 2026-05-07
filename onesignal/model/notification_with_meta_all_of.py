@@ -100,6 +100,8 @@ class NotificationWithMetaAllOf(ModelNormal):
             'received': (int, none_type,),  # noqa: E501
             'throttle_rate_per_minute': (int, none_type,),  # noqa: E501
             'canceled': (bool,),  # noqa: E501
+            'email_bcc': ([str], none_type,),  # noqa: E501
+            'bcc_sent': (int, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -120,6 +122,8 @@ class NotificationWithMetaAllOf(ModelNormal):
         'received': 'received',  # noqa: E501
         'throttle_rate_per_minute': 'throttle_rate_per_minute',  # noqa: E501
         'canceled': 'canceled',  # noqa: E501
+        'email_bcc': 'email_bcc',  # noqa: E501
+        'bcc_sent': 'bcc_sent',  # noqa: E501
     }
 
     read_only_vars = {
@@ -175,6 +179,8 @@ class NotificationWithMetaAllOf(ModelNormal):
             received (int, none_type): Confirmed Deliveries number of devices that received the push notification. Paid Feature Only. Free accounts will see 0.. [optional]  # noqa: E501
             throttle_rate_per_minute (int, none_type): number of push notifications sent per minute. Paid Feature Only. If throttling is not enabled for the app or the notification, and for free accounts, null is returned. Refer to Throttling for more details.. [optional]  # noqa: E501
             canceled (bool): Indicates whether the notification was canceled before it could be sent.. [optional]  # noqa: E501
+            email_bcc ([str], none_type): BCC recipients that were set on this email notification.. [optional]  # noqa: E501
+            bcc_sent (int, none_type): Number of BCC copies successfully sent for this notification.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -272,6 +278,8 @@ class NotificationWithMetaAllOf(ModelNormal):
             received (int, none_type): Confirmed Deliveries number of devices that received the push notification. Paid Feature Only. Free accounts will see 0.. [optional]  # noqa: E501
             throttle_rate_per_minute (int, none_type): number of push notifications sent per minute. Paid Feature Only. If throttling is not enabled for the app or the notification, and for free accounts, null is returned. Refer to Throttling for more details.. [optional]  # noqa: E501
             canceled (bool): Indicates whether the notification was canceled before it could be sent.. [optional]  # noqa: E501
+            email_bcc ([str], none_type): BCC recipients that were set on this email notification.. [optional]  # noqa: E501
+            bcc_sent (int, none_type): Number of BCC copies successfully sent for this notification.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

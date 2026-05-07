@@ -63,6 +63,9 @@ class CreateTemplateRequest(ModelNormal):
     }
 
     validations = {
+        ('email_bcc',): {
+            'max_items': 5,
+        },
     }
 
     @cached_property
@@ -96,6 +99,7 @@ class CreateTemplateRequest(ModelNormal):
             'is_email': (bool,),  # noqa: E501
             'email_subject': (str, none_type,),  # noqa: E501
             'email_body': (str, none_type,),  # noqa: E501
+            'email_bcc': ([str], none_type,),  # noqa: E501
             'is_sms': (bool,),  # noqa: E501
             'dynamic_content': (str, none_type,),  # noqa: E501
         }
@@ -114,6 +118,7 @@ class CreateTemplateRequest(ModelNormal):
         'is_email': 'isEmail',  # noqa: E501
         'email_subject': 'email_subject',  # noqa: E501
         'email_body': 'email_body',  # noqa: E501
+        'email_bcc': 'email_bcc',  # noqa: E501
         'is_sms': 'isSMS',  # noqa: E501
         'dynamic_content': 'dynamic_content',  # noqa: E501
     }
@@ -169,6 +174,7 @@ class CreateTemplateRequest(ModelNormal):
             is_email (bool): Set true for an Email template.. [optional]  # noqa: E501
             email_subject (str, none_type): Subject of the email.. [optional]  # noqa: E501
             email_body (str, none_type): Body of the email (HTML supported).. [optional]  # noqa: E501
+            email_bcc ([str], none_type): BCC recipients for the email template. Maximum 5 addresses. Only supported when the email service provider is OneSignal Email.. [optional]  # noqa: E501
             is_sms (bool): Set true for an SMS template.. [optional]  # noqa: E501
             dynamic_content (str, none_type): JSON string for dynamic content personalization.. [optional]  # noqa: E501
         """
@@ -269,6 +275,7 @@ class CreateTemplateRequest(ModelNormal):
             is_email (bool): Set true for an Email template.. [optional]  # noqa: E501
             email_subject (str, none_type): Subject of the email.. [optional]  # noqa: E501
             email_body (str, none_type): Body of the email (HTML supported).. [optional]  # noqa: E501
+            email_bcc ([str], none_type): BCC recipients for the email template. Maximum 5 addresses. Only supported when the email service provider is OneSignal Email.. [optional]  # noqa: E501
             is_sms (bool): Set true for an SMS template.. [optional]  # noqa: E501
             dynamic_content (str, none_type): JSON string for dynamic content personalization.. [optional]  # noqa: E501
         """
