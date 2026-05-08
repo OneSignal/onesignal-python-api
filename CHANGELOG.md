@@ -1,5 +1,11 @@
 # Changelog
 
+## [5.5.0](https://github.com/OneSignal/onesignal-python-api/compare/v5.4.0...v5.5.0) (2026-05-08)
+
+### Features
+
+* add `email_bcc` and `bcc_sent` to Notification and Template models ([#73](https://github.com/OneSignal/onesignal-python-api/issues/73)) ([9938373](https://github.com/OneSignal/onesignal-python-api/commit/993837340fcc4de6ec679a63da9d0182c283d2ab))
+
 ## [5.4.0](https://github.com/OneSignal/onesignal-python-api/compare/v5.3.0...v5.4.0) (2026-04-17)
 
 ### Features
