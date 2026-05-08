@@ -109,6 +109,7 @@ Name | Type | Description | Notes
 **email_preheader** | **str, none_type** | Channel: Email The preheader text of the email. Preheader is the preview text displayed immediately after an email subject that provides additional context about the email content. If not specified, will default to null.  | [optional] 
 **disable_email_click_tracking** | **bool, none_type** | Channel: Email Default is `false`. If set to `true`, the URLs sent within the email will not include link tracking and will be the same as originally set; otherwise, all the URLs in the email will be tracked. | [optional] 
 **include_unsubscribed** | **bool** | Channel: Email Default is `false`. This field is used to send transactional notifications. If set to `true`, this notification will also be sent to unsubscribed emails. If a `template_id` is provided, the `include_unsubscribed` value from the template will be inherited. If you are using a third-party ESP, this field requires the ESP's list of unsubscribed emails to be cleared. | [optional] 
+**email_bcc** | **[str], none_type** | BCC recipients that were set on this email notification. | [optional] 
 **sms_from** | **str, none_type** | Channel: SMS Phone Number used to send SMS. Should be a registered Twilio phone number in E.164 format.  | [optional] 
 **sms_media_urls** | **[str], none_type** | Channel: SMS URLs for the media files to be attached to the SMS content. Limit: 10 media urls with a total max. size of 5MBs.  | [optional] 
 **filters** | [**[FilterExpression], none_type**](FilterExpression.md) |  | [optional] 
@@ -130,6 +131,7 @@ Name | Type | Description | Notes
 **completed_at** | **int, none_type** | Unix timestamp indicating when notification delivery completed. The delivery duration from start to finish can be calculated with completed_at - send_after. | [optional] 
 **platform_delivery_stats** | [**PlatformDeliveryData**](PlatformDeliveryData.md) |  | [optional] 
 **canceled** | **bool** | Indicates whether the notification was canceled before it could be sent. | [optional] 
+**bcc_sent** | **int, none_type** | Number of BCC copies successfully sent for this notification. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
