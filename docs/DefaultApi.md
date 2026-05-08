@@ -1082,6 +1082,9 @@ with onesignal.ApiClient(configuration) as api_client:
         is_email=True,
         email_subject="email_subject_example",
         email_body="email_body_example",
+        email_bcc=[
+            "email_bcc_example",
+        ],
         is_sms=True,
         dynamic_content="dynamic_content_example",
     ) 
@@ -3838,6 +3841,9 @@ with onesignal.ApiClient(configuration) as api_client:
         is_email=True,
         email_subject="email_subject_example",
         email_body="email_body_example",
+        email_bcc=[
+            "email_bcc_example",
+        ],
         is_sms=True,
         dynamic_content="dynamic_content_example",
     ) 
