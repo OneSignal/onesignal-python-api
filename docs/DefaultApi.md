@@ -82,8 +82,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    notification_id = "notification_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    notification_id = "b3a0c8bd-3a4c-4b22-9a73-3f1a8c2d1b88" 
 
     # example passing only required values which don't have defaults set
     try:
@@ -92,6 +92,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->cancel_notification: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -159,8 +161,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    template_id = "template_id_example" 
-    app_id = "app_id_example" 
+    template_id = "e4d3c2b1-a09f-4f1e-8d7c-6b5a4f3e2d1c" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
     copy_template_request = CopyTemplateRequest(
         target_app_id="target_app_id_example",
     ) 
@@ -172,6 +174,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->copy_template_to_app: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -238,9 +242,9 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    alias_label = "alias_label_example" 
-    alias_id = "alias_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    alias_label = "external_id" 
+    alias_id = "YOUR_USER_EXTERNAL_ID" 
     user_identity_body = UserIdentityBody(
         identity=IdentityObject(
             key="key_example",
@@ -253,6 +257,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->create_alias: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -323,8 +329,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    subscription_id = "subscription_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    subscription_id = "7e4c5b9a-1f60-4d07-9b1a-2e8c8d2cae51" 
     user_identity_body = UserIdentityBody(
         identity=IdentityObject(
             key="key_example",
@@ -337,6 +343,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->create_alias_by_subscription: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -406,7 +414,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
     create_api_key_request = CreateApiKeyRequest(
         name="name_example",
         ip_allowlist_mode="disabled",
@@ -422,6 +430,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->create_api_key: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -518,6 +528,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->create_app: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -583,7 +595,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # Your OneSignal App ID in UUID v4 format. 
+    app_id = "00000000-0000-0000-0000-000000000000" # Your OneSignal App ID in UUID v4 format. 
     custom_events_request = CustomEventsRequest(
         events=[
             CustomEvent(
@@ -603,6 +615,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->create_custom_events: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -681,6 +695,8 @@ with onesignal.ApiClient(configuration) as api_client:
             pprint(api_response)
     except onesignal.ApiException as e:
         print('Exception when calling DefaultApi->create_notification: %s\n' % e)
+        print('Status Code: %s' % e.status)
+        print('Response Body: %s' % e.body)
 ```
 
 ### Parameters
@@ -747,7 +763,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    app_id = "00000000-0000-0000-0000-000000000000" # The OneSignal App ID for your app.  Available in Keys & IDs. 
     segment = Segment(
         id="id_example",
         name="name_example",
@@ -763,6 +779,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->create_segment: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 
     # example passing only required values which don't have defaults set
     # and optional values
@@ -772,6 +790,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->create_segment: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -839,9 +859,9 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    alias_label = "alias_label_example" 
-    alias_id = "alias_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    alias_label = "external_id" 
+    alias_id = "YOUR_USER_EXTERNAL_ID" 
     subscription_body = SubscriptionBody(
         subscription=Subscription(
             id="id_example",
@@ -870,6 +890,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->create_subscription: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -1096,6 +1118,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->create_template: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -1162,7 +1186,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
     user = User(
         properties=PropertiesObject(
             tags={},
@@ -1216,6 +1240,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->create_user: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -1285,10 +1311,10 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    alias_label = "alias_label_example" 
-    alias_id = "alias_id_example" 
-    alias_label_to_delete = "alias_label_to_delete_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    alias_label = "external_id" 
+    alias_id = "YOUR_USER_EXTERNAL_ID" 
+    alias_label_to_delete = "external_id" 
 
     # example passing only required values which don't have defaults set
     try:
@@ -1296,6 +1322,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->delete_alias: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -1364,8 +1392,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    token_id = "token_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    token_id = "0aa1b2c3-d4e5-46f7-8899-aabbccddeeff" 
 
     # example passing only required values which don't have defaults set
     try:
@@ -1374,6 +1402,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->delete_api_key: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -1439,8 +1469,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # The OneSignal App ID for your app.  Available in Keys & IDs. 
-    segment_id = "segment_id_example" # The segment_id can be found in the URL of the segment when viewing it in the dashboard. 
+    app_id = "00000000-0000-0000-0000-000000000000" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    segment_id = "d6c5a3e1-9f17-44a1-9d10-7c0e4a2b1c8e" # The segment_id can be found in the URL of the segment when viewing it in the dashboard. 
 
     # example passing only required values which don't have defaults set
     try:
@@ -1449,6 +1479,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->delete_segment: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -1515,14 +1547,16 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    subscription_id = "subscription_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    subscription_id = "7e4c5b9a-1f60-4d07-9b1a-2e8c8d2cae51" 
 
     # example passing only required values which don't have defaults set
     try:
         api_instance.delete_subscription(app_id, subscription_id)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->delete_subscription: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -1590,8 +1624,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    template_id = "template_id_example" 
-    app_id = "app_id_example" 
+    template_id = "e4d3c2b1-a09f-4f1e-8d7c-6b5a4f3e2d1c" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
 
     # example passing only required values which don't have defaults set
     try:
@@ -1600,6 +1634,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->delete_template: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -1665,15 +1701,17 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    alias_label = "alias_label_example" 
-    alias_id = "alias_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    alias_label = "external_id" 
+    alias_id = "YOUR_USER_EXTERNAL_ID" 
 
     # example passing only required values which don't have defaults set
     try:
         api_instance.delete_user(app_id, alias_label, alias_id)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->delete_user: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -1742,8 +1780,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    notification_id = "notification_id_example" # The ID of the notification to export events from. 
-    app_id = "app_id_example" # The ID of the app that the notification belongs to. 
+    notification_id = "b3a0c8bd-3a4c-4b22-9a73-3f1a8c2d1b88" # The ID of the notification to export events from. 
+    app_id = "00000000-0000-0000-0000-000000000000" # The ID of the app that the notification belongs to. 
 
     # example passing only required values which don't have defaults set
     try:
@@ -1752,6 +1790,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->export_events: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -1820,7 +1860,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # The app ID that you want to export devices from 
+    app_id = "00000000-0000-0000-0000-000000000000" # The app ID that you want to export devices from 
     export_subscriptions_request_body = ExportSubscriptionsRequestBody(
         extra_fields=[
             "extra_fields_example",
@@ -1836,6 +1876,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->export_subscriptions: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 
     # example passing only required values which don't have defaults set
     # and optional values
@@ -1845,6 +1887,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->export_subscriptions: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -1911,9 +1955,9 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    alias_label = "alias_label_example" 
-    alias_id = "alias_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    alias_label = "external_id" 
+    alias_id = "YOUR_USER_EXTERNAL_ID" 
 
     # example passing only required values which don't have defaults set
     try:
@@ -1921,6 +1965,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->get_aliases: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -1988,8 +2034,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    subscription_id = "subscription_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    subscription_id = "7e4c5b9a-1f60-4d07-9b1a-2e8c8d2cae51" 
 
     # example passing only required values which don't have defaults set
     try:
@@ -1997,6 +2043,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->get_aliases_by_subscription: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -2063,7 +2111,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # An app id 
+    app_id = "00000000-0000-0000-0000-000000000000" # An app id 
 
     # example passing only required values which don't have defaults set
     try:
@@ -2072,6 +2120,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->get_app: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -2145,6 +2195,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->get_apps: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -2207,8 +2259,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    notification_id = "notification_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    notification_id = "b3a0c8bd-3a4c-4b22-9a73-3f1a8c2d1b88" 
 
     # example passing only required values which don't have defaults set
     try:
@@ -2217,6 +2269,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->get_notification: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -2285,7 +2339,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    notification_id = "notification_id_example" # The \"id\" of the message found in the Notification object 
+    notification_id = "b3a0c8bd-3a4c-4b22-9a73-3f1a8c2d1b88" # The \"id\" of the message found in the Notification object 
     get_notification_history_request_body = GetNotificationHistoryRequestBody(
         events="sent",
         email="email_example",
@@ -2299,6 +2353,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->get_notification_history: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -2366,9 +2422,9 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # The app ID that you want to view notifications from 
-    limit = 1  # How many notifications to return.  Max is 50.  Default is 50. (optional) 
-    offset = 1  # Page offset.  Default is 0.  Results are sorted by queued_at in descending order.  queued_at is a representation of the time that the notification was queued at. (optional) 
+    app_id = "00000000-0000-0000-0000-000000000000" # The app ID that you want to view notifications from 
+    limit = 10  # How many notifications to return.  Max is 50.  Default is 50. (optional) 
+    offset = 0  # Page offset.  Default is 0.  Results are sorted by queued_at in descending order.  queued_at is a representation of the time that the notification was queued at. (optional) 
     kind = 0  # Kind of notifications returned:   * unset - All notification types (default)   * `0` - Dashboard only   * `1` - API only   * `3` - Automated only  (optional) 
 
     # example passing only required values which don't have defaults set
@@ -2378,6 +2434,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->get_notifications: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 
     # example passing only required values which don't have defaults set
     # and optional values
@@ -2387,6 +2445,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->get_notifications: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -2455,12 +2515,12 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # The OneSignal App ID for your app.  Available in Keys & IDs. 
-    outcome_names = "outcome_names_example" # Required Comma-separated list of names and the value (sum/count) for the returned outcome data. Note: Clicks only support count aggregation. For out-of-the-box OneSignal outcomes such as click and session duration, please use the \"os\" prefix with two underscores. For other outcomes, please use the name specified by the user. Example:os__session_duration.count,os__click.count,CustomOutcomeName.sum  
-    outcome_names2 = "outcome_names[]_example"  # Optional If outcome names contain any commas, then please specify only one value at a time. Example: outcome_names[]=os__click.count&outcome_names[]=Sales, Purchase.count where \"Sales, Purchase\" is the custom outcomes with a comma in the name.  (optional) 
-    outcome_time_range = "outcome_time_range_example"  # Optional Time range for the returned data. The values can be 1h (for the last 1 hour data), 1d (for the last 1 day data), or 1mo (for the last 1 month data). Default is 1h if the parameter is omitted.  (optional) 
-    outcome_platforms = "outcome_platforms_example"  # Optional Platform id. Refer device's platform ids for values. Example: outcome_platform=0 for iOS outcome_platform=7,8 for Safari and Firefox Default is data from all platforms if the parameter is omitted.  (optional) 
-    outcome_attribution = "outcome_attribution_example"  # Optional Attribution type for the outcomes. The values can be direct or influenced or unattributed. Example: outcome_attribution=direct Default is total (returns direct+influenced+unattributed) if the parameter is omitted.  (optional) 
+    app_id = "00000000-0000-0000-0000-000000000000" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    outcome_names = "os__session_duration.count,os__click.count" # Required Comma-separated list of names and the value (sum/count) for the returned outcome data. Note: Clicks only support count aggregation. For out-of-the-box OneSignal outcomes such as click and session duration, please use the \"os\" prefix with two underscores. For other outcomes, please use the name specified by the user. Example:os__session_duration.count,os__click.count,CustomOutcomeName.sum  
+    outcome_names2 = "os__session_duration.count"  # Optional If outcome names contain any commas, then please specify only one value at a time. Example: outcome_names[]=os__click.count&outcome_names[]=Sales, Purchase.count where \"Sales, Purchase\" is the custom outcomes with a comma in the name.  (optional) 
+    outcome_time_range = "1d"  # Optional Time range for the returned data. The values can be 1h (for the last 1 hour data), 1d (for the last 1 day data), or 1mo (for the last 1 month data). Default is 1h if the parameter is omitted.  (optional) 
+    outcome_platforms = "0,1"  # Optional Platform id. Refer device's platform ids for values. Example: outcome_platform=0 for iOS outcome_platform=7,8 for Safari and Firefox Default is data from all platforms if the parameter is omitted.  (optional) 
+    outcome_attribution = "direct"  # Optional Attribution type for the outcomes. The values can be direct or influenced or unattributed. Example: outcome_attribution=direct Default is total (returns direct+influenced+unattributed) if the parameter is omitted.  (optional) 
 
     # example passing only required values which don't have defaults set
     try:
@@ -2469,6 +2529,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->get_outcomes: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 
     # example passing only required values which don't have defaults set
     # and optional values
@@ -2478,6 +2540,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->get_outcomes: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -2548,9 +2612,9 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # The OneSignal App ID for your app.  Available in Keys & IDs. 
-    offset = 1  # Segments are listed in ascending order of created_at date. offset will omit that number of segments from the beginning of the list. Eg offset 5, will remove the 5 earliest created Segments. (optional) 
-    limit = 1  # The amount of Segments in the response. Maximum 300. (optional) 
+    app_id = "00000000-0000-0000-0000-000000000000" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    offset = 0  # Segments are listed in ascending order of created_at date. offset will omit that number of segments from the beginning of the list. Eg offset 5, will remove the 5 earliest created Segments. (optional) 
+    limit = 10  # The amount of Segments in the response. Maximum 300. (optional) 
 
     # example passing only required values which don't have defaults set
     try:
@@ -2559,6 +2623,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->get_segments: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 
     # example passing only required values which don't have defaults set
     # and optional values
@@ -2568,6 +2634,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->get_segments: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -2635,9 +2703,9 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    alias_label = "alias_label_example" 
-    alias_id = "alias_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    alias_label = "external_id" 
+    alias_id = "YOUR_USER_EXTERNAL_ID" 
 
     # example passing only required values which don't have defaults set
     try:
@@ -2645,6 +2713,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->get_user: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -2712,8 +2782,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    token_id = "token_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    token_id = "0aa1b2c3-d4e5-46f7-8899-aabbccddeeff" 
 
     # example passing only required values which don't have defaults set
     try:
@@ -2722,6 +2792,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->rotate_api_key: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -2788,8 +2860,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # Your OneSignal App ID in UUID v4 format. 
-    activity_type = "activity_type_example" # The name of the Live Activity defined in your app. This should match the attributes struct used in your app's Live Activity implementation. 
+    app_id = "00000000-0000-0000-0000-000000000000" # Your OneSignal App ID in UUID v4 format. 
+    activity_type = "order_status" # The name of the Live Activity defined in your app. This should match the attributes struct used in your app's Live Activity implementation. 
     start_live_activity_request = StartLiveActivityRequest(
         name="name_example",
         event="start",
@@ -2916,6 +2988,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->start_live_activity: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -2984,8 +3058,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    subscription_id = "subscription_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    subscription_id = "7e4c5b9a-1f60-4d07-9b1a-2e8c8d2cae51" 
     transfer_subscription_request_body = TransferSubscriptionRequestBody(
         identity={
             "key": "key_example",
@@ -2998,6 +3072,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->transfer_subscription: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -3067,9 +3143,9 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # The OneSignal App ID for your app.  Available in Keys & IDs. 
-    notification_id = "notification_id_example" # The id of the message found in the creation notification POST response, View Notifications GET response, or URL within the Message Report. 
-    token = "token_example" # The unsubscribe token that is generated via liquid syntax in {{subscription.unsubscribe_token}} when personalizing an email. 
+    app_id = "00000000-0000-0000-0000-000000000000" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    notification_id = "b3a0c8bd-3a4c-4b22-9a73-3f1a8c2d1b88" # The id of the message found in the creation notification POST response, View Notifications GET response, or URL within the Message Report. 
+    token = "YOUR_TOKEN_ID" # The unsubscribe token that is generated via liquid syntax in {{subscription.unsubscribe_token}} when personalizing an email. 
 
     # example passing only required values which don't have defaults set
     try:
@@ -3078,6 +3154,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->unsubscribe_email_with_token: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -3144,8 +3222,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    token_id = "token_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    token_id = "0aa1b2c3-d4e5-46f7-8899-aabbccddeeff" 
     update_api_key_request = UpdateApiKeyRequest(
         name="name_example",
         ip_allowlist_mode="disabled",
@@ -3161,6 +3239,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->update_api_key: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -3227,7 +3307,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # An app id 
+    app_id = "00000000-0000-0000-0000-000000000000" # An app id 
     app = App(
         name="name_example",
         android_gcm_sender_id="android_gcm_sender_id_example",
@@ -3259,6 +3339,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->update_app: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -3326,8 +3408,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # The OneSignal App ID for your app.  Available in Keys & IDs. 
-    activity_id = "activity_id_example" # Live Activity record ID 
+    app_id = "00000000-0000-0000-0000-000000000000" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    activity_id = "12345" # Live Activity record ID 
     update_live_activity_request = UpdateLiveActivityRequest(
         name="name_example",
         event="update",
@@ -3435,6 +3517,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->update_live_activity: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -3502,8 +3586,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    subscription_id = "subscription_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    subscription_id = "7e4c5b9a-1f60-4d07-9b1a-2e8c8d2cae51" 
     subscription_body = SubscriptionBody(
         subscription=Subscription(
             id="id_example",
@@ -3531,6 +3615,8 @@ with onesignal.ApiClient(configuration) as api_client:
         api_instance.update_subscription(app_id, subscription_id, subscription_body)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->update_subscription: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -3599,9 +3685,9 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # Your OneSignal App ID in UUID v4 format. 
-    token_type = "token_type_example" # The type of token to use when looking up the subscription. See Subscription Types. 
-    token = "token_example" # The value of the token to lookup by (e.g., email address, phone number). 
+    app_id = "00000000-0000-0000-0000-000000000000" # Your OneSignal App ID in UUID v4 format. 
+    token_type = "Email" # The type of token to use when looking up the subscription. See Subscription Types. 
+    token = "user@example.com" # The value of the token to lookup by (e.g., email address, phone number). 
     subscription_body = SubscriptionBody(
         subscription=Subscription(
             id="id_example",
@@ -3631,6 +3717,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->update_subscription_by_token: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -3699,8 +3787,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    template_id = "template_id_example" 
-    app_id = "app_id_example" 
+    template_id = "e4d3c2b1-a09f-4f1e-8d7c-6b5a4f3e2d1c" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
     update_template_request = UpdateTemplateRequest(
         name="name_example",
         contents=LanguageStringMap(
@@ -3855,6 +3943,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->update_template: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -3922,9 +4012,9 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
-    alias_label = "alias_label_example" 
-    alias_id = "alias_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
+    alias_label = "external_id" 
+    alias_id = "YOUR_USER_EXTERNAL_ID" 
     update_user_request = UpdateUserRequest(
         properties=PropertiesObject(
             tags={},
@@ -3967,6 +4057,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->update_user: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -4035,7 +4127,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
 
     # example passing only required values which don't have defaults set
     try:
@@ -4044,6 +4136,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->view_api_keys: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -4107,8 +4201,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    template_id = "template_id_example" 
-    app_id = "app_id_example" 
+    template_id = "e4d3c2b1-a09f-4f1e-8d7c-6b5a4f3e2d1c" 
+    app_id = "00000000-0000-0000-0000-000000000000" 
 
     # example passing only required values which don't have defaults set
     try:
@@ -4117,6 +4211,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->view_template: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
@@ -4183,8 +4279,8 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "app_id_example" # Your OneSignal App ID in UUID v4 format. 
-    limit = 50  # Maximum number of templates. Default and max is 50. (optional) 
+    app_id = "00000000-0000-0000-0000-000000000000" # Your OneSignal App ID in UUID v4 format. 
+    limit = 10  # Maximum number of templates. Default and max is 50. (optional) 
     offset = 0  # Pagination offset. (optional) 
     channel = "push"  # Filter by delivery channel. (optional) 
 
@@ -4195,6 +4291,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->view_templates: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 
     # example passing only required values which don't have defaults set
     # and optional values
@@ -4204,6 +4302,8 @@ with onesignal.ApiClient(configuration) as api_client:
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->view_templates: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
 ```
 
 
