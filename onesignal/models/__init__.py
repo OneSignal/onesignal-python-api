@@ -1,0 +1,81 @@
+# flake8: noqa
+
+# import all models into this package
+# if you have many models here with many references from one model to another this may
+# raise a RecursionError
+# to avoid this, import only the models that you directly need like:
+# from from onesignal.model.pet import Pet
+# or import this package, but before doing it, use:
+# import sys
+# sys.setrecursionlimit(n)
+
+from onesignal.model.api_key_token import ApiKeyToken
+from onesignal.model.api_key_tokens_list_response import ApiKeyTokensListResponse
+from onesignal.model.app import App
+from onesignal.model.apps import Apps
+from onesignal.model.basic_notification import BasicNotification
+from onesignal.model.basic_notification_all_of import BasicNotificationAllOf
+from onesignal.model.basic_notification_all_of_android_background_layout import BasicNotificationAllOfAndroidBackgroundLayout
+from onesignal.model.button import Button
+from onesignal.model.copy_template_request import CopyTemplateRequest
+from onesignal.model.create_api_key_request import CreateApiKeyRequest
+from onesignal.model.create_api_key_response import CreateApiKeyResponse
+from onesignal.model.create_notification_success_response import CreateNotificationSuccessResponse
+from onesignal.model.create_segment_conflict_response import CreateSegmentConflictResponse
+from onesignal.model.create_segment_success_response import CreateSegmentSuccessResponse
+from onesignal.model.create_template_request import CreateTemplateRequest
+from onesignal.model.create_user_conflict_response import CreateUserConflictResponse
+from onesignal.model.create_user_conflict_response_errors_inner import CreateUserConflictResponseErrorsInner
+from onesignal.model.create_user_conflict_response_errors_items_meta import CreateUserConflictResponseErrorsItemsMeta
+from onesignal.model.custom_event import CustomEvent
+from onesignal.model.custom_events_request import CustomEventsRequest
+from onesignal.model.delivery_data import DeliveryData
+from onesignal.model.export_events_success_response import ExportEventsSuccessResponse
+from onesignal.model.export_subscriptions_request_body import ExportSubscriptionsRequestBody
+from onesignal.model.export_subscriptions_success_response import ExportSubscriptionsSuccessResponse
+from onesignal.model.filter import Filter
+from onesignal.model.filter_expression import FilterExpression
+from onesignal.model.generic_error import GenericError
+from onesignal.model.generic_success_bool_response import GenericSuccessBoolResponse
+from onesignal.model.get_notification_history_request_body import GetNotificationHistoryRequestBody
+from onesignal.model.get_segments_success_response import GetSegmentsSuccessResponse
+from onesignal.model.identity_object import IdentityObject
+from onesignal.model.include_aliases import IncludeAliases
+from onesignal.model.language_string_map import LanguageStringMap
+from onesignal.model.notification import Notification
+from onesignal.model.notification_all_of import NotificationAllOf
+from onesignal.model.notification_history_success_response import NotificationHistorySuccessResponse
+from onesignal.model.notification_slice import NotificationSlice
+from onesignal.model.notification_target import NotificationTarget
+from onesignal.model.notification_with_meta import NotificationWithMeta
+from onesignal.model.notification_with_meta_all_of import NotificationWithMetaAllOf
+from onesignal.model.operator import Operator
+from onesignal.model.outcome_data import OutcomeData
+from onesignal.model.outcomes_data import OutcomesData
+from onesignal.model.platform_delivery_data import PlatformDeliveryData
+from onesignal.model.platform_delivery_data_email_all_of import PlatformDeliveryDataEmailAllOf
+from onesignal.model.platform_delivery_data_sms_all_of import PlatformDeliveryDataSmsAllOf
+from onesignal.model.properties_body import PropertiesBody
+from onesignal.model.properties_deltas import PropertiesDeltas
+from onesignal.model.properties_object import PropertiesObject
+from onesignal.model.purchase import Purchase
+from onesignal.model.rate_limit_error import RateLimitError
+from onesignal.model.segment import Segment
+from onesignal.model.segment_data import SegmentData
+from onesignal.model.segment_notification_target import SegmentNotificationTarget
+from onesignal.model.start_live_activity_request import StartLiveActivityRequest
+from onesignal.model.start_live_activity_success_response import StartLiveActivitySuccessResponse
+from onesignal.model.subscription import Subscription
+from onesignal.model.subscription_body import SubscriptionBody
+from onesignal.model.subscription_notification_target import SubscriptionNotificationTarget
+from onesignal.model.template_resource import TemplateResource
+from onesignal.model.templates_list_response import TemplatesListResponse
+from onesignal.model.transfer_subscription_request_body import TransferSubscriptionRequestBody
+from onesignal.model.update_api_key_request import UpdateApiKeyRequest
+from onesignal.model.update_live_activity_request import UpdateLiveActivityRequest
+from onesignal.model.update_live_activity_success_response import UpdateLiveActivitySuccessResponse
+from onesignal.model.update_template_request import UpdateTemplateRequest
+from onesignal.model.update_user_request import UpdateUserRequest
+from onesignal.model.user import User
+from onesignal.model.user_identity_body import UserIdentityBody
+from onesignal.model.web_button import WebButton

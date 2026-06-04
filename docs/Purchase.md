@@ -1,0 +1,15 @@
+# Purchase
+
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**sku** | **str** | The unique identifier of the purchased item. | 
+**amount** | **str** | The amount, in USD, spent purchasing the item. | 
+**iso** | **str** | The 3-letter ISO 4217 currency code. Required for correct storage and conversion of amount. | 
+**count** | **int** |  | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
+
+
