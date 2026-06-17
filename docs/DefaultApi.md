@@ -64,7 +64,7 @@ Every operation requires either a **REST API Key** (App-scoped, used by ~77% of 
 
 ### Error handling
 
-When a request fails, the SDK raises `onesignal.ApiException`. The HTTP status code is `e.status` (int); the parsed error body is `e.body`. Most envelopes match `{"errors": ["..."]}` (an array of strings) but a few endpoints return `{"errors": [{"code": ..., "title": ..., "meta": {...}}]}` (an array of structured error objects — used by `POST /apps/{app_id}/users` 409 conflict, see `CreateUserConflictResponse`), `{"errors": "..."}` (string), or `{"success": False}` (no `errors` field at all). Robust error-handling code should tolerate all four shapes.
+When a request fails, the SDK raises `onesignal.ApiException`. The HTTP status code is `e.status` (int); the parsed error body is `e.body`. Most envelopes match `{"errors": ["..."]}` (an array of strings) but a few endpoints return `{"errors": [{"code": ..., "title": ..., "meta": {...}}]}` (an array of structured error objects — used by `POST /apps/{app_id}/users` 409 conflict, see `CreateUserConflictResponse`), `{"errors": "..."}` (string), or `{"success": False}` (no `errors` field at all). Robust error-handling code should tolerate all four shapes. The `e.error_messages` property does this for you, normalizing every shape to a flat `list[str]` (empty when the body carries no `errors`).
 
 ### Polymorphic 200 from POST /notifications
 
@@ -743,6 +743,9 @@ with onesignal.ApiClient(configuration) as api_client:
     except onesignal.ApiException as e:
         print('Exception when calling DefaultApi->create_notification: %s\n' % e)
         print('Status Code: %s' % e.status)
+        # `e.error_messages` flattens any error-envelope shape to a list[str];
+        # the raw body remains on `e.body`.
+        print('Error Messages: %s' % e.error_messages)
         print('Response Body: %s' % e.body)
 ```
 
