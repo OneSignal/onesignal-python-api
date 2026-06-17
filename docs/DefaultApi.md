@@ -62,9 +62,16 @@ Every operation requires either a **REST API Key** (App-scoped, used by ~77% of 
 
 `POST /notifications` accepts a top-level `idempotency_key` (UUIDv4) that the server uses for request dedup within a **30-day window**. Pass a freshly-generated UUID per logical send so that network-level retries are safe. Never reuse a key across distinct sends — the server returns the original response instead of acting on the new payload. The hero `create_notification` example below demonstrates the call.
 
+Prefer the bundled `create_notification_with_retry` helper over wiring this up by hand: it generates the key when absent (a caller-provided key is respected), retries 429 / 503 / connection errors with the **same** key (honoring `Retry-After`, exponential backoff otherwise; `max_retries` / `base_delay` configurable), fails fast on other errors, and reports via `was_replayed` whether the server answered from a previously completed request (`Idempotent-Replayed` response header). It is available as a `DefaultApi` method so the call mirrors `create_notification`:
+
+```python
+result = api_instance.create_notification_with_retry(notification)
+print(result.response.id, result.was_replayed)
+```
+
 ### Error handling
 
-When a request fails, the SDK raises `onesignal.ApiException`. The HTTP status code is `e.status` (int); the parsed error body is `e.body`. Most envelopes match `{"errors": ["..."]}` (an array of strings) but a few endpoints return `{"errors": [{"code": ..., "title": ..., "meta": {...}}]}` (an array of structured error objects — used by `POST /apps/{app_id}/users` 409 conflict, see `CreateUserConflictResponse`), `{"errors": "..."}` (string), or `{"success": False}` (no `errors` field at all). Robust error-handling code should tolerate all four shapes.
+When a request fails, the SDK raises `onesignal.ApiException`. The HTTP status code is `e.status` (int); the parsed error body is `e.body`. Most envelopes match `{"errors": ["..."]}` (an array of strings) but a few endpoints return `{"errors": [{"code": ..., "title": ..., "meta": {...}}]}` (an array of structured error objects — used by `POST /apps/{app_id}/users` 409 conflict, see `CreateUserConflictResponse`), `{"errors": "..."}` (string), or `{"success": False}` (no `errors` field at all). Robust error-handling code should tolerate all four shapes. The `e.error_messages` property does this for you, normalizing every shape to a flat `list[str]` (empty when the body carries no `errors`).
 
 ### Polymorphic 200 from POST /notifications
 
@@ -743,7 +750,50 @@ with onesignal.ApiClient(configuration) as api_client:
     except onesignal.ApiException as e:
         print('Exception when calling DefaultApi->create_notification: %s\n' % e)
         print('Status Code: %s' % e.status)
+        # `e.error_messages` flattens any error-envelope shape to a list[str];
+        # the raw body remains on `e.body`.
+        print('Error Messages: %s' % e.error_messages)
         print('Response Body: %s' % e.body)
+```
+
+#### Using `create_notification_with_retry` (preferred for safe, idempotent retries)
+
+The `create_notification_with_retry` method mirrors `create_notification` but generates the `idempotency_key` for you, transparently retries transient failures (HTTP 429 / 503 / connection errors) with the **same** key, and reports via `was_replayed` whether the server answered from a previously-completed request.
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.model.language_string_map import LanguageStringMap
+from onesignal.model.notification import Notification
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
+with onesignal.ApiClient(configuration) as api_client:
+    api_instance = default_api.DefaultApi(api_client)
+    notification = Notification(
+        app_id='YOUR_APP_ID',
+        contents=LanguageStringMap(en='Hello from OneSignal!'),
+        include_aliases={'external_id': ['YOUR_USER_EXTERNAL_ID']},
+        target_channel='push',
+        # No idempotency_key set: the helper generates a UUIDv4 and reuses it across retries.
+    )
+    try:
+        # max_retries / base_delay are optional (defaults: 3 retries, 1.0s backoff base).
+        result = api_instance.create_notification_with_retry(notification, max_retries=5, base_delay=0.5)
+        if result.was_replayed:
+            print('Server replayed a prior send (no duplicate):', result.response.get('id'))
+        else:
+            print('Notification created:', result.response.get('id'))
+    except onesignal.ApiException as e:
+        # `e.error_messages` flattens any error-envelope shape to a list[str].
+        print('create_notification_with_retry failed: HTTP %s' % e.status, e.error_messages)
 ```
 
 ### Parameters
