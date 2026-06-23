@@ -91,6 +91,8 @@ class NotificationSlice(ModelNormal):
             'total_count': (int,),  # noqa: E501
             'offset': (int,),  # noqa: E501
             'limit': (int,),  # noqa: E501
+            'time_offset': (str,),  # noqa: E501
+            'next_time_offset': (str,),  # noqa: E501
             'notifications': ([NotificationWithMeta],),  # noqa: E501
         }
 
@@ -103,6 +105,8 @@ class NotificationSlice(ModelNormal):
         'total_count': 'total_count',  # noqa: E501
         'offset': 'offset',  # noqa: E501
         'limit': 'limit',  # noqa: E501
+        'time_offset': 'time_offset',  # noqa: E501
+        'next_time_offset': 'next_time_offset',  # noqa: E501
         'notifications': 'notifications',  # noqa: E501
     }
 
@@ -150,6 +154,8 @@ class NotificationSlice(ModelNormal):
             total_count (int): [optional]  # noqa: E501
             offset (int): [optional]  # noqa: E501
             limit (int): [optional]  # noqa: E501
+            time_offset (str): The time_offset cursor specified in the request, if any.. [optional]  # noqa: E501
+            next_time_offset (str): An opaque Base64 cursor token representing the next page of messages to fetch.  Present when time_offset was provided in the request.  Pass this value as time_offset on the next request to continue paginating.. [optional]  # noqa: E501
             notifications ([NotificationWithMeta]): [optional]  # noqa: E501
         """
 
@@ -239,6 +245,8 @@ class NotificationSlice(ModelNormal):
             total_count (int): [optional]  # noqa: E501
             offset (int): [optional]  # noqa: E501
             limit (int): [optional]  # noqa: E501
+            time_offset (str): The time_offset cursor specified in the request, if any.. [optional]  # noqa: E501
+            next_time_offset (str): An opaque Base64 cursor token representing the next page of messages to fetch.  Present when time_offset was provided in the request.  Pass this value as time_offset on the next request to continue paginating.. [optional]  # noqa: E501
             notifications ([NotificationWithMeta]): [optional]  # noqa: E501
         """
 
