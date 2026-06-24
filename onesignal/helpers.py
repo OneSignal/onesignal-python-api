@@ -96,3 +96,30 @@ def create_notification_with_retry(api, notification, max_retries=3, base_delay=
         if delay > 0:
             time.sleep(delay)
         attempt += 1
+
+
+def is_message_sent(response):
+    """Return True when a POST /notifications 200 response is the "message
+    sent" branch -- a notification was created and ``id`` is a non-empty string.
+
+    POST /notifications returns 200 in two cases that share the
+    ``CreateNotificationSuccessResponse`` shape: a notification was created
+    (non-empty ``id``), or none was (empty ``id``, with ``errors`` carrying the
+    reason). Prefer this guard over inspecting ``id`` directly.
+
+    :param response: a ``CreateNotificationSuccessResponse``
+    :return: True if a notification was created
+    """
+    notification_id = getattr(response, 'id', None)
+    return isinstance(notification_id, str) and len(notification_id) > 0
+
+
+def is_message_not_sent(response):
+    """Return True when a POST /notifications 200 response is the "message not
+    sent" branch -- no notification was created (``id`` is absent or empty);
+    inspect ``errors`` for why.
+
+    :param response: a ``CreateNotificationSuccessResponse``
+    :return: True if no notification was created
+    """
+    return not is_message_sent(response)
