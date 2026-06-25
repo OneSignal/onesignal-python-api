@@ -99,9 +99,7 @@ Used to stop a scheduled or currently outgoing notification
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
-from onesignal.model.generic_success_bool_response import GenericSuccessBoolResponse
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -179,9 +177,7 @@ Copy a template to a destination app.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.copy_template_request import CopyTemplateRequest
-from onesignal.model.template_resource import TemplateResource
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -261,9 +257,7 @@ Upserts one or more Aliases to an existing User identified by (:alias_label, :al
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
-from onesignal.model.user_identity_body import UserIdentityBody
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -349,9 +343,7 @@ Upserts one or more Aliases for the User identified by :subscription_id.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
-from onesignal.model.user_identity_body import UserIdentityBody
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -435,9 +427,7 @@ Use this API to create a new App API Key (also called a Rich Authentication Toke
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.create_api_key_response import CreateApiKeyResponse
-from onesignal.model.create_api_key_request import CreateApiKeyRequest
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -519,9 +509,7 @@ Creates a new OneSignal app
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.app import App
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -618,9 +606,8 @@ The Custom Events API allows you to record user events. Custom events can repres
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.custom_events_request import CustomEventsRequest
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
+from dateutil.parser import parse as dateutil_parser
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -848,11 +835,7 @@ Create a segment visible and usable in the dashboard and API - Required: OneSign
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.create_segment_success_response import CreateSegmentSuccessResponse
-from onesignal.model.create_segment_conflict_response import CreateSegmentConflictResponse
-from onesignal.model.segment import Segment
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -873,7 +856,16 @@ with onesignal.ApiClient(configuration) as api_client:
         id="id_example",
         name="name_example",
         filters=[
-            FilterExpression(None),
+            Filter(
+                field="field_example",
+                key="key_example",
+                value="value_example",
+                hours_ago="hours_ago_example",
+                radius=3.14,
+                lat=3.14,
+                long=3.14,
+                relation=">",
+            ),
         ],
     ) 
 
@@ -947,9 +939,7 @@ Creates a new Subscription under the User provided. Useful to add email addresse
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
-from onesignal.model.subscription_body import SubscriptionBody
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -1052,9 +1042,7 @@ Create reusable message templates for push, email, and SMS channels.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.create_template_request import CreateTemplateRequest
-from onesignal.model.template_resource import TemplateResource
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -1275,10 +1263,7 @@ Creates a User, optionally Subscriptions owned by the User as well as Aliases. A
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.user import User
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
-from onesignal.model.create_user_conflict_response import CreateUserConflictResponse
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -1414,9 +1399,7 @@ Deletes an alias by alias label
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
-from onesignal.model.user_identity_body import UserIdentityBody
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -1498,7 +1481,7 @@ Delete a specific Rich Authentication Token (App API Key) for a OneSignal app. R
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -1574,9 +1557,7 @@ Delete a segment (not user devices) - Required: OneSignal Paid Plan You can dele
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
-from onesignal.model.generic_success_bool_response import GenericSuccessBoolResponse
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -1654,8 +1635,7 @@ Deletes the Subscription.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -1732,8 +1712,7 @@ Delete a template by id.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.generic_error import GenericError
-from onesignal.model.generic_success_bool_response import GenericSuccessBoolResponse
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -1810,8 +1789,7 @@ Removes the User identified by (:alias_label, :alias_id), and all Subscriptions 
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -1889,9 +1867,7 @@ Generate a compressed CSV report of all of the events data for a notification. T
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.export_events_success_response import ExportEventsSuccessResponse
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -1969,10 +1945,7 @@ Generate a compressed CSV export of all of your current user data This method ca
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.export_subscriptions_success_response import ExportSubscriptionsSuccessResponse
-from onesignal.model.export_subscriptions_request_body import ExportSubscriptionsRequestBody
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -2066,9 +2039,7 @@ Lists all Aliases for the User identified by (:alias_label, :alias_id).
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
-from onesignal.model.user_identity_body import UserIdentityBody
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -2147,8 +2118,7 @@ Lists all Aliases for the User identified by :subscription_id.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.generic_error import GenericError
-from onesignal.model.user_identity_body import UserIdentityBody
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -2224,9 +2194,7 @@ View the details of a single OneSignal app
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.app import App
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -2301,9 +2269,7 @@ View the details of all of your current OneSignal apps
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.apps import Apps
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -2374,9 +2340,7 @@ View the details of a single notification and outcomes associated with it
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
-from onesignal.model.notification_with_meta import NotificationWithMeta
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -2454,10 +2418,7 @@ Notification History
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.notification_history_success_response import NotificationHistorySuccessResponse
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
-from onesignal.model.get_notification_history_request_body import GetNotificationHistoryRequestBody
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -2539,9 +2500,7 @@ View the details of multiple notifications
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.notification_slice import NotificationSlice
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -2635,9 +2594,7 @@ View the details of all the outcomes associated with your app  &#x1F6A7; Require
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.outcomes_data import OutcomesData
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -2733,9 +2690,7 @@ Returns an array of segments from an app.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.get_segments_success_response import GetSegmentsSuccessResponse
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -2825,9 +2780,7 @@ Returns the User’s properties, Aliases, and Subscriptions.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.user import User
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -2906,8 +2859,7 @@ Rotate a Rich Authentication Token (App API Key) for a OneSignal app. Rotating a
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.create_api_key_response import CreateApiKeyResponse
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -2983,10 +2935,7 @@ Remotely start a Live Activity on iOS devices via OneSignal’s REST API.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.start_live_activity_success_response import StartLiveActivitySuccessResponse
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
-from onesignal.model.start_live_activity_request import StartLiveActivityRequest
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -3119,7 +3068,16 @@ with onesignal.ApiClient(configuration) as api_client:
             "excluded_segments_example",
         ],
         filters=[
-            FilterExpression(None),
+            Filter(
+                field="field_example",
+                key="key_example",
+                value="value_example",
+                hours_ago="hours_ago_example",
+                radius=3.14,
+                lat=3.14,
+                long=3.14,
+                relation=">",
+            ),
         ],
     ) 
 
@@ -3182,10 +3140,7 @@ Transfers this Subscription to the User identified by the identity in the payloa
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.transfer_subscription_request_body import TransferSubscriptionRequestBody
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
-from onesignal.model.user_identity_body import UserIdentityBody
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -3269,9 +3224,7 @@ Unsubscribe an email with a token when using your own custom email unsubscribe l
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
-from onesignal.model.generic_success_bool_response import GenericSuccessBoolResponse
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -3350,8 +3303,7 @@ Update a Rich Authentication Token (App API Key) for a OneSignal app.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.update_api_key_request import UpdateApiKeyRequest
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -3435,9 +3387,7 @@ Updates the name or configuration settings of an existing OneSignal app
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.app import App
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -3536,10 +3486,7 @@ Updates a specified live activity.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.update_live_activity_request import UpdateLiveActivityRequest
-from onesignal.model.update_live_activity_success_response import UpdateLiveActivitySuccessResponse
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -3716,9 +3663,7 @@ Updates an existing Subscription’s properties.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
-from onesignal.model.subscription_body import SubscriptionBody
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -3817,8 +3762,7 @@ Update properties on an existing OneSignal subscription using its token.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.generic_error import GenericError
-from onesignal.model.subscription_body import SubscriptionBody
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -3919,9 +3863,7 @@ Update an existing template.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.update_template_request import UpdateTemplateRequest
-from onesignal.model.template_resource import TemplateResource
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -4144,10 +4086,7 @@ Updates an existing User’s properties.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.update_user_request import UpdateUserRequest
-from onesignal.model.properties_body import PropertiesBody
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -4262,8 +4201,7 @@ View the details of all of your current app API keys (Rich Authentication Token)
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.api_key_tokens_list_response import ApiKeyTokensListResponse
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -4337,8 +4275,7 @@ Fetch a single template by id.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.template_resource import TemplateResource
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -4415,9 +4352,7 @@ List templates for an app.
 ```python
 import onesignal
 from onesignal.api import default_api
-from onesignal.model.templates_list_response import TemplatesListResponse
-from onesignal.model.rate_limit_error import RateLimitError
-from onesignal.model.generic_error import GenericError
+from onesignal.models import *
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
