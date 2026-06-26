@@ -11,6 +11,8 @@
   </a>
 </p>
 
+> **Building with an AI agent or LLM?** See [AGENTS.md](https://github.com/OneSignal/onesignal-python-api/blob/main/AGENTS.md) for an agent-oriented integration guide — authentication, calling conventions, idempotent retries, and the full API reference.
+
 A powerful way to send personalized messages at scale and build effective customer engagement strategies. Learn more at onesignal.com
 
 - API version: 5.8.0
