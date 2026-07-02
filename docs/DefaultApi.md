@@ -107,7 +107,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -185,7 +185,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -265,7 +265,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -351,7 +351,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -435,7 +435,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -517,7 +517,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -615,7 +615,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -704,7 +704,7 @@ from onesignal.model.notification import Notification
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -765,7 +765,7 @@ from onesignal.model.notification import Notification
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -843,7 +843,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -947,7 +947,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1050,7 +1050,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1271,7 +1271,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1407,7 +1407,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1489,7 +1489,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1565,7 +1565,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1643,7 +1643,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1720,7 +1720,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1797,7 +1797,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1875,7 +1875,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1953,7 +1953,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2047,7 +2047,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2126,7 +2126,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2202,7 +2202,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2277,7 +2277,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2348,7 +2348,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2426,7 +2426,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2508,7 +2508,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2602,7 +2602,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2698,7 +2698,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2788,7 +2788,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2867,7 +2867,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2943,7 +2943,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -3148,7 +3148,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -3232,7 +3232,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -3311,7 +3311,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -3395,7 +3395,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -3494,7 +3494,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -3671,7 +3671,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -3770,7 +3770,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -3871,7 +3871,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -4094,7 +4094,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -4209,7 +4209,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -4283,7 +4283,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -4360,7 +4360,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
