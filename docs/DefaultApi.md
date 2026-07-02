@@ -107,7 +107,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -118,7 +118,6 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "00000000-0000-0000-0000-000000000000" 
     notification_id = "b3a0c8bd-3a4c-4b22-9a73-3f1a8c2d1b88" 
 
-    # example passing only required values which don't have defaults set
     try:
         # Stop a scheduled or currently outgoing notification
         api_response = api_instance.cancel_notification(app_id, notification_id)
@@ -185,7 +184,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -199,7 +198,6 @@ with onesignal.ApiClient(configuration) as api_client:
         target_app_id="target_app_id_example",
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         # Copy template to another app
         api_response = api_instance.copy_template_to_app(template_id, app_id, copy_template_request)
@@ -265,7 +263,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -282,7 +280,6 @@ with onesignal.ApiClient(configuration) as api_client:
         ),
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.create_alias(app_id, alias_label, alias_id, user_identity_body)
         pprint(api_response)
@@ -351,7 +348,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -367,7 +364,6 @@ with onesignal.ApiClient(configuration) as api_client:
         ),
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.create_alias_by_subscription(app_id, subscription_id, user_identity_body)
         pprint(api_response)
@@ -435,7 +431,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -452,7 +448,6 @@ with onesignal.ApiClient(configuration) as api_client:
         ],
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         # Create API key
         api_response = api_instance.create_api_key(app_id, create_api_key_request)
@@ -517,7 +512,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -549,7 +544,6 @@ with onesignal.ApiClient(configuration) as api_client:
         additional_data_is_root_payload=True,
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         # Create an app
         api_response = api_instance.create_app(app)
@@ -615,7 +609,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -636,7 +630,6 @@ with onesignal.ApiClient(configuration) as api_client:
         ],
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         # Create custom events
         api_response = api_instance.create_custom_events(app_id, custom_events_request)
@@ -704,7 +697,7 @@ from onesignal.model.notification import Notification
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -765,7 +758,7 @@ from onesignal.model.notification import Notification
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -843,7 +836,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -869,18 +862,6 @@ with onesignal.ApiClient(configuration) as api_client:
         ],
     ) 
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Create Segment
-        api_response = api_instance.create_segment(app_id)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->create_segment: %s\n" % e)
-        print("Status Code: %s" % e.status)
-        print("Response Body: %s" % e.body)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Create Segment
         api_response = api_instance.create_segment(app_id, segment=segment)
@@ -947,7 +928,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -980,7 +961,6 @@ with onesignal.ApiClient(configuration) as api_client:
         ),
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.create_subscription(app_id, alias_label, alias_id, subscription_body)
         pprint(api_response)
@@ -1050,7 +1030,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1206,7 +1186,6 @@ with onesignal.ApiClient(configuration) as api_client:
         dynamic_content="dynamic_content_example",
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         # Create template
         api_response = api_instance.create_template(create_template_request)
@@ -1271,7 +1250,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1327,7 +1306,6 @@ with onesignal.ApiClient(configuration) as api_client:
         ],
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.create_user(app_id, user)
         pprint(api_response)
@@ -1407,7 +1385,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1420,7 +1398,6 @@ with onesignal.ApiClient(configuration) as api_client:
     alias_id = "YOUR_USER_EXTERNAL_ID" 
     alias_label_to_delete = "external_id" 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.delete_alias(app_id, alias_label, alias_id, alias_label_to_delete)
         pprint(api_response)
@@ -1489,7 +1466,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1500,7 +1477,6 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "00000000-0000-0000-0000-000000000000" 
     token_id = "0aa1b2c3-d4e5-46f7-8899-aabbccddeeff" 
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete API key
         api_response = api_instance.delete_api_key(app_id, token_id)
@@ -1565,7 +1541,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1576,7 +1552,6 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "00000000-0000-0000-0000-000000000000" # The OneSignal App ID for your app.  Available in Keys & IDs. 
     segment_id = "d6c5a3e1-9f17-44a1-9d10-7c0e4a2b1c8e" # The segment_id can be found in the URL of the segment when viewing it in the dashboard. 
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete Segment
         api_response = api_instance.delete_segment(app_id, segment_id)
@@ -1643,7 +1618,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1654,7 +1629,6 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "00000000-0000-0000-0000-000000000000" 
     subscription_id = "7e4c5b9a-1f60-4d07-9b1a-2e8c8d2cae51" 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.delete_subscription(app_id, subscription_id)
     except onesignal.ApiException as e:
@@ -1720,7 +1694,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1731,7 +1705,6 @@ with onesignal.ApiClient(configuration) as api_client:
     template_id = "e4d3c2b1-a09f-4f1e-8d7c-6b5a4f3e2d1c" 
     app_id = "00000000-0000-0000-0000-000000000000" 
 
-    # example passing only required values which don't have defaults set
     try:
         # Delete template
         api_response = api_instance.delete_template(template_id, app_id)
@@ -1797,7 +1770,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1809,7 +1782,6 @@ with onesignal.ApiClient(configuration) as api_client:
     alias_label = "external_id" 
     alias_id = "YOUR_USER_EXTERNAL_ID" 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.delete_user(app_id, alias_label, alias_id)
     except onesignal.ApiException as e:
@@ -1875,7 +1847,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1886,7 +1858,6 @@ with onesignal.ApiClient(configuration) as api_client:
     notification_id = "b3a0c8bd-3a4c-4b22-9a73-3f1a8c2d1b88" # The ID of the notification to export events from. 
     app_id = "00000000-0000-0000-0000-000000000000" # The ID of the app that the notification belongs to. 
 
-    # example passing only required values which don't have defaults set
     try:
         # Export CSV of Events
         api_response = api_instance.export_events(notification_id, app_id)
@@ -1953,7 +1924,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -1970,18 +1941,6 @@ with onesignal.ApiClient(configuration) as api_client:
         segment_name="segment_name_example",
     ) 
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Export CSV of Subscriptions
-        api_response = api_instance.export_subscriptions(app_id)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->export_subscriptions: %s\n" % e)
-        print("Status Code: %s" % e.status)
-        print("Response Body: %s" % e.body)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Export CSV of Subscriptions
         api_response = api_instance.export_subscriptions(app_id, export_subscriptions_request_body=export_subscriptions_request_body)
@@ -2047,7 +2006,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2059,7 +2018,6 @@ with onesignal.ApiClient(configuration) as api_client:
     alias_label = "external_id" 
     alias_id = "YOUR_USER_EXTERNAL_ID" 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_aliases(app_id, alias_label, alias_id)
         pprint(api_response)
@@ -2126,7 +2084,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2137,7 +2095,6 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "00000000-0000-0000-0000-000000000000" 
     subscription_id = "7e4c5b9a-1f60-4d07-9b1a-2e8c8d2cae51" 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_aliases_by_subscription(app_id, subscription_id)
         pprint(api_response)
@@ -2202,7 +2159,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2212,7 +2169,6 @@ with onesignal.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     app_id = "00000000-0000-0000-0000-000000000000" # An app id 
 
-    # example passing only required values which don't have defaults set
     try:
         # View an app
         api_response = api_instance.get_app(app_id)
@@ -2277,7 +2233,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2348,7 +2304,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2359,7 +2315,6 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "00000000-0000-0000-0000-000000000000" 
     notification_id = "b3a0c8bd-3a4c-4b22-9a73-3f1a8c2d1b88" 
 
-    # example passing only required values which don't have defaults set
     try:
         # View notification
         api_response = api_instance.get_notification(app_id, notification_id)
@@ -2426,7 +2381,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2441,7 +2396,6 @@ with onesignal.ApiClient(configuration) as api_client:
         app_id="app_id_example",
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         # Notification History
         api_response = api_instance.get_notification_history(notification_id, get_notification_history_request_body)
@@ -2508,7 +2462,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2522,18 +2476,6 @@ with onesignal.ApiClient(configuration) as api_client:
     kind = 0  # Kind of notifications returned:   * unset - All notification types (default)   * `0` - Dashboard only   * `1` - API only   * `3` - Automated only  (optional) 
     time_offset = "2025-01-01T00:00:00.000Z"  # Time-offset pagination cursor for sequential pulls of all messages.  Accepts either an ISO 8601 formatted timestamp (e.g. `2025-01-01T00:00:00.000Z`) or the opaque Base64 cursor token returned as `next_time_offset` in a prior response.  When set, results are sorted ascending by send_after and the standard `offset` parameter cannot be used.  Repeat the request with each `next_time_offset` until an empty notifications array is returned. (optional) 
 
-    # example passing only required values which don't have defaults set
-    try:
-        # View notifications
-        api_response = api_instance.get_notifications(app_id)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->get_notifications: %s\n" % e)
-        print("Status Code: %s" % e.status)
-        print("Response Body: %s" % e.body)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # View notifications
         api_response = api_instance.get_notifications(app_id, limit=limit, offset=offset, kind=kind, time_offset=time_offset)
@@ -2602,7 +2544,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2617,18 +2559,6 @@ with onesignal.ApiClient(configuration) as api_client:
     outcome_platforms = "0,1"  # Optional Platform id. Refer device's platform ids for values. Example: outcome_platform=0 for iOS outcome_platform=7,8 for Safari and Firefox Default is data from all platforms if the parameter is omitted.  (optional) 
     outcome_attribution = "direct"  # Optional Attribution type for the outcomes. The values can be direct or influenced or unattributed. Example: outcome_attribution=direct Default is total (returns direct+influenced+unattributed) if the parameter is omitted.  (optional) 
 
-    # example passing only required values which don't have defaults set
-    try:
-        # View Outcomes
-        api_response = api_instance.get_outcomes(app_id, outcome_names)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->get_outcomes: %s\n" % e)
-        print("Status Code: %s" % e.status)
-        print("Response Body: %s" % e.body)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # View Outcomes
         api_response = api_instance.get_outcomes(app_id, outcome_names, outcome_names2=outcome_names2, outcome_time_range=outcome_time_range, outcome_platforms=outcome_platforms, outcome_attribution=outcome_attribution)
@@ -2698,7 +2628,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2710,18 +2640,6 @@ with onesignal.ApiClient(configuration) as api_client:
     offset = 0  # Segments are listed in ascending order of created_at date. offset will omit that number of segments from the beginning of the list. Eg offset 5, will remove the 5 earliest created Segments. (optional) 
     limit = 10  # The amount of Segments in the response. Maximum 300. (optional) 
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Get Segments
-        api_response = api_instance.get_segments(app_id)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->get_segments: %s\n" % e)
-        print("Status Code: %s" % e.status)
-        print("Response Body: %s" % e.body)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # Get Segments
         api_response = api_instance.get_segments(app_id, offset=offset, limit=limit)
@@ -2788,7 +2706,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2800,7 +2718,6 @@ with onesignal.ApiClient(configuration) as api_client:
     alias_label = "external_id" 
     alias_id = "YOUR_USER_EXTERNAL_ID" 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.get_user(app_id, alias_label, alias_id)
         pprint(api_response)
@@ -2867,7 +2784,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -2878,7 +2795,6 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "00000000-0000-0000-0000-000000000000" 
     token_id = "0aa1b2c3-d4e5-46f7-8899-aabbccddeeff" 
 
-    # example passing only required values which don't have defaults set
     try:
         # Rotate API key
         api_response = api_instance.rotate_api_key(app_id, token_id)
@@ -2943,7 +2859,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -3081,7 +2997,6 @@ with onesignal.ApiClient(configuration) as api_client:
         ],
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         # Start Live Activity
         api_response = api_instance.start_live_activity(app_id, activity_type, start_live_activity_request)
@@ -3148,7 +3063,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -3164,7 +3079,6 @@ with onesignal.ApiClient(configuration) as api_client:
         },
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.transfer_subscription(app_id, subscription_id, transfer_subscription_request_body)
         pprint(api_response)
@@ -3232,7 +3146,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -3244,7 +3158,6 @@ with onesignal.ApiClient(configuration) as api_client:
     notification_id = "b3a0c8bd-3a4c-4b22-9a73-3f1a8c2d1b88" # The id of the message found in the creation notification POST response, View Notifications GET response, or URL within the Message Report. 
     token = "YOUR_TOKEN_ID" # The unsubscribe token that is generated via liquid syntax in {{subscription.unsubscribe_token}} when personalizing an email. 
 
-    # example passing only required values which don't have defaults set
     try:
         # Unsubscribe with token
         api_response = api_instance.unsubscribe_email_with_token(app_id, notification_id, token)
@@ -3311,7 +3224,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -3329,7 +3242,6 @@ with onesignal.ApiClient(configuration) as api_client:
         ],
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         # Update API key
         api_response = api_instance.update_api_key(app_id, token_id, update_api_key_request)
@@ -3395,7 +3307,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -3428,7 +3340,6 @@ with onesignal.ApiClient(configuration) as api_client:
         additional_data_is_root_payload=True,
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         # Update an app
         api_response = api_instance.update_app(app_id, app)
@@ -3494,7 +3405,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -3604,7 +3515,6 @@ with onesignal.ApiClient(configuration) as api_client:
         priority=1,
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         # Update a Live Activity via Push
         api_response = api_instance.update_live_activity(app_id, activity_id, update_live_activity_request)
@@ -3671,7 +3581,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -3703,7 +3613,6 @@ with onesignal.ApiClient(configuration) as api_client:
         ),
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         api_instance.update_subscription(app_id, subscription_id, subscription_body)
     except onesignal.ApiException as e:
@@ -3770,7 +3679,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -3803,7 +3712,6 @@ with onesignal.ApiClient(configuration) as api_client:
         ),
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         # Update subscription by token
         api_response = api_instance.update_subscription_by_token(app_id, token_type, token, subscription_body)
@@ -3871,7 +3779,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -4028,7 +3936,6 @@ with onesignal.ApiClient(configuration) as api_client:
         dynamic_content="dynamic_content_example",
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         # Update template
         api_response = api_instance.update_template(template_id, app_id, update_template_request)
@@ -4094,7 +4001,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -4141,7 +4048,6 @@ with onesignal.ApiClient(configuration) as api_client:
         ),
     ) 
 
-    # example passing only required values which don't have defaults set
     try:
         api_response = api_instance.update_user(app_id, alias_label, alias_id, update_user_request)
         pprint(api_response)
@@ -4209,7 +4115,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -4219,7 +4125,6 @@ with onesignal.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     app_id = "00000000-0000-0000-0000-000000000000" 
 
-    # example passing only required values which don't have defaults set
     try:
         # View API keys
         api_response = api_instance.view_api_keys(app_id)
@@ -4283,7 +4188,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -4294,7 +4199,6 @@ with onesignal.ApiClient(configuration) as api_client:
     template_id = "e4d3c2b1-a09f-4f1e-8d7c-6b5a4f3e2d1c" 
     app_id = "00000000-0000-0000-0000-000000000000" 
 
-    # example passing only required values which don't have defaults set
     try:
         # View template
         api_response = api_instance.view_template(template_id, app_id)
@@ -4360,7 +4264,7 @@ from pprint import pprint
 # We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
 configuration = onesignal.Configuration(
     rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
-    organization_api_key = "YOUR_ORGANIZATION_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
 )
 
 
@@ -4373,18 +4277,6 @@ with onesignal.ApiClient(configuration) as api_client:
     offset = 0  # Pagination offset. (optional) 
     channel = "push"  # Filter by delivery channel. (optional) 
 
-    # example passing only required values which don't have defaults set
-    try:
-        # View templates
-        api_response = api_instance.view_templates(app_id)
-        pprint(api_response)
-    except onesignal.ApiException as e:
-        print("Exception when calling DefaultApi->view_templates: %s\n" % e)
-        print("Status Code: %s" % e.status)
-        print("Response Body: %s" % e.body)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
     try:
         # View templates
         api_response = api_instance.view_templates(app_id, limit=limit, offset=offset, channel=channel)
