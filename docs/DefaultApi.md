@@ -115,7 +115,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     notification_id = "b3a0c8bd-3a4c-4b22-9a73-3f1a8c2d1b88" 
 
     try:
@@ -193,7 +193,7 @@ with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     template_id = "e4d3c2b1-a09f-4f1e-8d7c-6b5a4f3e2d1c" 
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     copy_template_request = CopyTemplateRequest(
         target_app_id="target_app_id_example",
     ) 
@@ -271,7 +271,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     alias_label = "external_id" 
     alias_id = "YOUR_USER_EXTERNAL_ID" 
     user_identity_body = UserIdentityBody(
@@ -356,7 +356,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     subscription_id = "7e4c5b9a-1f60-4d07-9b1a-2e8c8d2cae51" 
     user_identity_body = UserIdentityBody(
         identity=IdentityObject(
@@ -439,7 +439,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     create_api_key_request = CreateApiKeyRequest(
         name="name_example",
         ip_allowlist_mode="disabled",
@@ -601,6 +601,7 @@ The Custom Events API allows you to record user events. Custom events can repres
 import onesignal
 from onesignal.api import default_api
 from onesignal.models import *
+# python-dateutil is installed automatically as a dependency of this SDK.
 from dateutil.parser import parse as dateutil_parser
 from pprint import pprint
 
@@ -617,7 +618,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" # Your OneSignal App ID in UUID v4 format. 
+    app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
     custom_events_request = CustomEventsRequest(
         events=[
             CustomEvent(
@@ -706,6 +707,7 @@ with onesignal.ApiClient(configuration) as api_client:
     notification = Notification(
         app_id='YOUR_APP_ID',
         contents=LanguageStringMap(en='Hello from OneSignal!'),
+        headings=LanguageStringMap(en='Push Notification'),
         include_aliases={'external_id': ['YOUR_USER_EXTERNAL_ID']},
         target_channel='push',
         # Idempotency key: a client-generated UUID that lets you safely retry on network
@@ -767,6 +769,7 @@ with onesignal.ApiClient(configuration) as api_client:
     notification = Notification(
         app_id='YOUR_APP_ID',
         contents=LanguageStringMap(en='Hello from OneSignal!'),
+        headings=LanguageStringMap(en='Push Notification'),
         include_aliases={'external_id': ['YOUR_USER_EXTERNAL_ID']},
         target_channel='push',
         # No idempotency_key set: the helper generates a UUIDv4 and reuses it across retries.
@@ -844,16 +847,16 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    app_id = "YOUR_APP_ID" # The OneSignal App ID for your app.  Available in Keys & IDs. 
     segment = Segment(
-        id="id_example",
-        name="name_example",
+        id="d5d4d1a8-1c9e-42fb-b3f2-56d3a5a9a8b7",
+        name="Inactive 30 days",
         filters=[
             Filter(
-                field="field_example",
-                key="key_example",
-                value="value_example",
-                hours_ago="hours_ago_example",
+                field="tag",
+                key="level",
+                value="10",
+                hours_ago="24",
                 radius=3.14,
                 lat=3.14,
                 long=3.14,
@@ -936,28 +939,28 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     alias_label = "external_id" 
     alias_id = "YOUR_USER_EXTERNAL_ID" 
     subscription_body = SubscriptionBody(
         subscription=Subscription(
-            id="id_example",
+            id="e4e87830-b954-4363-b7bc-1f01dbaee5c8",
             type="iOSPush",
-            token="token_example",
+            token="d5d4d1a8-1c9e-42fb-b3f2-56d3a5a9a8b7",
             enabled=True,
             notification_types=1,
-            session_time=1,
+            session_time=60,
             session_count=1,
-            sdk="sdk_example",
-            device_model="device_model_example",
-            device_os="device_os_example",
+            sdk="5.2.0",
+            device_model="iPhone14,2",
+            device_os="17.1",
             rooted=True,
             test_type=1,
-            app_version="app_version_example",
+            app_version="1.0.0",
             net_type=1,
-            carrier="carrier_example",
-            web_auth="web_auth_example",
-            web_p256="web_p256_example",
+            carrier="Verizon",
+            web_auth="5DUmpGmLuTxWCLj5lJpwLQ",
+            web_p256="BM5-r8DauQXOb2E-3PgLPjSvjT0Ao9v5oJhw8bZ0cW7Vh6BbmPYcqbbCEJ1P2sK0hZ7HxSh9zGyU5pQk1jJmZ8A",
         ),
     ) 
 
@@ -1258,50 +1261,50 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     user = User(
         properties=PropertiesObject(
             tags={},
-            language="language_example",
-            timezone_id="timezone_id_example",
+            language="en",
+            timezone_id="America/Los_Angeles",
             lat=3.14,
             long=3.14,
-            country="country_example",
+            country="US",
             first_active=1,
             last_active=1,
             amount_spent=3.14,
             purchases=[
                 Purchase(
-                    sku="sku_example",
-                    amount="amount_example",
-                    iso="iso_example",
+                    sku="com.example.coins100",
+                    amount="0.99",
+                    iso="USD",
                     count=1,
                 ),
             ],
-            ip="ip_example",
+            ip="203.0.113.10",
         ),
         identity=IdentityObject(
             key="key_example",
         ),
         subscriptions=[
             Subscription(
-                id="id_example",
+                id="e4e87830-b954-4363-b7bc-1f01dbaee5c8",
                 type="iOSPush",
-                token="token_example",
+                token="d5d4d1a8-1c9e-42fb-b3f2-56d3a5a9a8b7",
                 enabled=True,
                 notification_types=1,
-                session_time=1,
+                session_time=60,
                 session_count=1,
-                sdk="sdk_example",
-                device_model="device_model_example",
-                device_os="device_os_example",
+                sdk="5.2.0",
+                device_model="iPhone14,2",
+                device_os="17.1",
                 rooted=True,
                 test_type=1,
-                app_version="app_version_example",
+                app_version="1.0.0",
                 net_type=1,
-                carrier="carrier_example",
-                web_auth="web_auth_example",
-                web_p256="web_p256_example",
+                carrier="Verizon",
+                web_auth="5DUmpGmLuTxWCLj5lJpwLQ",
+                web_p256="BM5-r8DauQXOb2E-3PgLPjSvjT0Ao9v5oJhw8bZ0cW7Vh6BbmPYcqbbCEJ1P2sK0hZ7HxSh9zGyU5pQk1jJmZ8A",
             ),
         ],
     ) 
@@ -1393,7 +1396,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     alias_label = "external_id" 
     alias_id = "YOUR_USER_EXTERNAL_ID" 
     alias_label_to_delete = "external_id" 
@@ -1474,7 +1477,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     token_id = "0aa1b2c3-d4e5-46f7-8899-aabbccddeeff" 
 
     try:
@@ -1549,7 +1552,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    app_id = "YOUR_APP_ID" # The OneSignal App ID for your app.  Available in Keys & IDs. 
     segment_id = "d6c5a3e1-9f17-44a1-9d10-7c0e4a2b1c8e" # The segment_id can be found in the URL of the segment when viewing it in the dashboard. 
 
     try:
@@ -1626,7 +1629,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     subscription_id = "7e4c5b9a-1f60-4d07-9b1a-2e8c8d2cae51" 
 
     try:
@@ -1703,7 +1706,7 @@ with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     template_id = "e4d3c2b1-a09f-4f1e-8d7c-6b5a4f3e2d1c" 
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
 
     try:
         # Delete template
@@ -1778,7 +1781,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     alias_label = "external_id" 
     alias_id = "YOUR_USER_EXTERNAL_ID" 
 
@@ -1856,7 +1859,7 @@ with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     notification_id = "b3a0c8bd-3a4c-4b22-9a73-3f1a8c2d1b88" # The ID of the notification to export events from. 
-    app_id = "00000000-0000-0000-0000-000000000000" # The ID of the app that the notification belongs to. 
+    app_id = "YOUR_APP_ID" # The ID of the app that the notification belongs to. 
 
     try:
         # Export CSV of Events
@@ -1932,7 +1935,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" # The app ID that you want to export devices from 
+    app_id = "YOUR_APP_ID" # The app ID that you want to export devices from 
     export_subscriptions_request_body = ExportSubscriptionsRequestBody(
         extra_fields=[
             "extra_fields_example",
@@ -2014,7 +2017,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     alias_label = "external_id" 
     alias_id = "YOUR_USER_EXTERNAL_ID" 
 
@@ -2092,7 +2095,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     subscription_id = "7e4c5b9a-1f60-4d07-9b1a-2e8c8d2cae51" 
 
     try:
@@ -2167,7 +2170,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" # An app id 
+    app_id = "YOUR_APP_ID" # An app id 
 
     try:
         # View an app
@@ -2312,7 +2315,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     notification_id = "b3a0c8bd-3a4c-4b22-9a73-3f1a8c2d1b88" 
 
     try:
@@ -2470,7 +2473,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" # The app ID that you want to view notifications from 
+    app_id = "YOUR_APP_ID" # The app ID that you want to view notifications from 
     limit = 10  # How many notifications to return.  Max is 50.  Default is 50. (optional) 
     offset = 0  # Page offset.  Default is 0.  Results are sorted by queued_at in descending order.  queued_at is a representation of the time that the notification was queued at. (optional) 
     kind = 0  # Kind of notifications returned:   * unset - All notification types (default)   * `0` - Dashboard only   * `1` - API only   * `3` - Automated only  (optional) 
@@ -2552,7 +2555,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    app_id = "YOUR_APP_ID" # The OneSignal App ID for your app.  Available in Keys & IDs. 
     outcome_names = "os__session_duration.count,os__click.count" # Required Comma-separated list of names and the value (sum/count) for the returned outcome data. Note: Clicks only support count aggregation. For out-of-the-box OneSignal outcomes such as click and session duration, please use the \"os\" prefix with two underscores. For other outcomes, please use the name specified by the user. Example:os__session_duration.count,os__click.count,CustomOutcomeName.sum  
     outcome_names2 = "os__session_duration.count"  # Optional If outcome names contain any commas, then please specify only one value at a time. Example: outcome_names[]=os__click.count&outcome_names[]=Sales, Purchase.count where \"Sales, Purchase\" is the custom outcomes with a comma in the name.  (optional) 
     outcome_time_range = "1d"  # Optional Time range for the returned data. The values can be 1h (for the last 1 hour data), 1d (for the last 1 day data), or 1mo (for the last 1 month data). Default is 1h if the parameter is omitted.  (optional) 
@@ -2636,7 +2639,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    app_id = "YOUR_APP_ID" # The OneSignal App ID for your app.  Available in Keys & IDs. 
     offset = 0  # Segments are listed in ascending order of created_at date. offset will omit that number of segments from the beginning of the list. Eg offset 5, will remove the 5 earliest created Segments. (optional) 
     limit = 10  # The amount of Segments in the response. Maximum 300. (optional) 
 
@@ -2714,7 +2717,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     alias_label = "external_id" 
     alias_id = "YOUR_USER_EXTERNAL_ID" 
 
@@ -2792,7 +2795,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     token_id = "0aa1b2c3-d4e5-46f7-8899-aabbccddeeff" 
 
     try:
@@ -2867,7 +2870,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" # Your OneSignal App ID in UUID v4 format. 
+    app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
     activity_type = "order_status" # The name of the Live Activity defined in your app. This should match the attributes struct used in your app's Live Activity implementation. 
     start_live_activity_request = StartLiveActivityRequest(
         name="name_example",
@@ -2985,10 +2988,10 @@ with onesignal.ApiClient(configuration) as api_client:
         ],
         filters=[
             Filter(
-                field="field_example",
-                key="key_example",
-                value="value_example",
-                hours_ago="hours_ago_example",
+                field="tag",
+                key="level",
+                value="10",
+                hours_ago="24",
                 radius=3.14,
                 lat=3.14,
                 long=3.14,
@@ -3071,7 +3074,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     subscription_id = "7e4c5b9a-1f60-4d07-9b1a-2e8c8d2cae51" 
     transfer_subscription_request_body = TransferSubscriptionRequestBody(
         identity={
@@ -3154,7 +3157,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    app_id = "YOUR_APP_ID" # The OneSignal App ID for your app.  Available in Keys & IDs. 
     notification_id = "b3a0c8bd-3a4c-4b22-9a73-3f1a8c2d1b88" # The id of the message found in the creation notification POST response, View Notifications GET response, or URL within the Message Report. 
     token = "YOUR_TOKEN_ID" # The unsubscribe token that is generated via liquid syntax in {{subscription.unsubscribe_token}} when personalizing an email. 
 
@@ -3232,7 +3235,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     token_id = "0aa1b2c3-d4e5-46f7-8899-aabbccddeeff" 
     update_api_key_request = UpdateApiKeyRequest(
         name="name_example",
@@ -3315,7 +3318,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" # An app id 
+    app_id = "YOUR_APP_ID" # An app id 
     app = App(
         name="name_example",
         android_gcm_sender_id="android_gcm_sender_id_example",
@@ -3413,7 +3416,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    app_id = "YOUR_APP_ID" # The OneSignal App ID for your app.  Available in Keys & IDs. 
     activity_id = "12345" # Live Activity record ID 
     update_live_activity_request = UpdateLiveActivityRequest(
         name="name_example",
@@ -3589,27 +3592,27 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     subscription_id = "7e4c5b9a-1f60-4d07-9b1a-2e8c8d2cae51" 
     subscription_body = SubscriptionBody(
         subscription=Subscription(
-            id="id_example",
+            id="e4e87830-b954-4363-b7bc-1f01dbaee5c8",
             type="iOSPush",
-            token="token_example",
+            token="d5d4d1a8-1c9e-42fb-b3f2-56d3a5a9a8b7",
             enabled=True,
             notification_types=1,
-            session_time=1,
+            session_time=60,
             session_count=1,
-            sdk="sdk_example",
-            device_model="device_model_example",
-            device_os="device_os_example",
+            sdk="5.2.0",
+            device_model="iPhone14,2",
+            device_os="17.1",
             rooted=True,
             test_type=1,
-            app_version="app_version_example",
+            app_version="1.0.0",
             net_type=1,
-            carrier="carrier_example",
-            web_auth="web_auth_example",
-            web_p256="web_p256_example",
+            carrier="Verizon",
+            web_auth="5DUmpGmLuTxWCLj5lJpwLQ",
+            web_p256="BM5-r8DauQXOb2E-3PgLPjSvjT0Ao9v5oJhw8bZ0cW7Vh6BbmPYcqbbCEJ1P2sK0hZ7HxSh9zGyU5pQk1jJmZ8A",
         ),
     ) 
 
@@ -3687,28 +3690,28 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" # Your OneSignal App ID in UUID v4 format. 
+    app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
     token_type = "Email" # The type of token to use when looking up the subscription. See Subscription Types. 
     token = "user@example.com" # The value of the token to lookup by (e.g., email address, phone number). 
     subscription_body = SubscriptionBody(
         subscription=Subscription(
-            id="id_example",
+            id="e4e87830-b954-4363-b7bc-1f01dbaee5c8",
             type="iOSPush",
-            token="token_example",
+            token="d5d4d1a8-1c9e-42fb-b3f2-56d3a5a9a8b7",
             enabled=True,
             notification_types=1,
-            session_time=1,
+            session_time=60,
             session_count=1,
-            sdk="sdk_example",
-            device_model="device_model_example",
-            device_os="device_os_example",
+            sdk="5.2.0",
+            device_model="iPhone14,2",
+            device_os="17.1",
             rooted=True,
             test_type=1,
-            app_version="app_version_example",
+            app_version="1.0.0",
             net_type=1,
-            carrier="carrier_example",
-            web_auth="web_auth_example",
-            web_p256="web_p256_example",
+            carrier="Verizon",
+            web_auth="5DUmpGmLuTxWCLj5lJpwLQ",
+            web_p256="BM5-r8DauQXOb2E-3PgLPjSvjT0Ao9v5oJhw8bZ0cW7Vh6BbmPYcqbbCEJ1P2sK0hZ7HxSh9zGyU5pQk1jJmZ8A",
         ),
     ) 
 
@@ -3788,7 +3791,7 @@ with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     template_id = "e4d3c2b1-a09f-4f1e-8d7c-6b5a4f3e2d1c" 
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     update_template_request = UpdateTemplateRequest(
         name="name_example",
         contents=LanguageStringMap(
@@ -4009,29 +4012,29 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
     alias_label = "external_id" 
     alias_id = "YOUR_USER_EXTERNAL_ID" 
     update_user_request = UpdateUserRequest(
         properties=PropertiesObject(
             tags={},
-            language="language_example",
-            timezone_id="timezone_id_example",
+            language="en",
+            timezone_id="America/Los_Angeles",
             lat=3.14,
             long=3.14,
-            country="country_example",
+            country="US",
             first_active=1,
             last_active=1,
             amount_spent=3.14,
             purchases=[
                 Purchase(
-                    sku="sku_example",
-                    amount="amount_example",
-                    iso="iso_example",
+                    sku="com.example.coins100",
+                    amount="0.99",
+                    iso="USD",
                     count=1,
                 ),
             ],
-            ip="ip_example",
+            ip="203.0.113.10",
         ),
         refresh_device_metadata=False,
         deltas=PropertiesDeltas(
@@ -4039,9 +4042,9 @@ with onesignal.ApiClient(configuration) as api_client:
             session_count=1,
             purchases=[
                 Purchase(
-                    sku="sku_example",
-                    amount="amount_example",
-                    iso="iso_example",
+                    sku="com.example.coins100",
+                    amount="0.99",
+                    iso="USD",
                     count=1,
                 ),
             ],
@@ -4123,7 +4126,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
 
     try:
         # View API keys
@@ -4197,7 +4200,7 @@ with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     template_id = "e4d3c2b1-a09f-4f1e-8d7c-6b5a4f3e2d1c" 
-    app_id = "00000000-0000-0000-0000-000000000000" 
+    app_id = "YOUR_APP_ID" 
 
     try:
         # View template
@@ -4272,7 +4275,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app_id = "00000000-0000-0000-0000-000000000000" # Your OneSignal App ID in UUID v4 format. 
+    app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
     limit = 10  # Maximum number of templates. Default and max is 50. (optional) 
     offset = 0  # Pagination offset. (optional) 
     channel = "push"  # Filter by delivery channel. (optional) 
