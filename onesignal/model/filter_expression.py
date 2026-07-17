@@ -71,6 +71,8 @@ class FilterExpression(ModelComposed):
             'NOT_EXISTS': "not_exists",
             'TIME_ELAPSED_GT': "time_elapsed_gt",
             'TIME_ELAPSED_LT': "time_elapsed_lt",
+            'IN_ARRAY': "in_array",
+            'NOT_IN_ARRAY': "not_in_array",
         },
         ('operator',): {
             'OR': "OR",
@@ -173,7 +175,7 @@ class FilterExpression(ModelComposed):
                                 _visited_composed_classes = (Animal,)
             field (str): Required. Name of the field to use as the first operand in the filter expression.. [optional]  # noqa: E501
             key (str): If `field` is `tag`, this field is *required* to specify `key` inside the tags.. [optional]  # noqa: E501
-            value (str): Constant value to use as the second operand in the filter expression. This value is *required* when the relation operator is a binary operator.. [optional]  # noqa: E501
+            value (str): Constant value to use as the second operand in the filter expression. This value is *required* when the relation operator is a binary operator. For `in_array` and `not_in_array` relations, provide a comma-separated list of up to 20 values.. [optional]  # noqa: E501
             hours_ago (str): If `field` is session-related, this is *required* to specify the number of hours before or after the user's session.. [optional]  # noqa: E501
             radius (float): If `field` is `location`, this will specify the radius in meters from a provided location point. Use with `lat` and `long`.. [optional]  # noqa: E501
             lat (float): If `field` is `location`, this is *required* to specify the user's latitude.. [optional]  # noqa: E501
@@ -285,7 +287,7 @@ class FilterExpression(ModelComposed):
                                 _visited_composed_classes = (Animal,)
             field (str): Required. Name of the field to use as the first operand in the filter expression.. [optional]  # noqa: E501
             key (str): If `field` is `tag`, this field is *required* to specify `key` inside the tags.. [optional]  # noqa: E501
-            value (str): Constant value to use as the second operand in the filter expression. This value is *required* when the relation operator is a binary operator.. [optional]  # noqa: E501
+            value (str): Constant value to use as the second operand in the filter expression. This value is *required* when the relation operator is a binary operator. For `in_array` and `not_in_array` relations, provide a comma-separated list of up to 20 values.. [optional]  # noqa: E501
             hours_ago (str): If `field` is session-related, this is *required* to specify the number of hours before or after the user's session.. [optional]  # noqa: E501
             radius (float): If `field` is `location`, this will specify the radius in meters from a provided location point. Use with `lat` and `long`.. [optional]  # noqa: E501
             lat (float): If `field` is `location`, this is *required* to specify the user's latitude.. [optional]  # noqa: E501
