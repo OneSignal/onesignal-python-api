@@ -38,6 +38,7 @@ from onesignal.model.filter_expression import FilterExpression
 from onesignal.model.generic_error import GenericError
 from onesignal.model.generic_success_bool_response import GenericSuccessBoolResponse
 from onesignal.model.get_notification_history_request_body import GetNotificationHistoryRequestBody
+from onesignal.model.get_segment_success_response import GetSegmentSuccessResponse
 from onesignal.model.get_segments_success_response import GetSegmentsSuccessResponse
 from onesignal.model.identity_object import IdentityObject
 from onesignal.model.include_aliases import IncludeAliases
@@ -62,6 +63,7 @@ from onesignal.model.purchase import Purchase
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.segment import Segment
 from onesignal.model.segment_data import SegmentData
+from onesignal.model.segment_details import SegmentDetails
 from onesignal.model.segment_notification_target import SegmentNotificationTarget
 from onesignal.model.start_live_activity_request import StartLiveActivityRequest
 from onesignal.model.start_live_activity_success_response import StartLiveActivitySuccessResponse

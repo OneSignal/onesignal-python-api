@@ -211,6 +211,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_segment(self):
+        """Test case for get_segment
+
+        View Segment  # noqa: E501
+        """
+        pass
+
     def test_get_segments(self):
         """Test case for get_segments
 
