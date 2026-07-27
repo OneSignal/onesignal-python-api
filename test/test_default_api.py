@@ -211,6 +211,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_segment(self):
+        """Test case for get_segment
+
+        View Segment  # noqa: E501
+        """
+        pass
+
     def test_get_segments(self):
         """Test case for get_segments
 
@@ -221,6 +228,13 @@ class TestDefaultApi(unittest.TestCase):
     def test_get_user(self):
         """Test case for get_user
 
+        """
+        pass
+
+    def test_list_audit_logs(self):
+        """Test case for list_audit_logs
+
+        List audit logs  # noqa: E501
         """
         pass
 
@@ -269,6 +283,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for update_live_activity
 
         Update a Live Activity via Push  # noqa: E501
+        """
+        pass
+
+    def test_update_segment(self):
+        """Test case for update_segment
+
+        Update Segment  # noqa: E501
         """
         pass
 
