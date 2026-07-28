@@ -174,6 +174,7 @@ class Notification(ModelComposed):
             'mutable_content': (bool,),  # noqa: E501
             'target_content_identifier': (str, none_type,),  # noqa: E501
             'big_picture': (str, none_type,),  # noqa: E501
+            'global_image': (str, none_type,),  # noqa: E501
             'huawei_big_picture': (str, none_type,),  # noqa: E501
             'adm_big_picture': (str, none_type,),  # noqa: E501
             'chrome_big_picture': (str, none_type,),  # noqa: E501
@@ -300,6 +301,7 @@ class Notification(ModelComposed):
         'mutable_content': 'mutable_content',  # noqa: E501
         'target_content_identifier': 'target_content_identifier',  # noqa: E501
         'big_picture': 'big_picture',  # noqa: E501
+        'global_image': 'global_image',  # noqa: E501
         'huawei_big_picture': 'huawei_big_picture',  # noqa: E501
         'adm_big_picture': 'adm_big_picture',  # noqa: E501
         'chrome_big_picture': 'chrome_big_picture',  # noqa: E501
@@ -461,6 +463,7 @@ class Notification(ModelComposed):
             mutable_content (bool): Channel: Push Notifications Platform: iOS 10+ Always defaults to true and cannot be turned off. Allows tracking of notification receives and changing of the notification content in your app before it is displayed. Triggers didReceive(_:withContentHandler:) on your UNNotificationServiceExtension. . [optional]  # noqa: E501
             target_content_identifier (str, none_type): Channel: Push Notifications Platform: iOS 13+ Use to target a specific experience in your App Clip, or to target your notification to a specific window in a multi-scene App. . [optional]  # noqa: E501
             big_picture (str, none_type): Channel: Push Notifications Platform: Android Picture to display in the expanded view. Can be a drawable resource name or a URL. . [optional]  # noqa: E501
+            global_image (str, none_type): Channel: Push Notifications Platform: All Picture to display on all platforms that support it. Must be a URL to an image file. Platform-specific picture fields (big_picture, huawei_big_picture, adm_big_picture, chrome_web_image, ios_attachments, firefox_icon) take precedence over this value when set. . [optional]  # noqa: E501
             huawei_big_picture (str, none_type): Channel: Push Notifications Platform: Huawei Picture to display in the expanded view. Can be a drawable resource name or a URL. . [optional]  # noqa: E501
             adm_big_picture (str, none_type): Channel: Push Notifications Platform: Amazon Picture to display in the expanded view. Can be a drawable resource name or a URL. . [optional]  # noqa: E501
             chrome_big_picture (str, none_type): Channel: Push Notifications Platform: ChromeApp Large picture to display below the notification text. Must be a local URL. . [optional]  # noqa: E501
@@ -682,6 +685,7 @@ class Notification(ModelComposed):
             mutable_content (bool): Channel: Push Notifications Platform: iOS 10+ Always defaults to true and cannot be turned off. Allows tracking of notification receives and changing of the notification content in your app before it is displayed. Triggers didReceive(_:withContentHandler:) on your UNNotificationServiceExtension. . [optional]  # noqa: E501
             target_content_identifier (str, none_type): Channel: Push Notifications Platform: iOS 13+ Use to target a specific experience in your App Clip, or to target your notification to a specific window in a multi-scene App. . [optional]  # noqa: E501
             big_picture (str, none_type): Channel: Push Notifications Platform: Android Picture to display in the expanded view. Can be a drawable resource name or a URL. . [optional]  # noqa: E501
+            global_image (str, none_type): Channel: Push Notifications Platform: All Picture to display on all platforms that support it. Must be a URL to an image file. Platform-specific picture fields (big_picture, huawei_big_picture, adm_big_picture, chrome_web_image, ios_attachments, firefox_icon) take precedence over this value when set. . [optional]  # noqa: E501
             huawei_big_picture (str, none_type): Channel: Push Notifications Platform: Huawei Picture to display in the expanded view. Can be a drawable resource name or a URL. . [optional]  # noqa: E501
             adm_big_picture (str, none_type): Channel: Push Notifications Platform: Amazon Picture to display in the expanded view. Can be a drawable resource name or a URL. . [optional]  # noqa: E501
             chrome_big_picture (str, none_type): Channel: Push Notifications Platform: ChromeApp Large picture to display below the notification text. Must be a local URL. . [optional]  # noqa: E501
