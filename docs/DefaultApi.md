@@ -32,8 +32,10 @@ Method | HTTP request | Description
 [**get_notification_history**](DefaultApi.md#get_notification_history) | **POST** /notifications/{notification_id}/history | Notification History
 [**get_notifications**](DefaultApi.md#get_notifications) | **GET** /notifications | View notifications
 [**get_outcomes**](DefaultApi.md#get_outcomes) | **GET** /apps/{app_id}/outcomes | View Outcomes
+[**get_segment**](DefaultApi.md#get_segment) | **GET** /apps/{app_id}/segments/{segment_id} | View Segment
 [**get_segments**](DefaultApi.md#get_segments) | **GET** /apps/{app_id}/segments | Get Segments
 [**get_user**](DefaultApi.md#get_user) | **GET** /apps/{app_id}/users/by/{alias_label}/{alias_id} | 
+[**list_audit_logs**](DefaultApi.md#list_audit_logs) | **GET** /organizations/{organization_id}/audit_logs | List audit logs
 [**rotate_api_key**](DefaultApi.md#rotate_api_key) | **POST** /apps/{app_id}/auth/tokens/{token_id}/rotate | Rotate API key
 [**start_live_activity**](DefaultApi.md#start_live_activity) | **POST** /apps/{app_id}/activities/activity/{activity_type} | Start Live Activity
 [**transfer_subscription**](DefaultApi.md#transfer_subscription) | **PATCH** /apps/{app_id}/subscriptions/{subscription_id}/owner | 
@@ -41,6 +43,7 @@ Method | HTTP request | Description
 [**update_api_key**](DefaultApi.md#update_api_key) | **PATCH** /apps/{app_id}/auth/tokens/{token_id} | Update API key
 [**update_app**](DefaultApi.md#update_app) | **PUT** /apps/{app_id} | Update an app
 [**update_live_activity**](DefaultApi.md#update_live_activity) | **POST** /apps/{app_id}/live_activities/{activity_id}/notifications | Update a Live Activity via Push
+[**update_segment**](DefaultApi.md#update_segment) | **PATCH** /apps/{app_id}/segments/{segment_id} | Update Segment
 [**update_subscription**](DefaultApi.md#update_subscription) | **PATCH** /apps/{app_id}/subscriptions/{subscription_id} | 
 [**update_subscription_by_token**](DefaultApi.md#update_subscription_by_token) | **PATCH** /apps/{app_id}/subscriptions_by_token/{token_type}/{token} | Update subscription by token
 [**update_template**](DefaultApi.md#update_template) | **PATCH** /templates/{template_id} | Update template
@@ -2609,6 +2612,85 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
+# **get_segment**
+> GetSegmentSuccessResponse get_segment(app_id, segment_id)
+
+View Segment
+
+Retrieve details for a single segment by its ID, including subscriber count and optionally segment metadata and filters.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.models import *
+from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "YOUR_APP_ID" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    segment_id = "d6c5a3e1-9f17-44a1-9d10-7c0e4a2b1c8e" # The segment's unique identifier. Can be found using the View Segments API or in the URL of the segment when viewing it in the dashboard. 
+    include_segment_detail = True  # Set to true to include segment metadata and filters in the response. (optional) 
+
+    try:
+        # View Segment
+        api_response = api_instance.get_segment(app_id, segment_id, include_segment_detail=include_segment_detail)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->get_segment: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| The OneSignal App ID for your app.  Available in Keys &amp; IDs. |
+ **segment_id** | **str**| The segment&#39;s unique identifier. Can be found using the View Segments API or in the URL of the segment when viewing it in the dashboard. |
+ **include_segment_detail** | **bool**| Set to true to include segment metadata and filters in the response. | [optional]
+
+### Return type
+
+[**GetSegmentSuccessResponse**](GetSegmentSuccessResponse.md)
+
+### Authorization
+
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
+**429** | Rate Limit Exceeded |  -  |
+**0** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
+
 # **get_segments**
 > GetSegmentsSuccessResponse get_segments(app_id)
 
@@ -2759,6 +2841,118 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**404** | Not Found |  -  |
+**429** | Rate Limit Exceeded |  -  |
+**0** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
+
+# **list_audit_logs**
+> ListAuditLogsSuccessResponse list_audit_logs(organization_id)
+
+List audit logs
+
+Retrieve a paginated, time-scoped list of audit log events for an organization. Requires an Enterprise plan with the audit logs entitlement enabled.
+
+### Example
+
+* Bearer Authentication (organization_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.models import *
+from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    organization_id = "YOUR_ORG_ID" # The UUID of the organization to retrieve audit logs for. Must match the authenticated Organization API Key. 
+    start_time = "start_time_example"  # Start of the time range in ISO 8601 format (e.g. 2026-02-01T00:00:00Z). Required unless cursor is provided. Must be within the last 90 days. (optional) 
+    end_time = "end_time_example"  # End of the time range in ISO 8601 format. Defaults to the current time. Must be after start_time. (optional) 
+    cursor = "cursor_example"  # Pagination cursor returned in a previous response as next_cursor. When provided, start_time and end_time are ignored. (optional) 
+    limit = 1  # Maximum number of events to return per page. Minimum 1, maximum 100. Values outside this range are clamped automatically by the server. (optional) 
+    app_ids = [
+        "app_ids_example",
+    ]  # Filter events by app UUID. Accepts up to 10 values. Org-level events are always included. (optional) 
+    actions = [
+        "actions_example",
+    ]  # Filter by action type (e.g. notification.sent, segment.created). Accepts up to 20 values. (optional) 
+    actor_ids = [
+        "actor_ids_example",
+    ]  # Filter by actor UUID (the user or service that performed the action). Accepts up to 10 values. (optional) 
+    actor_emails = [
+        "actor_emails_example",
+    ]  # Filter by actor email address. Accepts up to 10 values. (optional) 
+    target_types = [
+        "target_types_example",
+    ]  # Filter by the type of resource the action was performed on (e.g. notification, segment, journey). Accepts up to 10 values. (optional) 
+    target_ids = [
+        "target_ids_example",
+    ]  # Filter by the UUID of the resource the action was performed on. Accepts up to 10 values. (optional) 
+    ip_addresses = [
+        "ip_addresses_example",
+    ]  # Filter by the IP address the action originated from. Accepts up to 10 values. (optional) 
+
+    try:
+        # List audit logs
+        api_response = api_instance.list_audit_logs(organization_id, start_time=start_time, end_time=end_time, cursor=cursor, limit=limit, app_ids=app_ids, actions=actions, actor_ids=actor_ids, actor_emails=actor_emails, target_types=target_types, target_ids=target_ids, ip_addresses=ip_addresses)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->list_audit_logs: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **organization_id** | **str**| The UUID of the organization to retrieve audit logs for. Must match the authenticated Organization API Key. |
+ **start_time** | **str**| Start of the time range in ISO 8601 format (e.g. 2026-02-01T00:00:00Z). Required unless cursor is provided. Must be within the last 90 days. | [optional]
+ **end_time** | **str**| End of the time range in ISO 8601 format. Defaults to the current time. Must be after start_time. | [optional]
+ **cursor** | **str**| Pagination cursor returned in a previous response as next_cursor. When provided, start_time and end_time are ignored. | [optional]
+ **limit** | **int**| Maximum number of events to return per page. Minimum 1, maximum 100. Values outside this range are clamped automatically by the server. | [optional]
+ **app_ids** | **[str]**| Filter events by app UUID. Accepts up to 10 values. Org-level events are always included. | [optional]
+ **actions** | **[str]**| Filter by action type (e.g. notification.sent, segment.created). Accepts up to 20 values. | [optional]
+ **actor_ids** | **[str]**| Filter by actor UUID (the user or service that performed the action). Accepts up to 10 values. | [optional]
+ **actor_emails** | **[str]**| Filter by actor email address. Accepts up to 10 values. | [optional]
+ **target_types** | **[str]**| Filter by the type of resource the action was performed on (e.g. notification, segment, journey). Accepts up to 10 values. | [optional]
+ **target_ids** | **[str]**| Filter by the UUID of the resource the action was performed on. Accepts up to 10 values. | [optional]
+ **ip_addresses** | **[str]**| Filter by the IP address the action originated from. Accepts up to 10 values. | [optional]
+
+### Return type
+
+[**ListAuditLogsSuccessResponse**](ListAuditLogsSuccessResponse.md)
+
+### Authorization
+
+[organization_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
 **404** | Not Found |  -  |
 **429** | Rate Limit Exceeded |  -  |
 **0** | Unexpected error |  -  |
@@ -3557,6 +3751,101 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
+**0** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
+
+# **update_segment**
+> UpdateSegmentSuccessResponse update_segment(app_id, segment_id)
+
+Update Segment
+
+Update an existing segment's name and/or filters. The name parameter is always required. When filters are provided, all existing filters are replaced with the new ones.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.models import *
+from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "YOUR_APP_ID" # The OneSignal App ID for your app.  Available in Keys & IDs. 
+    segment_id = "d6c5a3e1-9f17-44a1-9d10-7c0e4a2b1c8e" # The segment's unique identifier. Can be found using the View Segments API or in the URL of the segment when viewing it in the dashboard. 
+    update_segment_request = UpdateSegmentRequest(
+        name="name_example",
+        description="description_example",
+        filters=[
+            Filter(
+                field="tag",
+                key="level",
+                value="10",
+                hours_ago="24",
+                radius=3.14,
+                lat=3.14,
+                long=3.14,
+                relation=">",
+            ),
+        ],
+    ) 
+
+    try:
+        # Update Segment
+        api_response = api_instance.update_segment(app_id, segment_id, update_segment_request=update_segment_request)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->update_segment: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| The OneSignal App ID for your app.  Available in Keys &amp; IDs. |
+ **segment_id** | **str**| The segment&#39;s unique identifier. Can be found using the View Segments API or in the URL of the segment when viewing it in the dashboard. |
+ **update_segment_request** | [**UpdateSegmentRequest**](UpdateSegmentRequest.md)|  | [optional]
+
+### Return type
+
+[**UpdateSegmentSuccessResponse**](UpdateSegmentSuccessResponse.md)
+
+### Authorization
+
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
 **429** | Rate Limit Exceeded |  -  |
 **0** | Unexpected error |  -  |
 

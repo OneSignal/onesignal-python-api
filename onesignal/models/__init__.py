@@ -13,6 +13,10 @@ from onesignal.model.api_key_token import ApiKeyToken
 from onesignal.model.api_key_tokens_list_response import ApiKeyTokensListResponse
 from onesignal.model.app import App
 from onesignal.model.apps import Apps
+from onesignal.model.audit_log_actor import AuditLogActor
+from onesignal.model.audit_log_context import AuditLogContext
+from onesignal.model.audit_log_event import AuditLogEvent
+from onesignal.model.audit_log_target import AuditLogTarget
 from onesignal.model.basic_notification import BasicNotification
 from onesignal.model.basic_notification_all_of import BasicNotificationAllOf
 from onesignal.model.basic_notification_all_of_android_background_layout import BasicNotificationAllOfAndroidBackgroundLayout
@@ -38,10 +42,12 @@ from onesignal.model.filter_expression import FilterExpression
 from onesignal.model.generic_error import GenericError
 from onesignal.model.generic_success_bool_response import GenericSuccessBoolResponse
 from onesignal.model.get_notification_history_request_body import GetNotificationHistoryRequestBody
+from onesignal.model.get_segment_success_response import GetSegmentSuccessResponse
 from onesignal.model.get_segments_success_response import GetSegmentsSuccessResponse
 from onesignal.model.identity_object import IdentityObject
 from onesignal.model.include_aliases import IncludeAliases
 from onesignal.model.language_string_map import LanguageStringMap
+from onesignal.model.list_audit_logs_success_response import ListAuditLogsSuccessResponse
 from onesignal.model.notification import Notification
 from onesignal.model.notification_all_of import NotificationAllOf
 from onesignal.model.notification_history_success_response import NotificationHistorySuccessResponse
@@ -62,6 +68,7 @@ from onesignal.model.purchase import Purchase
 from onesignal.model.rate_limit_error import RateLimitError
 from onesignal.model.segment import Segment
 from onesignal.model.segment_data import SegmentData
+from onesignal.model.segment_details import SegmentDetails
 from onesignal.model.segment_notification_target import SegmentNotificationTarget
 from onesignal.model.start_live_activity_request import StartLiveActivityRequest
 from onesignal.model.start_live_activity_success_response import StartLiveActivitySuccessResponse
@@ -74,6 +81,8 @@ from onesignal.model.transfer_subscription_request_body import TransferSubscript
 from onesignal.model.update_api_key_request import UpdateApiKeyRequest
 from onesignal.model.update_live_activity_request import UpdateLiveActivityRequest
 from onesignal.model.update_live_activity_success_response import UpdateLiveActivitySuccessResponse
+from onesignal.model.update_segment_request import UpdateSegmentRequest
+from onesignal.model.update_segment_success_response import UpdateSegmentSuccessResponse
 from onesignal.model.update_template_request import UpdateTemplateRequest
 from onesignal.model.update_user_request import UpdateUserRequest
 from onesignal.model.user import User
