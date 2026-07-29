@@ -36,11 +36,11 @@ class RESTResponse(io.IOBase):
 
     def getheaders(self):
         """Returns a dictionary of the response headers."""
-        return self.urllib3_response.getheaders()
+        return self.urllib3_response.headers
 
     def getheader(self, name, default=None):
         """Returns a given response header."""
-        return self.urllib3_response.getheader(name, default)
+        return self.urllib3_response.headers.get(name, default)
 
 
 class RESTClientObject(object):
@@ -215,6 +215,12 @@ class RESTClientObject(object):
             logger.debug("response body: %s", r.data)
 
         if not 200 <= r.status <= 299:
+            # Ensure the exception constructors always receive a RESTResponse:
+            # they call getheaders(), which raw urllib3 2.x responses no longer
+            # provide. When _preload_content is True, r is already wrapped.
+            if not isinstance(r, RESTResponse):
+                r = RESTResponse(r)
+
             if r.status == 401:
                 raise UnauthorizedException(http_resp=r)
 

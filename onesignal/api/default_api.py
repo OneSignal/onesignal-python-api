@@ -1157,7 +1157,7 @@ class DefaultApi(object):
                 'auth': [
                     'rest_api_key'
                 ],
-                'endpoint_path': '/notifications/{notification_id}/export_events?app_id={app_id}',
+                'endpoint_path': '/notifications/{notification_id}/export_events',
                 'operation_id': 'export_events',
                 'http_method': 'POST',
                 'servers': None,
