@@ -15,8 +15,8 @@
 
 A powerful way to send personalized messages at scale and build effective customer engagement strategies. Learn more at onesignal.com
 
-- API version: 5.11.0
-- Package version: 5.11.1
+- API version: 5.11.2
+- Package version: 5.11.3
 
 ## Requirements
 
