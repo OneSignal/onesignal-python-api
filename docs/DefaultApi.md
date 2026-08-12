@@ -10,7 +10,7 @@ Method | HTTP request | Description
 [**create_alias_by_subscription**](DefaultApi.md#create_alias_by_subscription) | **PATCH** /apps/{app_id}/subscriptions/{subscription_id}/user/identity | 
 [**create_api_key**](DefaultApi.md#create_api_key) | **POST** /apps/{app_id}/auth/tokens | Create API key
 [**create_app**](DefaultApi.md#create_app) | **POST** /apps | Create an app
-[**create_custom_events**](DefaultApi.md#create_custom_events) | **POST** /apps/{app_id}/integrations/custom_events | Create custom events
+[**create_custom_events**](DefaultApi.md#create_custom_events) | **POST** /apps/{app_id}/custom_events | Create custom events
 [**create_notification**](DefaultApi.md#create_notification) | **POST** /notifications | Create notification
 [**create_segment**](DefaultApi.md#create_segment) | **POST** /apps/{app_id}/segments | Create Segment
 [**create_subscription**](DefaultApi.md#create_subscription) | **POST** /apps/{app_id}/users/by/{alias_label}/{alias_id}/subscriptions | 
