@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**create_api_key**](DefaultApi.md#create_api_key) | **POST** /apps/{app_id}/auth/tokens | Create API key
 [**create_app**](DefaultApi.md#create_app) | **POST** /apps | Create an app
 [**create_custom_events**](DefaultApi.md#create_custom_events) | **POST** /apps/{app_id}/custom_events | Create custom events
+[**create_journey**](DefaultApi.md#create_journey) | **POST** /apps/{app_id}/journeys | Create journey
 [**create_notification**](DefaultApi.md#create_notification) | **POST** /notifications | Create notification
 [**create_segment**](DefaultApi.md#create_segment) | **POST** /apps/{app_id}/segments | Create Segment
 [**create_subscription**](DefaultApi.md#create_subscription) | **POST** /apps/{app_id}/users/by/{alias_label}/{alias_id}/subscriptions | 
@@ -18,6 +19,7 @@ Method | HTTP request | Description
 [**create_user**](DefaultApi.md#create_user) | **POST** /apps/{app_id}/users | 
 [**delete_alias**](DefaultApi.md#delete_alias) | **DELETE** /apps/{app_id}/users/by/{alias_label}/{alias_id}/identity/{alias_label_to_delete} | 
 [**delete_api_key**](DefaultApi.md#delete_api_key) | **DELETE** /apps/{app_id}/auth/tokens/{token_id} | Delete API key
+[**delete_journey**](DefaultApi.md#delete_journey) | **DELETE** /apps/{app_id}/journeys/{journey_id} | Delete journey
 [**delete_segment**](DefaultApi.md#delete_segment) | **DELETE** /apps/{app_id}/segments/{segment_id} | Delete Segment
 [**delete_subscription**](DefaultApi.md#delete_subscription) | **DELETE** /apps/{app_id}/subscriptions/{subscription_id} | 
 [**delete_template**](DefaultApi.md#delete_template) | **DELETE** /templates/{template_id} | Delete template
@@ -42,6 +44,8 @@ Method | HTTP request | Description
 [**unsubscribe_email_with_token**](DefaultApi.md#unsubscribe_email_with_token) | **POST** /apps/{app_id}/notifications/{notification_id}/unsubscribe | Unsubscribe with token
 [**update_api_key**](DefaultApi.md#update_api_key) | **PATCH** /apps/{app_id}/auth/tokens/{token_id} | Update API key
 [**update_app**](DefaultApi.md#update_app) | **PUT** /apps/{app_id} | Update an app
+[**update_journey**](DefaultApi.md#update_journey) | **PATCH** /apps/{app_id}/journeys/{journey_id} | Update journey
+[**update_journey_node**](DefaultApi.md#update_journey_node) | **PATCH** /apps/{app_id}/journeys/{journey_id}/nodes/{node_id} | Update journey node
 [**update_live_activity**](DefaultApi.md#update_live_activity) | **POST** /apps/{app_id}/live_activities/{activity_id}/notifications | Update a Live Activity via Push
 [**update_segment**](DefaultApi.md#update_segment) | **PATCH** /apps/{app_id}/segments/{segment_id} | Update Segment
 [**update_subscription**](DefaultApi.md#update_subscription) | **PATCH** /apps/{app_id}/subscriptions/{subscription_id} | 
@@ -49,6 +53,9 @@ Method | HTTP request | Description
 [**update_template**](DefaultApi.md#update_template) | **PATCH** /templates/{template_id} | Update template
 [**update_user**](DefaultApi.md#update_user) | **PATCH** /apps/{app_id}/users/by/{alias_label}/{alias_id} | 
 [**view_api_keys**](DefaultApi.md#view_api_keys) | **GET** /apps/{app_id}/auth/tokens | View API keys
+[**view_journey**](DefaultApi.md#view_journey) | **GET** /apps/{app_id}/journeys/{journey_id} | View journey
+[**view_journey_stats**](DefaultApi.md#view_journey_stats) | **GET** /apps/{app_id}/journeys/{journey_id}/stats | View journey stats
+[**view_journeys**](DefaultApi.md#view_journeys) | **GET** /apps/{app_id}/journeys | View journeys
 [**view_template**](DefaultApi.md#view_template) | **GET** /templates/{template_id} | View template
 [**view_templates**](DefaultApi.md#view_templates) | **GET** /templates | View templates
 
@@ -673,6 +680,196 @@ Name | Type | Description  | Notes
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
 **401** | Unauthorized |  -  |
+**429** | Rate Limit Exceeded |  -  |
+**0** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
+
+# **create_journey**
+> Journey create_journey(app_id, create_journey_request)
+
+Create journey
+
+The Journeys API is in beta. Endpoints and response fields can still change. Create a new journey with an audience and a node graph. Journeys are always created in the draft state. The authenticated App API key must have permission to create journeys.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.models import *
+from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
+    create_journey_request = CreateJourneyRequest(
+        name="name_example",
+        description="description_example",
+        audience=JourneyAudience(
+            kind="segment",
+            included_segment_ids=[
+                "included_segment_ids_example",
+            ],
+            excluded_segment_ids=[
+                "excluded_segment_ids_example",
+            ],
+            future_additions_only=True,
+            name="name_example",
+            attributes=JourneyEventTriggerAttributes([
+                [
+                    JourneyEventAttribute(
+                        key="key_example",
+                        operator="equal",
+                        value="value_example",
+                    ),
+                ],
+            ]),
+        ),
+        early_exit=JourneyEarlyExit(
+            rules=JourneyEarlyExitRules(
+                on_segment=JourneyEarlyExitRulesOnSegment(
+                    included_segment_ids=[
+                        "included_segment_ids_example",
+                    ],
+                ),
+                when_not_in_audience=True,
+                on_session=True,
+                on_event=JourneyEarlyExitRulesOnEvent(
+                    name="name_example",
+                ),
+            ),
+            tag_on_early_exit={
+                "key": "key_example",
+            },
+        ),
+        reentry_rules=JourneyReentryRules(
+            duration_seconds=600,
+        ),
+        schedule=JourneySchedule(
+            start_at="start_at_example",
+            stop_at="stop_at_example",
+            error="error_example",
+        ),
+        nodes=[
+            JourneyNode(
+                id="id_example",
+                kind="wait",
+                client_node_id="client_node_id_example",
+                annotation="annotation_example",
+                duration_seconds=60,
+                relative_to="schedule_in_timezone",
+                windows=[
+                    JourneyTimeWindow(
+                        start=None,
+                        end=None,
+                        day_of_week=1,
+                    ),
+                ],
+                time_zone="time_zone_example",
+                use_user_time_zone=True,
+                template_id="template_id_example",
+                iam_id="iam_id_example",
+                user_ttl_seconds=1,
+                webhook_id="webhook_id_example",
+                assignments={
+                    "key": "key_example",
+                },
+                randomize_on_entry=True,
+                branches=[
+                    JourneyBranch(
+                        id="id_example",
+                        condition=JourneyCondition(
+                            kind="segment_membership",
+                            included_segment_ids=[
+                                "included_segment_ids_example",
+                            ],
+                            excluded_segment_ids=[
+                                "excluded_segment_ids_example",
+                            ],
+                            action="received",
+                            sending_node_id="sending_node_id_example",
+                            client_node_id="client_node_id_example",
+                            name="name_example",
+                            attributes=JourneyEventTriggerAttributes([
+                                [
+                                    JourneyEventAttribute(
+                                        key="key_example",
+                                        operator="equal",
+                                        value="value_example",
+                                    ),
+                                ],
+                            ]),
+                            entry_event_match_attributes=[
+                                {},
+                            ],
+                        ),
+                        weight=3.14,
+                        nodes=[
+                            JourneyNode(),
+                        ],
+                    ),
+                ],
+                expiration=JourneyWaitUntilExpiration(
+                    duration_seconds=60,
+                    exits=True,
+                ),
+            ),
+        ],
+    ) 
+
+    try:
+        # Create journey
+        api_response = api_instance.create_journey(app_id, create_journey_request)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->create_journey: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| Your OneSignal App ID in UUID v4 format. |
+ **create_journey_request** | [**CreateJourneyRequest**](CreateJourneyRequest.md)|  |
+
+### Return type
+
+[**Journey**](Journey.md)
+
+### Authorization
+
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
 **429** | Rate Limit Exceeded |  -  |
 **0** | Unexpected error |  -  |
 
@@ -1521,6 +1718,83 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**0** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
+
+# **delete_journey**
+> GenericSuccessBoolResponse delete_journey(app_id, journey_id)
+
+Delete journey
+
+The Journeys API is in beta. Endpoints and response fields can still change. Permanently delete a journey by its UUID. Returns { \"success\": true } on success. The authenticated App API key must have permission to delete journeys. Deleting a journey stops any in-flight users and cannot be undone. Archive a running journey instead if you need to keep its data.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.models import *
+from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
+    journey_id = "YOUR_JOURNEY_ID" # UUID of the journey to delete. 
+
+    try:
+        # Delete journey
+        api_response = api_instance.delete_journey(app_id, journey_id)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->delete_journey: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| Your OneSignal App ID in UUID v4 format. |
+ **journey_id** | **str**| UUID of the journey to delete. |
+
+### Return type
+
+[**GenericSuccessBoolResponse**](GenericSuccessBoolResponse.md)
+
+### Authorization
+
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+**429** | Rate Limit Exceeded |  -  |
 **0** | Unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
@@ -3580,6 +3854,377 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
+# **update_journey**
+> Journey update_journey(app_id, journey_id, update_journey_request)
+
+Update journey
+
+The Journeys API is in beta. Endpoints and response fields can still change. Apply a partial update to a journey using JSON Merge Patch (RFC 7396). Send only the fields you want to change; omitted fields are left unchanged. A null value clears a nullable field, and arrays such as nodes are replaced wholesale. Set state to active to activate a draft journey.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.models import *
+from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
+    journey_id = "YOUR_JOURNEY_ID" # UUID of the journey to update. 
+    update_journey_request = UpdateJourneyRequest(
+        name="name_example",
+        description="description_example",
+        audience=JourneyAudience(
+            kind="segment",
+            included_segment_ids=[
+                "included_segment_ids_example",
+            ],
+            excluded_segment_ids=[
+                "excluded_segment_ids_example",
+            ],
+            future_additions_only=True,
+            name="name_example",
+            attributes=JourneyEventTriggerAttributes([
+                [
+                    JourneyEventAttribute(
+                        key="key_example",
+                        operator="equal",
+                        value="value_example",
+                    ),
+                ],
+            ]),
+        ),
+        early_exit=JourneyEarlyExit(
+            rules=JourneyEarlyExitRules(
+                on_segment=JourneyEarlyExitRulesOnSegment(
+                    included_segment_ids=[
+                        "included_segment_ids_example",
+                    ],
+                ),
+                when_not_in_audience=True,
+                on_session=True,
+                on_event=JourneyEarlyExitRulesOnEvent(
+                    name="name_example",
+                ),
+            ),
+            tag_on_early_exit={
+                "key": "key_example",
+            },
+        ),
+        reentry_rules=JourneyReentryRules(
+            duration_seconds=600,
+        ),
+        schedule=JourneySchedule(
+            start_at="start_at_example",
+            stop_at="stop_at_example",
+            error="error_example",
+        ),
+        nodes=[
+            JourneyNode(
+                id="id_example",
+                kind="wait",
+                client_node_id="client_node_id_example",
+                annotation="annotation_example",
+                duration_seconds=60,
+                relative_to="schedule_in_timezone",
+                windows=[
+                    JourneyTimeWindow(
+                        start=None,
+                        end=None,
+                        day_of_week=1,
+                    ),
+                ],
+                time_zone="time_zone_example",
+                use_user_time_zone=True,
+                template_id="template_id_example",
+                iam_id="iam_id_example",
+                user_ttl_seconds=1,
+                webhook_id="webhook_id_example",
+                assignments={
+                    "key": "key_example",
+                },
+                randomize_on_entry=True,
+                branches=[
+                    JourneyBranch(
+                        id="id_example",
+                        condition=JourneyCondition(
+                            kind="segment_membership",
+                            included_segment_ids=[
+                                "included_segment_ids_example",
+                            ],
+                            excluded_segment_ids=[
+                                "excluded_segment_ids_example",
+                            ],
+                            action="received",
+                            sending_node_id="sending_node_id_example",
+                            client_node_id="client_node_id_example",
+                            name="name_example",
+                            attributes=JourneyEventTriggerAttributes([
+                                [
+                                    JourneyEventAttribute(
+                                        key="key_example",
+                                        operator="equal",
+                                        value="value_example",
+                                    ),
+                                ],
+                            ]),
+                            entry_event_match_attributes=[
+                                {},
+                            ],
+                        ),
+                        weight=3.14,
+                        nodes=[
+                            JourneyNode(),
+                        ],
+                    ),
+                ],
+                expiration=JourneyWaitUntilExpiration(
+                    duration_seconds=60,
+                    exits=True,
+                ),
+            ),
+        ],
+        state="draft",
+        concurrency_key="concurrency_key_example",
+    ) 
+
+    try:
+        # Update journey
+        api_response = api_instance.update_journey(app_id, journey_id, update_journey_request)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->update_journey: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| Your OneSignal App ID in UUID v4 format. |
+ **journey_id** | **str**| UUID of the journey to update. |
+ **update_journey_request** | [**UpdateJourneyRequest**](UpdateJourneyRequest.md)|  |
+
+### Return type
+
+[**Journey**](Journey.md)
+
+### Authorization
+
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+**409** | Conflict |  -  |
+**422** | Unprocessable Entity |  -  |
+**429** | Rate Limit Exceeded |  -  |
+**0** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
+
+# **update_journey_node**
+> Journey update_journey_node(app_id, journey_id, node_id, update_journey_node_request)
+
+Update journey node
+
+The Journeys API is in beta. Endpoints and response fields can still change. Apply a partial update to a single node, located by its server-assigned id, using JSON Merge Patch (RFC 7396). Send only the node fields you want to change; the rest of the node and the rest of the journey graph are left untouched. Returns the full updated journey.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.models import *
+from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
+    journey_id = "YOUR_JOURNEY_ID" # UUID of the journey that owns the node. 
+    node_id = "YOUR_NODE_ID" # Server-assigned UUID of the node to update, from a prior View journey fetch. 
+    update_journey_node_request = UpdateJourneyNodeRequest(
+        client_node_id="client_node_id_example",
+        annotation="annotation_example",
+        duration_seconds=60,
+        relative_to="schedule_in_timezone",
+        windows=[
+            JourneyTimeWindow(
+                start=None,
+                end=None,
+                day_of_week=1,
+            ),
+        ],
+        time_zone="time_zone_example",
+        use_user_time_zone=True,
+        template_id="template_id_example",
+        iam_id="iam_id_example",
+        user_ttl_seconds=1,
+        webhook_id="webhook_id_example",
+        assignments={
+            "key": "key_example",
+        },
+        randomize_on_entry=True,
+        branches=[
+            JourneyBranch(
+                id="id_example",
+                condition=JourneyCondition(
+                    kind="segment_membership",
+                    included_segment_ids=[
+                        "included_segment_ids_example",
+                    ],
+                    excluded_segment_ids=[
+                        "excluded_segment_ids_example",
+                    ],
+                    action="received",
+                    sending_node_id="sending_node_id_example",
+                    client_node_id="client_node_id_example",
+                    name="name_example",
+                    attributes=JourneyEventTriggerAttributes([
+                        [
+                            JourneyEventAttribute(
+                                key="key_example",
+                                operator="equal",
+                                value="value_example",
+                            ),
+                        ],
+                    ]),
+                    entry_event_match_attributes=[
+                        {},
+                    ],
+                ),
+                weight=3.14,
+                nodes=[
+                    JourneyNode(
+                        id="id_example",
+                        kind="wait",
+                        client_node_id="client_node_id_example",
+                        annotation="annotation_example",
+                        duration_seconds=60,
+                        relative_to="schedule_in_timezone",
+                        windows=[
+                            JourneyTimeWindow(
+                                start=None,
+                                end=None,
+                                day_of_week=1,
+                            ),
+                        ],
+                        time_zone="time_zone_example",
+                        use_user_time_zone=True,
+                        template_id="template_id_example",
+                        iam_id="iam_id_example",
+                        user_ttl_seconds=1,
+                        webhook_id="webhook_id_example",
+                        assignments={
+                            "key": "key_example",
+                        },
+                        randomize_on_entry=True,
+                        branches=[],
+                        expiration=JourneyWaitUntilExpiration(
+                            duration_seconds=60,
+                            exits=True,
+                        ),
+                    ),
+                ],
+            ),
+        ],
+        expiration=JourneyWaitUntilExpiration(
+            duration_seconds=60,
+            exits=True,
+        ),
+        concurrency_key="concurrency_key_example",
+    ) 
+
+    try:
+        # Update journey node
+        api_response = api_instance.update_journey_node(app_id, journey_id, node_id, update_journey_node_request)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->update_journey_node: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| Your OneSignal App ID in UUID v4 format. |
+ **journey_id** | **str**| UUID of the journey that owns the node. |
+ **node_id** | **str**| Server-assigned UUID of the node to update, from a prior View journey fetch. |
+ **update_journey_node_request** | [**UpdateJourneyNodeRequest**](UpdateJourneyNodeRequest.md)|  |
+
+### Return type
+
+[**Journey**](Journey.md)
+
+### Authorization
+
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+**409** | Conflict |  -  |
+**422** | Unprocessable Entity |  -  |
+**429** | Rate Limit Exceeded |  -  |
+**0** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
+
 # **update_live_activity**
 > UpdateLiveActivitySuccessResponse update_live_activity(app_id, activity_id, update_live_activity_request)
 
@@ -4454,6 +5099,237 @@ Name | Type | Description  | Notes
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**0** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
+
+# **view_journey**
+> Journey view_journey(app_id, journey_id)
+
+View journey
+
+The Journeys API is in beta. Endpoints and response fields can still change. Retrieve the full configuration of a single journey by its UUID, including its audience and node graph.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.models import *
+from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
+    journey_id = "YOUR_JOURNEY_ID" # UUID of the journey to retrieve. 
+
+    try:
+        # View journey
+        api_response = api_instance.view_journey(app_id, journey_id)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->view_journey: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| Your OneSignal App ID in UUID v4 format. |
+ **journey_id** | **str**| UUID of the journey to retrieve. |
+
+### Return type
+
+[**Journey**](Journey.md)
+
+### Authorization
+
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**404** | Not Found |  -  |
+**429** | Rate Limit Exceeded |  -  |
+**0** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
+
+# **view_journey_stats**
+> JourneyStats view_journey_stats(app_id, journey_id)
+
+View journey stats
+
+The Journeys API is in beta. Endpoints and response fields can still change. Retrieve performance stats for a single journey: journey-level entry and exit counts, per-node counts keyed by node id, per-branch counts keyed by branch id, and channel delivery stats for message-sending nodes. The response carries no definition detail, so join it by id against the journey from View journey.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.models import *
+from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
+    journey_id = "YOUR_JOURNEY_ID" # UUID of the journey to retrieve stats for. 
+
+    try:
+        # View journey stats
+        api_response = api_instance.view_journey_stats(app_id, journey_id)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->view_journey_stats: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| Your OneSignal App ID in UUID v4 format. |
+ **journey_id** | **str**| UUID of the journey to retrieve stats for. |
+
+### Return type
+
+[**JourneyStats**](JourneyStats.md)
+
+### Authorization
+
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**404** | Not Found |  -  |
+**429** | Rate Limit Exceeded |  -  |
+**0** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
+
+# **view_journeys**
+> JourneyListResponse view_journeys(app_id)
+
+View journeys
+
+The Journeys API is in beta. Endpoints and response fields can still change. Retrieve a paginated list of journeys for an app. Returns a summary representation of each journey; use View journey for the full configuration. Uses forward-only cursor-based pagination.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.models import *
+from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
+    cursor = "cursor_example"  # Opaque pagination token from a previous response's next_cursor. Omit for the first page. (optional) 
+    limit = 50  # Maximum journeys to return per page. Minimum 1, maximum 50. (optional) 
+
+    try:
+        # View journeys
+        api_response = api_instance.view_journeys(app_id, cursor=cursor, limit=limit)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->view_journeys: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| Your OneSignal App ID in UUID v4 format. |
+ **cursor** | **str**| Opaque pagination token from a previous response&#39;s next_cursor. Omit for the first page. | [optional]
+ **limit** | **int**| Maximum journeys to return per page. Minimum 1, maximum 50. | [optional] if omitted the server will use the default value of 50
+
+### Return type
+
+[**JourneyListResponse**](JourneyListResponse.md)
+
+### Authorization
+
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+**429** | Rate Limit Exceeded |  -  |
 **0** | Unexpected error |  -  |
 
 [[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
