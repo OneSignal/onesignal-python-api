@@ -27,6 +27,7 @@ from onesignal.model.apps import Apps
 from onesignal.model.copy_template_request import CopyTemplateRequest
 from onesignal.model.create_api_key_request import CreateApiKeyRequest
 from onesignal.model.create_api_key_response import CreateApiKeyResponse
+from onesignal.model.create_journey_request import CreateJourneyRequest
 from onesignal.model.create_notification_success_response import CreateNotificationSuccessResponse
 from onesignal.model.create_segment_conflict_response import CreateSegmentConflictResponse
 from onesignal.model.create_segment_success_response import CreateSegmentSuccessResponse
@@ -41,6 +42,9 @@ from onesignal.model.generic_success_bool_response import GenericSuccessBoolResp
 from onesignal.model.get_notification_history_request_body import GetNotificationHistoryRequestBody
 from onesignal.model.get_segment_success_response import GetSegmentSuccessResponse
 from onesignal.model.get_segments_success_response import GetSegmentsSuccessResponse
+from onesignal.model.journey import Journey
+from onesignal.model.journey_list_response import JourneyListResponse
+from onesignal.model.journey_stats import JourneyStats
 from onesignal.model.list_audit_logs_success_response import ListAuditLogsSuccessResponse
 from onesignal.model.notification import Notification
 from onesignal.model.notification_history_success_response import NotificationHistorySuccessResponse
@@ -57,6 +61,8 @@ from onesignal.model.template_resource import TemplateResource
 from onesignal.model.templates_list_response import TemplatesListResponse
 from onesignal.model.transfer_subscription_request_body import TransferSubscriptionRequestBody
 from onesignal.model.update_api_key_request import UpdateApiKeyRequest
+from onesignal.model.update_journey_node_request import UpdateJourneyNodeRequest
+from onesignal.model.update_journey_request import UpdateJourneyRequest
 from onesignal.model.update_live_activity_request import UpdateLiveActivityRequest
 from onesignal.model.update_live_activity_success_response import UpdateLiveActivitySuccessResponse
 from onesignal.model.update_segment_request import UpdateSegmentRequest
@@ -501,6 +507,64 @@ class DefaultApi(object):
             },
             api_client=api_client
         )
+        self.create_journey_endpoint = _Endpoint(
+            settings={
+                'response_type': (Journey,),
+                'auth': [
+                    'rest_api_key'
+                ],
+                'endpoint_path': '/apps/{app_id}/journeys',
+                'operation_id': 'create_journey',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'app_id',
+                    'create_journey_request',
+                ],
+                'required': [
+                    'app_id',
+                    'create_journey_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'app_id':
+                        (str,),
+                    'create_journey_request':
+                        (CreateJourneyRequest,),
+                },
+                'attribute_map': {
+                    'app_id': 'app_id',
+                },
+                'location_map': {
+                    'app_id': 'path',
+                    'create_journey_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
         self.create_notification_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateNotificationSuccessResponse,),
@@ -904,6 +968,63 @@ class DefaultApi(object):
                 'location_map': {
                     'app_id': 'path',
                     'token_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.delete_journey_endpoint = _Endpoint(
+            settings={
+                'response_type': (GenericSuccessBoolResponse,),
+                'auth': [
+                    'rest_api_key'
+                ],
+                'endpoint_path': '/apps/{app_id}/journeys/{journey_id}',
+                'operation_id': 'delete_journey',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'app_id',
+                    'journey_id',
+                ],
+                'required': [
+                    'app_id',
+                    'journey_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'app_id':
+                        (str,),
+                    'journey_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'app_id': 'app_id',
+                    'journey_id': 'journey_id',
+                },
+                'location_map': {
+                    'app_id': 'path',
+                    'journey_id': 'path',
                 },
                 'collection_format_map': {
                 }
@@ -2453,6 +2574,140 @@ class DefaultApi(object):
             },
             api_client=api_client
         )
+        self.update_journey_endpoint = _Endpoint(
+            settings={
+                'response_type': (Journey,),
+                'auth': [
+                    'rest_api_key'
+                ],
+                'endpoint_path': '/apps/{app_id}/journeys/{journey_id}',
+                'operation_id': 'update_journey',
+                'http_method': 'PATCH',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'app_id',
+                    'journey_id',
+                    'update_journey_request',
+                ],
+                'required': [
+                    'app_id',
+                    'journey_id',
+                    'update_journey_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'app_id':
+                        (str,),
+                    'journey_id':
+                        (str,),
+                    'update_journey_request':
+                        (UpdateJourneyRequest,),
+                },
+                'attribute_map': {
+                    'app_id': 'app_id',
+                    'journey_id': 'journey_id',
+                },
+                'location_map': {
+                    'app_id': 'path',
+                    'journey_id': 'path',
+                    'update_journey_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.update_journey_node_endpoint = _Endpoint(
+            settings={
+                'response_type': (Journey,),
+                'auth': [
+                    'rest_api_key'
+                ],
+                'endpoint_path': '/apps/{app_id}/journeys/{journey_id}/nodes/{node_id}',
+                'operation_id': 'update_journey_node',
+                'http_method': 'PATCH',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'app_id',
+                    'journey_id',
+                    'node_id',
+                    'update_journey_node_request',
+                ],
+                'required': [
+                    'app_id',
+                    'journey_id',
+                    'node_id',
+                    'update_journey_node_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'app_id':
+                        (str,),
+                    'journey_id':
+                        (str,),
+                    'node_id':
+                        (str,),
+                    'update_journey_node_request':
+                        (UpdateJourneyNodeRequest,),
+                },
+                'attribute_map': {
+                    'app_id': 'app_id',
+                    'journey_id': 'journey_id',
+                    'node_id': 'node_id',
+                },
+                'location_map': {
+                    'app_id': 'path',
+                    'journey_id': 'path',
+                    'node_id': 'path',
+                    'update_journey_node_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
         self.update_live_activity_endpoint = _Endpoint(
             settings={
                 'response_type': (UpdateLiveActivitySuccessResponse,),
@@ -2887,6 +3142,187 @@ class DefaultApi(object):
                 },
                 'location_map': {
                     'app_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.view_journey_endpoint = _Endpoint(
+            settings={
+                'response_type': (Journey,),
+                'auth': [
+                    'rest_api_key'
+                ],
+                'endpoint_path': '/apps/{app_id}/journeys/{journey_id}',
+                'operation_id': 'view_journey',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'app_id',
+                    'journey_id',
+                ],
+                'required': [
+                    'app_id',
+                    'journey_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'app_id':
+                        (str,),
+                    'journey_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'app_id': 'app_id',
+                    'journey_id': 'journey_id',
+                },
+                'location_map': {
+                    'app_id': 'path',
+                    'journey_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.view_journey_stats_endpoint = _Endpoint(
+            settings={
+                'response_type': (JourneyStats,),
+                'auth': [
+                    'rest_api_key'
+                ],
+                'endpoint_path': '/apps/{app_id}/journeys/{journey_id}/stats',
+                'operation_id': 'view_journey_stats',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'app_id',
+                    'journey_id',
+                ],
+                'required': [
+                    'app_id',
+                    'journey_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'app_id':
+                        (str,),
+                    'journey_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'app_id': 'app_id',
+                    'journey_id': 'journey_id',
+                },
+                'location_map': {
+                    'app_id': 'path',
+                    'journey_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.view_journeys_endpoint = _Endpoint(
+            settings={
+                'response_type': (JourneyListResponse,),
+                'auth': [
+                    'rest_api_key'
+                ],
+                'endpoint_path': '/apps/{app_id}/journeys',
+                'operation_id': 'view_journeys',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'app_id',
+                    'cursor',
+                    'limit',
+                ],
+                'required': [
+                    'app_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                    'limit',
+                ]
+            },
+            root_map={
+                'validations': {
+                    ('limit',): {
+
+                        'inclusive_maximum': 50,
+                        'inclusive_minimum': 1,
+                    },
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'app_id':
+                        (str,),
+                    'cursor':
+                        (str,),
+                    'limit':
+                        (int,),
+                },
+                'attribute_map': {
+                    'app_id': 'app_id',
+                    'cursor': 'cursor',
+                    'limit': 'limit',
+                },
+                'location_map': {
+                    'app_id': 'path',
+                    'cursor': 'query',
+                    'limit': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -3651,6 +4087,93 @@ class DefaultApi(object):
             custom_events_request
         return self.create_custom_events_endpoint.call_with_http_info(**kwargs)
 
+    def create_journey(
+        self,
+        app_id,
+        create_journey_request,
+        **kwargs
+    ):
+        """Create journey  # noqa: E501
+
+        The Journeys API is in beta. Endpoints and response fields can still change. Create a new journey with an audience and a node graph. Journeys are always created in the draft state. The authenticated App API key must have permission to create journeys.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.create_journey(app_id, create_journey_request, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            app_id (str): Your OneSignal App ID in UUID v4 format.
+            create_journey_request (CreateJourneyRequest):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Journey
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['app_id'] = \
+            app_id
+        kwargs['create_journey_request'] = \
+            create_journey_request
+        return self.create_journey_endpoint.call_with_http_info(**kwargs)
+
     def create_notification(
         self,
         notification,
@@ -4264,6 +4787,93 @@ class DefaultApi(object):
         kwargs['token_id'] = \
             token_id
         return self.delete_api_key_endpoint.call_with_http_info(**kwargs)
+
+    def delete_journey(
+        self,
+        app_id,
+        journey_id,
+        **kwargs
+    ):
+        """Delete journey  # noqa: E501
+
+        The Journeys API is in beta. Endpoints and response fields can still change. Permanently delete a journey by its UUID. Returns { \"success\": true } on success. The authenticated App API key must have permission to delete journeys. Deleting a journey stops any in-flight users and cannot be undone. Archive a running journey instead if you need to keep its data.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.delete_journey(app_id, journey_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            app_id (str): Your OneSignal App ID in UUID v4 format.
+            journey_id (str): UUID of the journey to delete.
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GenericSuccessBoolResponse
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['app_id'] = \
+            app_id
+        kwargs['journey_id'] = \
+            journey_id
+        return self.delete_journey_endpoint.call_with_http_info(**kwargs)
 
     def delete_segment(
         self,
@@ -6375,6 +6985,192 @@ class DefaultApi(object):
             app
         return self.update_app_endpoint.call_with_http_info(**kwargs)
 
+    def update_journey(
+        self,
+        app_id,
+        journey_id,
+        update_journey_request,
+        **kwargs
+    ):
+        """Update journey  # noqa: E501
+
+        The Journeys API is in beta. Endpoints and response fields can still change. Apply a partial update to a journey using JSON Merge Patch (RFC 7396). Send only the fields you want to change; omitted fields are left unchanged. A null value clears a nullable field, and arrays such as nodes are replaced wholesale. Set state to active to activate a draft journey.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_journey(app_id, journey_id, update_journey_request, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            app_id (str): Your OneSignal App ID in UUID v4 format.
+            journey_id (str): UUID of the journey to update.
+            update_journey_request (UpdateJourneyRequest):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Journey
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['app_id'] = \
+            app_id
+        kwargs['journey_id'] = \
+            journey_id
+        kwargs['update_journey_request'] = \
+            update_journey_request
+        return self.update_journey_endpoint.call_with_http_info(**kwargs)
+
+    def update_journey_node(
+        self,
+        app_id,
+        journey_id,
+        node_id,
+        update_journey_node_request,
+        **kwargs
+    ):
+        """Update journey node  # noqa: E501
+
+        The Journeys API is in beta. Endpoints and response fields can still change. Apply a partial update to a single node, located by its server-assigned id, using JSON Merge Patch (RFC 7396). Send only the node fields you want to change; the rest of the node and the rest of the journey graph are left untouched. Returns the full updated journey.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.update_journey_node(app_id, journey_id, node_id, update_journey_node_request, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            app_id (str): Your OneSignal App ID in UUID v4 format.
+            journey_id (str): UUID of the journey that owns the node.
+            node_id (str): Server-assigned UUID of the node to update, from a prior View journey fetch.
+            update_journey_node_request (UpdateJourneyNodeRequest):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Journey
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['app_id'] = \
+            app_id
+        kwargs['journey_id'] = \
+            journey_id
+        kwargs['node_id'] = \
+            node_id
+        kwargs['update_journey_node_request'] = \
+            update_journey_node_request
+        return self.update_journey_node_endpoint.call_with_http_info(**kwargs)
+
     def update_live_activity(
         self,
         app_id,
@@ -7008,6 +7804,265 @@ class DefaultApi(object):
         kwargs['app_id'] = \
             app_id
         return self.view_api_keys_endpoint.call_with_http_info(**kwargs)
+
+    def view_journey(
+        self,
+        app_id,
+        journey_id,
+        **kwargs
+    ):
+        """View journey  # noqa: E501
+
+        The Journeys API is in beta. Endpoints and response fields can still change. Retrieve the full configuration of a single journey by its UUID, including its audience and node graph.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.view_journey(app_id, journey_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            app_id (str): Your OneSignal App ID in UUID v4 format.
+            journey_id (str): UUID of the journey to retrieve.
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Journey
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['app_id'] = \
+            app_id
+        kwargs['journey_id'] = \
+            journey_id
+        return self.view_journey_endpoint.call_with_http_info(**kwargs)
+
+    def view_journey_stats(
+        self,
+        app_id,
+        journey_id,
+        **kwargs
+    ):
+        """View journey stats  # noqa: E501
+
+        The Journeys API is in beta. Endpoints and response fields can still change. Retrieve performance stats for a single journey: journey-level entry and exit counts, per-node counts keyed by node id, per-branch counts keyed by branch id, and channel delivery stats for message-sending nodes. The response carries no definition detail, so join it by id against the journey from View journey.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.view_journey_stats(app_id, journey_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            app_id (str): Your OneSignal App ID in UUID v4 format.
+            journey_id (str): UUID of the journey to retrieve stats for.
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            JourneyStats
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['app_id'] = \
+            app_id
+        kwargs['journey_id'] = \
+            journey_id
+        return self.view_journey_stats_endpoint.call_with_http_info(**kwargs)
+
+    def view_journeys(
+        self,
+        app_id,
+        **kwargs
+    ):
+        """View journeys  # noqa: E501
+
+        The Journeys API is in beta. Endpoints and response fields can still change. Retrieve a paginated list of journeys for an app. Returns a summary representation of each journey; use View journey for the full configuration. Uses forward-only cursor-based pagination.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.view_journeys(app_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            app_id (str): Your OneSignal App ID in UUID v4 format.
+
+        Keyword Args:
+            cursor (str): Opaque pagination token from a previous response's next_cursor. Omit for the first page.. [optional]
+            limit (int): Maximum journeys to return per page. Minimum 1, maximum 50.. [optional] if omitted the server will use the default value of 50
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            JourneyListResponse
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['app_id'] = \
+            app_id
+        return self.view_journeys_endpoint.call_with_http_info(**kwargs)
 
     def view_template(
         self,

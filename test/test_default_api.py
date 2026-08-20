@@ -70,6 +70,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_create_journey(self):
+        """Test case for create_journey
+
+        Create journey  # noqa: E501
+        """
+        pass
+
     def test_create_notification(self):
         """Test case for create_notification
 
@@ -113,6 +120,13 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for delete_api_key
 
         Delete API key  # noqa: E501
+        """
+        pass
+
+    def test_delete_journey(self):
+        """Test case for delete_journey
+
+        Delete journey  # noqa: E501
         """
         pass
 
@@ -278,6 +292,20 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_update_journey(self):
+        """Test case for update_journey
+
+        Update journey  # noqa: E501
+        """
+        pass
+
+    def test_update_journey_node(self):
+        """Test case for update_journey_node
+
+        Update journey node  # noqa: E501
+        """
+        pass
+
     def test_update_live_activity(self):
         """Test case for update_live_activity
 
@@ -322,6 +350,27 @@ class TestDefaultApi(unittest.TestCase):
         """Test case for view_api_keys
 
         View API keys  # noqa: E501
+        """
+        pass
+
+    def test_view_journey(self):
+        """Test case for view_journey
+
+        View journey  # noqa: E501
+        """
+        pass
+
+    def test_view_journey_stats(self):
+        """Test case for view_journey_stats
+
+        View journey stats  # noqa: E501
+        """
+        pass
+
+    def test_view_journeys(self):
+        """Test case for view_journeys
+
+        View journeys  # noqa: E501
         """
         pass
 
