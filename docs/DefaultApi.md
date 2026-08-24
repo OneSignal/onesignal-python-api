@@ -4352,9 +4352,11 @@ with onesignal.ApiClient(configuration) as api_client:
             vi="vi_example",
         ),
         sound="sound_example",
+        ios_sound="ios_sound_example",
         stale_date=1,
         dismissal_date=1,
         priority=1,
+        ios_relevance_score=3.14,
     ) 
 
     try:
