@@ -97,9 +97,11 @@ class UpdateLiveActivityRequest(ModelNormal):
             'contents': (LanguageStringMap,),  # noqa: E501
             'headings': (LanguageStringMap,),  # noqa: E501
             'sound': (str,),  # noqa: E501
+            'ios_sound': (str,),  # noqa: E501
             'stale_date': (int,),  # noqa: E501
             'dismissal_date': (int,),  # noqa: E501
             'priority': (int,),  # noqa: E501
+            'ios_relevance_score': (float, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -114,9 +116,11 @@ class UpdateLiveActivityRequest(ModelNormal):
         'contents': 'contents',  # noqa: E501
         'headings': 'headings',  # noqa: E501
         'sound': 'sound',  # noqa: E501
+        'ios_sound': 'ios_sound',  # noqa: E501
         'stale_date': 'stale_date',  # noqa: E501
         'dismissal_date': 'dismissal_date',  # noqa: E501
         'priority': 'priority',  # noqa: E501
+        'ios_relevance_score': 'ios_relevance_score',  # noqa: E501
     }
 
     read_only_vars = {
@@ -167,10 +171,12 @@ class UpdateLiveActivityRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             contents (LanguageStringMap): [optional]  # noqa: E501
             headings (LanguageStringMap): [optional]  # noqa: E501
-            sound (str): Sound file that is included in your app to play instead of the default device notification sound. Omit to disable vibration and sound for the notification.. [optional]  # noqa: E501
+            sound (str): Deprecated. The API ignores this field. Use `ios_sound`.. [optional]  # noqa: E501
+            ios_sound (str): Sound file that is included in your app to play instead of the default device notification sound. Omit to disable vibration and sound for the notification. Requires `headings` on the same request: ActivityKit ignores an update whose alert has no title, which silently drops the sound. Supersedes the deprecated `sound` field. . [optional]  # noqa: E501
             stale_date (int): Accepts Unix timestamp in seconds. When time reaches the configured stale date, the system considers the Live Activity out of date, and the ActivityState of the Live Activity changes to ActivityState.stale.. [optional]  # noqa: E501
             dismissal_date (int): Accepts Unix timestamp in seconds; only allowed if event is \"end\". [optional]  # noqa: E501
-            priority (int): Delivery priority through the the push provider (APNs). Pass 10 for higher priority notifications, or 5 for lower priority notifications. Lower priority notifications are sent based on the power considerations of the end user's device. If not set, defaults to 10. Some providers (APNs) allow for a limited budget of high priority notifications per hour, and if that budget is exceeded, the provider may throttle notification delivery.. [optional]  # noqa: E501
+            priority (int): Delivery priority through the push provider (APNs). Pass 10 for higher priority notifications, or 5 for lower priority notifications. Lower priority notifications are sent based on the power considerations of the end user's device. If not set, defaults to 10. Some providers (APNs) allow for a limited budget of high priority notifications per hour, and if that budget is exceeded, the provider may throttle notification delivery.. [optional]  # noqa: E501
+            ios_relevance_score (float, none_type): A value between 0 and 1. When more than one Live Activity is active for your app, the one with the highest relevance score shows in the Dynamic Island. If the scores are equal, the system shows the Live Activity that started first. The score also sets the order of Live Activities on the Lock Screen. Only available on iOS 16.2 and later.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -266,10 +272,12 @@ class UpdateLiveActivityRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             contents (LanguageStringMap): [optional]  # noqa: E501
             headings (LanguageStringMap): [optional]  # noqa: E501
-            sound (str): Sound file that is included in your app to play instead of the default device notification sound. Omit to disable vibration and sound for the notification.. [optional]  # noqa: E501
+            sound (str): Deprecated. The API ignores this field. Use `ios_sound`.. [optional]  # noqa: E501
+            ios_sound (str): Sound file that is included in your app to play instead of the default device notification sound. Omit to disable vibration and sound for the notification. Requires `headings` on the same request: ActivityKit ignores an update whose alert has no title, which silently drops the sound. Supersedes the deprecated `sound` field. . [optional]  # noqa: E501
             stale_date (int): Accepts Unix timestamp in seconds. When time reaches the configured stale date, the system considers the Live Activity out of date, and the ActivityState of the Live Activity changes to ActivityState.stale.. [optional]  # noqa: E501
             dismissal_date (int): Accepts Unix timestamp in seconds; only allowed if event is \"end\". [optional]  # noqa: E501
-            priority (int): Delivery priority through the the push provider (APNs). Pass 10 for higher priority notifications, or 5 for lower priority notifications. Lower priority notifications are sent based on the power considerations of the end user's device. If not set, defaults to 10. Some providers (APNs) allow for a limited budget of high priority notifications per hour, and if that budget is exceeded, the provider may throttle notification delivery.. [optional]  # noqa: E501
+            priority (int): Delivery priority through the push provider (APNs). Pass 10 for higher priority notifications, or 5 for lower priority notifications. Lower priority notifications are sent based on the power considerations of the end user's device. If not set, defaults to 10. Some providers (APNs) allow for a limited budget of high priority notifications per hour, and if that budget is exceeded, the provider may throttle notification delivery.. [optional]  # noqa: E501
+            ios_relevance_score (float, none_type): A value between 0 and 1. When more than one Live Activity is active for your app, the one with the highest relevance score shows in the Dynamic Island. If the scores are equal, the system shows the Live Activity that started first. The score also sets the order of Live Activities on the Lock Screen. Only available on iOS 16.2 and later.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
