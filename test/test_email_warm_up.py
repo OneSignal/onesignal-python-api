@@ -12,15 +12,13 @@ import sys
 import unittest
 
 import onesignal
+from onesignal.model.email_warm_up_stage import EmailWarmUpStage
+globals()['EmailWarmUpStage'] = EmailWarmUpStage
 from onesignal.model.email_warm_up import EmailWarmUp
-from onesignal.model.platform_delivery_data import PlatformDeliveryData
-globals()['EmailWarmUp'] = EmailWarmUp
-globals()['PlatformDeliveryData'] = PlatformDeliveryData
-from onesignal.model.notification_with_meta_all_of import NotificationWithMetaAllOf
 
 
-class TestNotificationWithMetaAllOf(unittest.TestCase):
-    """NotificationWithMetaAllOf unit test stubs"""
+class TestEmailWarmUp(unittest.TestCase):
+    """EmailWarmUp unit test stubs"""
 
     def setUp(self):
         pass
@@ -28,10 +26,10 @@ class TestNotificationWithMetaAllOf(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def testNotificationWithMetaAllOf(self):
-        """Test NotificationWithMetaAllOf"""
+    def testEmailWarmUp(self):
+        """Test EmailWarmUp"""
         # FIXME: construct object with mandatory attributes with example values
-        # model = NotificationWithMetaAllOf()  # noqa: E501
+        # model = EmailWarmUp()  # noqa: E501
         pass
 
 
