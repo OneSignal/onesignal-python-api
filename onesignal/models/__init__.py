@@ -35,6 +35,9 @@ from onesignal.model.create_user_conflict_response_errors_items_meta import Crea
 from onesignal.model.custom_event import CustomEvent
 from onesignal.model.custom_events_request import CustomEventsRequest
 from onesignal.model.delivery_data import DeliveryData
+from onesignal.model.email_warm_up import EmailWarmUp
+from onesignal.model.email_warm_up_request import EmailWarmUpRequest
+from onesignal.model.email_warm_up_stage import EmailWarmUpStage
 from onesignal.model.export_events_success_response import ExportEventsSuccessResponse
 from onesignal.model.export_subscriptions_request_body import ExportSubscriptionsRequestBody
 from onesignal.model.export_subscriptions_success_response import ExportSubscriptionsSuccessResponse

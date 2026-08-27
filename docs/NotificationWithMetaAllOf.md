@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **canceled** | **bool** | Indicates whether the notification was canceled before it could be sent. | [optional] 
 **email_bcc** | **[str], none_type** | BCC recipients that were set on this email notification. | [optional] 
 **bcc_sent** | **int, none_type** | Number of BCC copies successfully sent for this notification. | [optional] 
+**email_warm_up** | [**EmailWarmUp**](EmailWarmUp.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
