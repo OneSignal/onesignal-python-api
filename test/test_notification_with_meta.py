@@ -16,6 +16,7 @@ from onesignal.model.basic_notification import BasicNotification
 from onesignal.model.basic_notification_all_of_android_background_layout import BasicNotificationAllOfAndroidBackgroundLayout
 from onesignal.model.button import Button
 from onesignal.model.delivery_data import DeliveryData
+from onesignal.model.email_warm_up import EmailWarmUp
 from onesignal.model.filter_expression import FilterExpression
 from onesignal.model.include_aliases import IncludeAliases
 from onesignal.model.language_string_map import LanguageStringMap
@@ -28,6 +29,7 @@ globals()['BasicNotification'] = BasicNotification
 globals()['BasicNotificationAllOfAndroidBackgroundLayout'] = BasicNotificationAllOfAndroidBackgroundLayout
 globals()['Button'] = Button
 globals()['DeliveryData'] = DeliveryData
+globals()['EmailWarmUp'] = EmailWarmUp
 globals()['FilterExpression'] = FilterExpression
 globals()['IncludeAliases'] = IncludeAliases
 globals()['LanguageStringMap'] = LanguageStringMap

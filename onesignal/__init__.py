@@ -10,7 +10,7 @@
 """
 
 
-__version__ = "5.13.0"
+__version__ = "5.14.0"
 
 # import ApiClient
 from onesignal.api_client import ApiClient

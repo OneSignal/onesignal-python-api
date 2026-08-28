@@ -33,6 +33,7 @@ def lazy_import():
     from onesignal.model.basic_notification import BasicNotification
     from onesignal.model.basic_notification_all_of_android_background_layout import BasicNotificationAllOfAndroidBackgroundLayout
     from onesignal.model.button import Button
+    from onesignal.model.email_warm_up_request import EmailWarmUpRequest
     from onesignal.model.filter_expression import FilterExpression
     from onesignal.model.include_aliases import IncludeAliases
     from onesignal.model.language_string_map import LanguageStringMap
@@ -41,6 +42,7 @@ def lazy_import():
     globals()['BasicNotification'] = BasicNotification
     globals()['BasicNotificationAllOfAndroidBackgroundLayout'] = BasicNotificationAllOfAndroidBackgroundLayout
     globals()['Button'] = Button
+    globals()['EmailWarmUpRequest'] = EmailWarmUpRequest
     globals()['FilterExpression'] = FilterExpression
     globals()['IncludeAliases'] = IncludeAliases
     globals()['LanguageStringMap'] = LanguageStringMap
@@ -81,6 +83,10 @@ class Notification(ModelComposed):
         ('aggregation',): {
             'SUM': "sum",
             'COUNT': "count",
+        },
+        ('kind',): {
+            'None': None,
+            'WARMUP': "warmup",
         },
         ('huawei_category',): {
             'None': None,
@@ -237,6 +243,8 @@ class Notification(ModelComposed):
             'include_unsubscribed': (bool, none_type,),  # noqa: E501
             'email_bcc': ([str], none_type,),  # noqa: E501
             'email_sender_domain': (str, none_type,),  # noqa: E501
+            'kind': (str, none_type,),  # noqa: E501
+            'email_warm_up': (EmailWarmUpRequest,),  # noqa: E501
             'sms_from': (str, none_type,),  # noqa: E501
             'sms_media_urls': ([str], none_type,),  # noqa: E501
             'filters': ([FilterExpression], none_type,),  # noqa: E501
@@ -364,6 +372,8 @@ class Notification(ModelComposed):
         'include_unsubscribed': 'include_unsubscribed',  # noqa: E501
         'email_bcc': 'email_bcc',  # noqa: E501
         'email_sender_domain': 'email_sender_domain',  # noqa: E501
+        'kind': 'kind',  # noqa: E501
+        'email_warm_up': 'email_warm_up',  # noqa: E501
         'sms_from': 'sms_from',  # noqa: E501
         'sms_media_urls': 'sms_media_urls',  # noqa: E501
         'filters': 'filters',  # noqa: E501
@@ -516,7 +526,7 @@ class Notification(ModelComposed):
             summary_arg_count (int): Channel: Push Notifications Platform: iOS 12+ When using thread_id, you can also control the count of the number of notifications in the group. For example, if the group already has 12 notifications, and you send a new notification with summary_arg_count = 2, the new total will be 14 and the summary will be \"14 more notifications from summary_arg\" . [optional]  # noqa: E501
             ios_relevance_score (float, none_type): Channel: Push Notifications Platform: iOS 15+ A score to be set per notification to indicate how it should be displayed when grouped. Use a float between 0-1. . [optional]  # noqa: E501
             ios_interruption_level (str, none_type): Channel: Push Notifications Platform: iOS 15+ Focus Modes and Interruption Levels indicate the priority and delivery timing of a notification, to \"interrupt\" the user. Can choose from options: ['active', 'passive', 'time_sensitive', 'critical']. Default is active. . [optional]  # noqa: E501
-            email_subject (str, none_type): Channel: Email Required.  The subject of the email. . [optional]  # noqa: E501
+            email_subject (str, none_type): Channel: Email Required. The subject of the email. . [optional]  # noqa: E501
             email_body (str): Channel: Email Required unless template_id is set. HTML suported The body of the email you wish to send. Typically, customers include their own HTML templates here. Must include [unsubscribe_url] in an <a> tag somewhere in the email. Note: any malformed HTML content will be sent to users. Please double-check your HTML is valid. . [optional]  # noqa: E501
             email_from_name (str, none_type): Channel: Email The name the email is from. If not specified, will default to \"from name\" set in the OneSignal Dashboard Email Settings. . [optional]  # noqa: E501
             email_from_address (str, none_type): Channel: Email The email address the email is from. If not specified, will default to \"from email\" set in the OneSignal Dashboard Email Settings. . [optional]  # noqa: E501
@@ -526,6 +536,8 @@ class Notification(ModelComposed):
             include_unsubscribed (bool, none_type): Channel: Email Default is `false`. This field is used to send transactional notifications. If set to `true`, this notification will also be sent to unsubscribed emails. If a `template_id` is provided, the `include_unsubscribed` value from the template will be inherited. If you are using a third-party ESP, this field requires the ESP's list of unsubscribed emails to be cleared.. [optional]  # noqa: E501
             email_bcc ([str], none_type): Channel: Email BCC recipients for the email. Maximum 5 addresses. Only supported when the email service provider is OneSignal Email. . [optional]  # noqa: E501
             email_sender_domain (str, none_type): Channel: Email Sender domain to use for the email message. Overrides the default sender domain configured for the app. Only supported when the email service provider is OneSignal Email. . [optional]  # noqa: E501
+            kind (str, none_type): Channel: Email Set to \"warmup\" to send this as an Auto Warm Up campaign: a single campaign delivered gradually to your audience over several days, so you don't have to pace sends manually. OneSignal generates a sending schedule based on your past delivery volumes, scheduled Auto Warm Up emails, and the size of your current audience. When set, `email_warm_up` is required and describes the campaign's stages and (optionally) its scheduling strategy. `send_after` cannot be combined with `kind: \"warmup\"`. The campaign will be scheduled to begin at its first stage's `start` time. Only supported for Email notifications. . [optional] if omitted the server will use the default value of "warmup"  # noqa: E501
+            email_warm_up (EmailWarmUpRequest): [optional]  # noqa: E501
             sms_from (str, none_type): Channel: SMS Phone Number used to send SMS. Should be a registered Twilio phone number in E.164 format. . [optional]  # noqa: E501
             sms_media_urls ([str], none_type): Channel: SMS URLs for the media files to be attached to the SMS content. Limit: 10 media urls with a total max. size of 5MBs. . [optional]  # noqa: E501
             filters ([FilterExpression], none_type): [optional]  # noqa: E501
@@ -738,7 +750,7 @@ class Notification(ModelComposed):
             summary_arg_count (int): Channel: Push Notifications Platform: iOS 12+ When using thread_id, you can also control the count of the number of notifications in the group. For example, if the group already has 12 notifications, and you send a new notification with summary_arg_count = 2, the new total will be 14 and the summary will be \"14 more notifications from summary_arg\" . [optional]  # noqa: E501
             ios_relevance_score (float, none_type): Channel: Push Notifications Platform: iOS 15+ A score to be set per notification to indicate how it should be displayed when grouped. Use a float between 0-1. . [optional]  # noqa: E501
             ios_interruption_level (str, none_type): Channel: Push Notifications Platform: iOS 15+ Focus Modes and Interruption Levels indicate the priority and delivery timing of a notification, to \"interrupt\" the user. Can choose from options: ['active', 'passive', 'time_sensitive', 'critical']. Default is active. . [optional]  # noqa: E501
-            email_subject (str, none_type): Channel: Email Required.  The subject of the email. . [optional]  # noqa: E501
+            email_subject (str, none_type): Channel: Email Required. The subject of the email. . [optional]  # noqa: E501
             email_body (str): Channel: Email Required unless template_id is set. HTML suported The body of the email you wish to send. Typically, customers include their own HTML templates here. Must include [unsubscribe_url] in an <a> tag somewhere in the email. Note: any malformed HTML content will be sent to users. Please double-check your HTML is valid. . [optional]  # noqa: E501
             email_from_name (str, none_type): Channel: Email The name the email is from. If not specified, will default to \"from name\" set in the OneSignal Dashboard Email Settings. . [optional]  # noqa: E501
             email_from_address (str, none_type): Channel: Email The email address the email is from. If not specified, will default to \"from email\" set in the OneSignal Dashboard Email Settings. . [optional]  # noqa: E501
@@ -748,6 +760,8 @@ class Notification(ModelComposed):
             include_unsubscribed (bool, none_type): Channel: Email Default is `false`. This field is used to send transactional notifications. If set to `true`, this notification will also be sent to unsubscribed emails. If a `template_id` is provided, the `include_unsubscribed` value from the template will be inherited. If you are using a third-party ESP, this field requires the ESP's list of unsubscribed emails to be cleared.. [optional]  # noqa: E501
             email_bcc ([str], none_type): Channel: Email BCC recipients for the email. Maximum 5 addresses. Only supported when the email service provider is OneSignal Email. . [optional]  # noqa: E501
             email_sender_domain (str, none_type): Channel: Email Sender domain to use for the email message. Overrides the default sender domain configured for the app. Only supported when the email service provider is OneSignal Email. . [optional]  # noqa: E501
+            kind (str, none_type): Channel: Email Set to \"warmup\" to send this as an Auto Warm Up campaign: a single campaign delivered gradually to your audience over several days, so you don't have to pace sends manually. OneSignal generates a sending schedule based on your past delivery volumes, scheduled Auto Warm Up emails, and the size of your current audience. When set, `email_warm_up` is required and describes the campaign's stages and (optionally) its scheduling strategy. `send_after` cannot be combined with `kind: \"warmup\"`. The campaign will be scheduled to begin at its first stage's `start` time. Only supported for Email notifications. . [optional] if omitted the server will use the default value of "warmup"  # noqa: E501
+            email_warm_up (EmailWarmUpRequest): [optional]  # noqa: E501
             sms_from (str, none_type): Channel: SMS Phone Number used to send SMS. Should be a registered Twilio phone number in E.164 format. . [optional]  # noqa: E501
             sms_media_urls ([str], none_type): Channel: SMS URLs for the media files to be attached to the SMS content. Limit: 10 media urls with a total max. size of 5MBs. . [optional]  # noqa: E501
             filters ([FilterExpression], none_type): [optional]  # noqa: E501
