@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.14.0](https://github.com/OneSignal/onesignal-python-api/compare/v5.13.0...v5.14.0) (2026-08-28)
+
+### Features
+
+* add v5.14.0 package updates ([e82693f](https://github.com/OneSignal/onesignal-python-api/commit/e82693f1b7ad6c624cdd91ec4cf8a153e71627ba))
+* add v5.14.0 package updates ([#120](https://github.com/OneSignal/onesignal-python-api/issues/120)) ([a898900](https://github.com/OneSignal/onesignal-python-api/commit/a8989008114b810775af12de436068962398c4fd)), closes [OneSignal/api-client-libraries#452](https://github.com/OneSignal/api-client-libraries/issues/452)
+
 ## [5.13.0](https://github.com/OneSignal/onesignal-python-api/compare/v5.12.0...v5.13.0) (2026-08-25)
 
 ### Features
