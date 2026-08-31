@@ -34,6 +34,8 @@ from onesignal.model.create_segment_success_response import CreateSegmentSuccess
 from onesignal.model.create_template_request import CreateTemplateRequest
 from onesignal.model.create_user_conflict_response import CreateUserConflictResponse
 from onesignal.model.custom_events_request import CustomEventsRequest
+from onesignal.model.estimate_notification_recipients_request import EstimateNotificationRecipientsRequest
+from onesignal.model.estimate_notification_recipients_success_response import EstimateNotificationRecipientsSuccessResponse
 from onesignal.model.export_events_success_response import ExportEventsSuccessResponse
 from onesignal.model.export_subscriptions_request_body import ExportSubscriptionsRequestBody
 from onesignal.model.export_subscriptions_success_response import ExportSubscriptionsSuccessResponse
@@ -1268,6 +1270,58 @@ class DefaultApi(object):
                     'application/json'
                 ],
                 'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.estimate_notification_recipients_endpoint = _Endpoint(
+            settings={
+                'response_type': (EstimateNotificationRecipientsSuccessResponse,),
+                'auth': [
+                    'rest_api_key'
+                ],
+                'endpoint_path': '/notifications/count-unsaved',
+                'operation_id': 'estimate_notification_recipients',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'estimate_notification_recipients_request',
+                ],
+                'required': [
+                    'estimate_notification_recipients_request',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'estimate_notification_recipients_request':
+                        (EstimateNotificationRecipientsRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'estimate_notification_recipients_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
             api_client=api_client
         )
@@ -5226,6 +5280,89 @@ class DefaultApi(object):
         kwargs['alias_id'] = \
             alias_id
         return self.delete_user_endpoint.call_with_http_info(**kwargs)
+
+    def estimate_notification_recipients(
+        self,
+        estimate_notification_recipients_request,
+        **kwargs
+    ):
+        """Estimate notification recipients  # noqa: E501
+
+        Returns the estimated number of recipients for a notification's targeting, without creating or sending anything. The returned `count` reflects the same audience-size estimate you would see under \"Choose your target audience\" when composing a message. It is based on the user targeting method you've set and the specific platforms the message is targeted to send to. This endpoint only supports a subset of targeting parameters: `included_segments` is required (its `\"All\"` shorthand targets every subscriber), and `excluded_segments`, `filters`, `include_aliases`, and `target_channel` narrow that audience further. Use `target_channel` to select platforms. `include_subscription_ids` and the other raw subscription id/token fields, and the individual `isIos` / `isAndroid` / etc. platform flags, are not supported. All other notification fields (content, delivery options, and so on) are accepted, but ignored.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.estimate_notification_recipients(estimate_notification_recipients_request, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            estimate_notification_recipients_request (EstimateNotificationRecipientsRequest):
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            EstimateNotificationRecipientsSuccessResponse
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['estimate_notification_recipients_request'] = \
+            estimate_notification_recipients_request
+        return self.estimate_notification_recipients_endpoint.call_with_http_info(**kwargs)
 
     def export_events(
         self,
