@@ -156,6 +156,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_estimate_notification_recipients(self):
+        """Test case for estimate_notification_recipients
+
+        Estimate notification recipients  # noqa: E501
+        """
+        pass
+
     def test_export_events(self):
         """Test case for export_events
 
