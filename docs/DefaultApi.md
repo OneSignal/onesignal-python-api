@@ -31,6 +31,7 @@ Method | HTTP request | Description
 [**get_aliases_by_subscription**](DefaultApi.md#get_aliases_by_subscription) | **GET** /apps/{app_id}/subscriptions/{subscription_id}/user/identity | 
 [**get_app**](DefaultApi.md#get_app) | **GET** /apps/{app_id} | View an app
 [**get_apps**](DefaultApi.md#get_apps) | **GET** /apps | View apps
+[**get_email_reputation**](DefaultApi.md#get_email_reputation) | **GET** /apps/{app_id}/email_analytics/delivery_metrics | Get email reputation statistics
 [**get_notification**](DefaultApi.md#get_notification) | **GET** /notifications/{notification_id} | View notification
 [**get_notification_history**](DefaultApi.md#get_notification_history) | **POST** /notifications/{notification_id}/history | Notification History
 [**get_notifications**](DefaultApi.md#get_notifications) | **GET** /notifications | View notifications
@@ -2632,6 +2633,81 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
+**0** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
+
+# **get_email_reputation**
+> EmailReputationResponse get_email_reputation(app_id)
+
+Get email reputation statistics
+
+The email bounce and spam complaint rates received for the app over the last 24 hours, 7 days, and 30 days. Rates are expressed as fractions of successfully delivered emails (for example, `0.02` means 2%). A window reports `0` for both rates when the app has not successfully delivered any email in that period. 
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.models import *
+from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
+
+    try:
+        # Get email reputation statistics
+        api_response = api_instance.get_email_reputation(app_id)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->get_email_reputation: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| Your OneSignal App ID in UUID v4 format. |
+
+### Return type
+
+[**EmailReputationResponse**](EmailReputationResponse.md)
+
+### Authorization
+
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
 **429** | Rate Limit Exceeded |  -  |
 **0** | Unexpected error |  -  |
 

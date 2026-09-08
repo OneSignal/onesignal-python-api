@@ -203,6 +203,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_email_reputation(self):
+        """Test case for get_email_reputation
+
+        Get email reputation statistics  # noqa: E501
+        """
+        pass
+
     def test_get_notification(self):
         """Test case for get_notification
 
