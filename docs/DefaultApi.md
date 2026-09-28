@@ -24,6 +24,7 @@ Method | HTTP request | Description
 [**delete_subscription**](DefaultApi.md#delete_subscription) | **DELETE** /apps/{app_id}/subscriptions/{subscription_id} | 
 [**delete_template**](DefaultApi.md#delete_template) | **DELETE** /templates/{template_id} | Delete template
 [**delete_user**](DefaultApi.md#delete_user) | **DELETE** /apps/{app_id}/users/by/{alias_label}/{alias_id} | 
+[**duplicate_journey**](DefaultApi.md#duplicate_journey) | **POST** /apps/{app_id}/journeys/{journey_id}/duplicate | Duplicate journey
 [**estimate_notification_recipients**](DefaultApi.md#estimate_notification_recipients) | **POST** /notifications/count-unsaved | Estimate notification recipients
 [**export_events**](DefaultApi.md#export_events) | **POST** /notifications/{notification_id}/export_events | Export CSV of Events
 [**export_subscriptions**](DefaultApi.md#export_subscriptions) | **POST** /players/csv_export?app_id&#x3D;{app_id} | Export CSV of Subscriptions
@@ -2102,6 +2103,201 @@ void (empty response body)
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
 **409** | Conflict |  -  |
+**429** | Rate Limit Exceeded |  -  |
+**0** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
+
+# **duplicate_journey**
+> Journey duplicate_journey(app_id, journey_id)
+
+Duplicate journey
+
+The Journeys API is in beta. Endpoints and response fields can still change. Copy an existing journey into a new draft. The source does not change. The copy is always a draft, and started_at and archived_at are null. If you omit the body, or omit overrides, the copy keeps the source description, audience, nodes, early_exit, and reentry_rules. The copy takes the source name plus \" (Copy)\". The copy does not keep schedule. Send schedule under overrides to set it. Server-controlled fields are rejected with 400. The authenticated App API key must have permission to create journeys.
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.models import *
+from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
+    journey_id = "YOUR_JOURNEY_ID" # UUID of the journey to copy. 
+    duplicate_journey_request = DuplicateJourneyRequest(
+        overrides=DuplicateJourneyOverrides(
+            name="name_example",
+            description="description_example",
+            audience=JourneyAudience(
+                kind="segment",
+                included_segment_ids=[
+                    "included_segment_ids_example",
+                ],
+                excluded_segment_ids=[
+                    "excluded_segment_ids_example",
+                ],
+                future_additions_only=True,
+                name="name_example",
+                attributes=JourneyEventTriggerAttributes([
+                    [
+                        JourneyEventAttribute(
+                            key="key_example",
+                            operator="equal",
+                            value="value_example",
+                        ),
+                    ],
+                ]),
+            ),
+            early_exit=JourneyEarlyExit(
+                rules=JourneyEarlyExitRules(
+                    on_segment=JourneyEarlyExitRulesOnSegment(
+                        included_segment_ids=[
+                            "included_segment_ids_example",
+                        ],
+                    ),
+                    when_not_in_audience=True,
+                    on_session=True,
+                    on_event=JourneyEarlyExitRulesOnEvent(
+                        name="name_example",
+                    ),
+                ),
+                tag_on_early_exit={
+                    "key": "key_example",
+                },
+            ),
+            reentry_rules=JourneyReentryRules(
+                duration_seconds=600,
+            ),
+            schedule=JourneySchedule(
+                start_at="start_at_example",
+                stop_at="stop_at_example",
+                error="error_example",
+            ),
+            nodes=[
+                JourneyNode(
+                    id="id_example",
+                    kind="wait",
+                    client_node_id="client_node_id_example",
+                    annotation="annotation_example",
+                    duration_seconds=60,
+                    relative_to="schedule_in_timezone",
+                    windows=[
+                        JourneyTimeWindow(
+                            start=None,
+                            end=None,
+                            day_of_week=1,
+                        ),
+                    ],
+                    time_zone="time_zone_example",
+                    use_user_time_zone=True,
+                    template_id="template_id_example",
+                    iam_id="iam_id_example",
+                    user_ttl_seconds=1,
+                    webhook_id="webhook_id_example",
+                    assignments={
+                        "key": "key_example",
+                    },
+                    randomize_on_entry=True,
+                    branches=[
+                        JourneyBranch(
+                            id="id_example",
+                            condition=JourneyCondition(
+                                kind="segment_membership",
+                                included_segment_ids=[
+                                    "included_segment_ids_example",
+                                ],
+                                excluded_segment_ids=[
+                                    "excluded_segment_ids_example",
+                                ],
+                                action="received",
+                                sending_node_id="sending_node_id_example",
+                                client_node_id="client_node_id_example",
+                                name="name_example",
+                                attributes=JourneyEventTriggerAttributes([
+                                    [
+                                        JourneyEventAttribute(
+                                            key="key_example",
+                                            operator="equal",
+                                            value="value_example",
+                                        ),
+                                    ],
+                                ]),
+                                entry_event_match_attributes=[
+                                    {},
+                                ],
+                            ),
+                            weight=3.14,
+                            nodes=[
+                                JourneyNode(),
+                            ],
+                        ),
+                    ],
+                    expiration=JourneyWaitUntilExpiration(
+                        duration_seconds=60,
+                        exits=True,
+                    ),
+                ),
+            ],
+        ),
+    ) 
+
+    try:
+        # Duplicate journey
+        api_response = api_instance.duplicate_journey(app_id, journey_id, duplicate_journey_request=duplicate_journey_request)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->duplicate_journey: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| Your OneSignal App ID in UUID v4 format. |
+ **journey_id** | **str**| UUID of the journey to copy. |
+ **duplicate_journey_request** | [**DuplicateJourneyRequest**](DuplicateJourneyRequest.md)|  | [optional]
+
+### Return type
+
+[**Journey**](Journey.md)
+
+### Authorization
+
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**201** | Created |  -  |
+**400** | Bad Request |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
 **429** | Rate Limit Exceeded |  -  |
 **0** | Unexpected error |  -  |
 

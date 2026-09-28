@@ -156,6 +156,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_duplicate_journey(self):
+        """Test case for duplicate_journey
+
+        Duplicate journey  # noqa: E501
+        """
+        pass
+
     def test_estimate_notification_recipients(self):
         """Test case for estimate_notification_recipients
 
