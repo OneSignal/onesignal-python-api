@@ -34,6 +34,7 @@ from onesignal.model.create_segment_success_response import CreateSegmentSuccess
 from onesignal.model.create_template_request import CreateTemplateRequest
 from onesignal.model.create_user_conflict_response import CreateUserConflictResponse
 from onesignal.model.custom_events_request import CustomEventsRequest
+from onesignal.model.duplicate_journey_request import DuplicateJourneyRequest
 from onesignal.model.email_reputation_response import EmailReputationResponse
 from onesignal.model.estimate_notification_recipients_request import EstimateNotificationRecipientsRequest
 from onesignal.model.estimate_notification_recipients_success_response import EstimateNotificationRecipientsSuccessResponse
@@ -1271,6 +1272,69 @@ class DefaultApi(object):
                     'application/json'
                 ],
                 'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.duplicate_journey_endpoint = _Endpoint(
+            settings={
+                'response_type': (Journey,),
+                'auth': [
+                    'rest_api_key'
+                ],
+                'endpoint_path': '/apps/{app_id}/journeys/{journey_id}/duplicate',
+                'operation_id': 'duplicate_journey',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'app_id',
+                    'journey_id',
+                    'duplicate_journey_request',
+                ],
+                'required': [
+                    'app_id',
+                    'journey_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'app_id':
+                        (str,),
+                    'journey_id':
+                        (str,),
+                    'duplicate_journey_request':
+                        (DuplicateJourneyRequest,),
+                },
+                'attribute_map': {
+                    'app_id': 'app_id',
+                    'journey_id': 'journey_id',
+                },
+                'location_map': {
+                    'app_id': 'path',
+                    'journey_id': 'path',
+                    'duplicate_journey_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
             api_client=api_client
         )
@@ -4998,7 +5062,7 @@ class DefaultApi(object):
 
         Args:
             app_id (str): The OneSignal App ID for your app.  Available in Keys & IDs.
-            segment_id (str): The segment_id can be found in the URL of the segment when viewing it in the dashboard.
+            segment_id (str): The segment's unique identifier. In the dashboard, go to Audience > Segments, open the segment's options menu, and select Copy segment ID. You can also get it from the View Segments API or the segment's URL in the dashboard.
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -5332,6 +5396,94 @@ class DefaultApi(object):
         kwargs['alias_id'] = \
             alias_id
         return self.delete_user_endpoint.call_with_http_info(**kwargs)
+
+    def duplicate_journey(
+        self,
+        app_id,
+        journey_id,
+        **kwargs
+    ):
+        """Duplicate journey  # noqa: E501
+
+        The Journeys API is in beta. Endpoints and response fields can still change. Copy an existing journey into a new draft. The source does not change. The copy is always a draft, and started_at and archived_at are null. If you omit the body, or omit overrides, the copy keeps the source description, audience, nodes, early_exit, and reentry_rules. The copy takes the source name plus \" (Copy)\". The copy does not keep schedule. Send schedule under overrides to set it. Server-controlled fields are rejected with 400. The authenticated App API key must have permission to create journeys.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.duplicate_journey(app_id, journey_id, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            app_id (str): Your OneSignal App ID in UUID v4 format.
+            journey_id (str): UUID of the journey to copy.
+
+        Keyword Args:
+            duplicate_journey_request (DuplicateJourneyRequest): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            Journey
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['app_id'] = \
+            app_id
+        kwargs['journey_id'] = \
+            journey_id
+        return self.duplicate_journey_endpoint.call_with_http_info(**kwargs)
 
     def estimate_notification_recipients(
         self,
@@ -6378,7 +6530,7 @@ class DefaultApi(object):
 
         Args:
             app_id (str): The OneSignal App ID for your app.  Available in Keys & IDs.
-            segment_id (str): The segment's unique identifier. Can be found using the View Segments API or in the URL of the segment when viewing it in the dashboard.
+            segment_id (str): The segment's unique identifier. In the dashboard, go to Audience > Segments, open the segment's options menu, and select Copy segment ID. You can also get it from the View Segments API or the segment's URL in the dashboard.
 
         Keyword Args:
             include_segment_detail (bool): Set to true to include segment metadata and filters in the response.. [optional]
@@ -7551,7 +7703,7 @@ class DefaultApi(object):
 
         Args:
             app_id (str): The OneSignal App ID for your app.  Available in Keys & IDs.
-            segment_id (str): The segment's unique identifier. Can be found using the View Segments API or in the URL of the segment when viewing it in the dashboard.
+            segment_id (str): The segment's unique identifier. In the dashboard, go to Audience > Segments, open the segment's options menu, and select Copy segment ID. You can also get it from the View Segments API or the segment's URL in the dashboard.
 
         Keyword Args:
             update_segment_request (UpdateSegmentRequest): [optional]

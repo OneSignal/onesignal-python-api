@@ -35,6 +35,8 @@ from onesignal.model.create_user_conflict_response_errors_items_meta import Crea
 from onesignal.model.custom_event import CustomEvent
 from onesignal.model.custom_events_request import CustomEventsRequest
 from onesignal.model.delivery_data import DeliveryData
+from onesignal.model.duplicate_journey_overrides import DuplicateJourneyOverrides
+from onesignal.model.duplicate_journey_request import DuplicateJourneyRequest
 from onesignal.model.email_reputation_response import EmailReputationResponse
 from onesignal.model.email_reputation_window import EmailReputationWindow
 from onesignal.model.email_warm_up import EmailWarmUp
