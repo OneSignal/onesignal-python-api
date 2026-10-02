@@ -186,7 +186,7 @@ class UpdateJourneyNodeRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             client_node_id (str): Optional client-assigned identifier, unique within the journey. Use it to reference this node from elsewhere in the same request. Persisted and returned on reads.. [optional]  # noqa: E501
-            annotation (str): Optional free-text label, up to 255 characters. Stored and returned as-is with no effect on journey behavior.. [optional]  # noqa: E501
+            annotation (str): Optional free-text label, up to 1024 characters. Stored and returned as-is with no effect on journey behavior.. [optional]  # noqa: E501
             duration_seconds (int, none_type): wait nodes: seconds to hold the user. Minimum 60, maximum 31556952 (1 year).. [optional]  # noqa: E501
             relative_to (str): time_window nodes: schedule_in_timezone uses the configured windows; last_active_time holds relative to the user's last active time.. [optional]  # noqa: E501
             windows ([JourneyTimeWindow]): time_window nodes: one or more time windows. A window with no day_of_week applies to every day. Required when relative_to is schedule_in_timezone; omit when it is last_active_time.. [optional]  # noqa: E501
@@ -198,7 +198,7 @@ class UpdateJourneyNodeRequest(ModelNormal):
             webhook_id (str): send_webhook nodes: UUID of the webhook to send.. [optional]  # noqa: E501
             assignments ({str: (str,)}): tag nodes: tag key-value pairs to assign. An empty string value removes the tag. Keys are limited to 255 characters and values to 1024.. [optional]  # noqa: E501
             randomize_on_entry (bool, none_type): split_range nodes: when true, assigns each user to a branch at random on entry. Defaults to false.. [optional]  # noqa: E501
-            branches ([JourneyBranch]): Branching nodes: nested branches. split_range requires 2-20 weighted branches that sum to 100. yes_no requires exactly 2 branches. wait_until requires 1-10 condition branches.. [optional]  # noqa: E501
+            branches ([JourneyBranch]): Branching nodes: nested branches. split_range requires 2-25 weighted branches that sum to 100. yes_no requires exactly 2 branches. wait_until requires 1-25 condition branches.. [optional]  # noqa: E501
             expiration (JourneyWaitUntilExpiration): [optional]  # noqa: E501
             concurrency_key (str, none_type): Optional optimistic-concurrency token. Pass the concurrency_key from a prior fetch to reject the update with 409 if the journey changed. Omit to skip the check. It is not merged onto the node.. [optional]  # noqa: E501
         """
@@ -287,7 +287,7 @@ class UpdateJourneyNodeRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             client_node_id (str): Optional client-assigned identifier, unique within the journey. Use it to reference this node from elsewhere in the same request. Persisted and returned on reads.. [optional]  # noqa: E501
-            annotation (str): Optional free-text label, up to 255 characters. Stored and returned as-is with no effect on journey behavior.. [optional]  # noqa: E501
+            annotation (str): Optional free-text label, up to 1024 characters. Stored and returned as-is with no effect on journey behavior.. [optional]  # noqa: E501
             duration_seconds (int, none_type): wait nodes: seconds to hold the user. Minimum 60, maximum 31556952 (1 year).. [optional]  # noqa: E501
             relative_to (str): time_window nodes: schedule_in_timezone uses the configured windows; last_active_time holds relative to the user's last active time.. [optional]  # noqa: E501
             windows ([JourneyTimeWindow]): time_window nodes: one or more time windows. A window with no day_of_week applies to every day. Required when relative_to is schedule_in_timezone; omit when it is last_active_time.. [optional]  # noqa: E501
@@ -299,7 +299,7 @@ class UpdateJourneyNodeRequest(ModelNormal):
             webhook_id (str): send_webhook nodes: UUID of the webhook to send.. [optional]  # noqa: E501
             assignments ({str: (str,)}): tag nodes: tag key-value pairs to assign. An empty string value removes the tag. Keys are limited to 255 characters and values to 1024.. [optional]  # noqa: E501
             randomize_on_entry (bool, none_type): split_range nodes: when true, assigns each user to a branch at random on entry. Defaults to false.. [optional]  # noqa: E501
-            branches ([JourneyBranch]): Branching nodes: nested branches. split_range requires 2-20 weighted branches that sum to 100. yes_no requires exactly 2 branches. wait_until requires 1-10 condition branches.. [optional]  # noqa: E501
+            branches ([JourneyBranch]): Branching nodes: nested branches. split_range requires 2-25 weighted branches that sum to 100. yes_no requires exactly 2 branches. wait_until requires 1-25 condition branches.. [optional]  # noqa: E501
             expiration (JourneyWaitUntilExpiration): [optional]  # noqa: E501
             concurrency_key (str, none_type): Optional optimistic-concurrency token. Pass the concurrency_key from a prior fetch to reject the update with 409 if the journey changed. Omit to skip the check. It is not merged onto the node.. [optional]  # noqa: E501
         """
