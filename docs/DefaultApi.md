@@ -208,7 +208,7 @@ with onesignal.ApiClient(configuration) as api_client:
     template_id = "e4d3c2b1-a09f-4f1e-8d7c-6b5a4f3e2d1c" 
     app_id = "YOUR_APP_ID" 
     copy_template_request = CopyTemplateRequest(
-        target_app_id="target_app_id_example",
+        target_app_id="YOUR_TARGET_APP_ID",
     ) 
 
     try:
@@ -287,11 +287,7 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "YOUR_APP_ID" 
     alias_label = "external_id" 
     alias_id = "YOUR_USER_EXTERNAL_ID" 
-    user_identity_body = UserIdentityBody(
-        identity=IdentityObject(
-            key="key_example",
-        ),
-    ) 
+    user_identity_body = UserIdentityBody() 
 
     try:
         api_response = api_instance.create_alias(app_id, alias_label, alias_id, user_identity_body)
@@ -371,11 +367,7 @@ with onesignal.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     app_id = "YOUR_APP_ID" 
     subscription_id = "7e4c5b9a-1f60-4d07-9b1a-2e8c8d2cae51" 
-    user_identity_body = UserIdentityBody(
-        identity=IdentityObject(
-            key="key_example",
-        ),
-    ) 
+    user_identity_body = UserIdentityBody() 
 
     try:
         api_response = api_instance.create_alias_by_subscription(app_id, subscription_id, user_identity_body)
@@ -453,13 +445,7 @@ with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     app_id = "YOUR_APP_ID" 
-    create_api_key_request = CreateApiKeyRequest(
-        name="name_example",
-        ip_allowlist_mode="disabled",
-        ip_allowlist=[
-            "ip_allowlist_example",
-        ],
-    ) 
+    create_api_key_request = CreateApiKeyRequest() 
 
     try:
         # Create API key
@@ -533,29 +519,7 @@ configuration = onesignal.Configuration(
 with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
-    app = App(
-        name="name_example",
-        android_gcm_sender_id="android_gcm_sender_id_example",
-        gcm_key="gcm_key_example",
-        chrome_web_origin="chrome_web_origin_example",
-        chrome_key="chrome_key_example",
-        chrome_web_default_notification_icon="chrome_web_default_notification_icon_example",
-        chrome_web_sub_domain="chrome_web_sub_domain_example",
-        apns_env="sandbox",
-        apns_p12="apns_p12_example",
-        apns_p12_password="apns_p12_password_example",
-        safari_apns_p12="safari_apns_p12_example",
-        safari_apns_p12_password="safari_apns_p12_password_example",
-        apns_key_id="apns_key_id_example",
-        apns_team_id="apns_team_id_example",
-        apns_bundle_id="apns_bundle_id_example",
-        apns_p8="apns_p8_example",
-        safari_site_origin="safari_site_origin_example",
-        safari_icon_256_256="safari_icon_256_256_example",
-        site_name="site_name_example",
-        organization_id="organization_id_example",
-        additional_data_is_root_payload=True,
-    ) 
+    app = App() 
 
     try:
         # Create an app
@@ -614,8 +578,6 @@ The Custom Events API allows you to record user events. Custom events can repres
 import onesignal
 from onesignal.api import default_api
 from onesignal.models import *
-# python-dateutil is installed automatically as a dependency of this SDK.
-from dateutil.parser import parse as dateutil_parser
 from pprint import pprint
 
 # See configuration.py for a list of all supported configuration parameters.
@@ -635,11 +597,7 @@ with onesignal.ApiClient(configuration) as api_client:
     custom_events_request = CustomEventsRequest(
         events=[
             CustomEvent(
-                name="name_example",
-                external_id="external_id_example",
-                onesignal_id="onesignal_id_example",
-                timestamp=dateutil_parser('1970-01-01T00:00:00.00Z'),
-                payload={},
+                name="YOUR_NAME",
             ),
         ],
     ) 
@@ -720,118 +678,7 @@ with onesignal.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
     create_journey_request = CreateJourneyRequest(
-        name="name_example",
-        description="description_example",
-        audience=JourneyAudience(
-            kind="segment",
-            included_segment_ids=[
-                "included_segment_ids_example",
-            ],
-            excluded_segment_ids=[
-                "excluded_segment_ids_example",
-            ],
-            future_additions_only=True,
-            name="name_example",
-            attributes=JourneyEventTriggerAttributes([
-                [
-                    JourneyEventAttribute(
-                        key="key_example",
-                        operator="equal",
-                        value="value_example",
-                    ),
-                ],
-            ]),
-        ),
-        early_exit=JourneyEarlyExit(
-            rules=JourneyEarlyExitRules(
-                on_segment=JourneyEarlyExitRulesOnSegment(
-                    included_segment_ids=[
-                        "included_segment_ids_example",
-                    ],
-                ),
-                when_not_in_audience=True,
-                on_session=True,
-                on_event=JourneyEarlyExitRulesOnEvent(
-                    name="name_example",
-                ),
-            ),
-            tag_on_early_exit={
-                "key": "key_example",
-            },
-        ),
-        reentry_rules=JourneyReentryRules(
-            duration_seconds=600,
-        ),
-        schedule=JourneySchedule(
-            start_at="start_at_example",
-            stop_at="stop_at_example",
-            error="error_example",
-        ),
-        nodes=[
-            JourneyNode(
-                id="id_example",
-                kind="wait",
-                client_node_id="client_node_id_example",
-                annotation="annotation_example",
-                duration_seconds=60,
-                relative_to="schedule_in_timezone",
-                windows=[
-                    JourneyTimeWindow(
-                        start=None,
-                        end=None,
-                        day_of_week=1,
-                    ),
-                ],
-                time_zone="time_zone_example",
-                use_user_time_zone=True,
-                template_id="template_id_example",
-                iam_id="iam_id_example",
-                user_ttl_seconds=1,
-                webhook_id="webhook_id_example",
-                assignments={
-                    "key": "key_example",
-                },
-                randomize_on_entry=True,
-                branches=[
-                    JourneyBranch(
-                        id="id_example",
-                        condition=JourneyCondition(
-                            kind="segment_membership",
-                            included_segment_ids=[
-                                "included_segment_ids_example",
-                            ],
-                            excluded_segment_ids=[
-                                "excluded_segment_ids_example",
-                            ],
-                            action="received",
-                            sending_node_id="sending_node_id_example",
-                            client_node_id="client_node_id_example",
-                            name="name_example",
-                            attributes=JourneyEventTriggerAttributes([
-                                [
-                                    JourneyEventAttribute(
-                                        key="key_example",
-                                        operator="equal",
-                                        value="value_example",
-                                    ),
-                                ],
-                            ]),
-                            entry_event_match_attributes=[
-                                {},
-                            ],
-                        ),
-                        weight=3.14,
-                        nodes=[
-                            JourneyNode(),
-                        ],
-                    ),
-                ],
-                expiration=JourneyWaitUntilExpiration(
-                    duration_seconds=60,
-                    exits=True,
-                ),
-            ),
-        ],
+        name="YOUR_NAME",
     ) 
 
     try:
@@ -1052,19 +899,9 @@ with onesignal.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     app_id = "YOUR_APP_ID" # The OneSignal App ID for your app.  Available in Keys & IDs. 
     segment = Segment(
-        id="d5d4d1a8-1c9e-42fb-b3f2-56d3a5a9a8b7",
         name="Inactive 30 days",
         filters=[
-            Filter(
-                field="tag",
-                key="level",
-                value="10",
-                hours_ago="24",
-                radius=3.14,
-                lat=3.14,
-                long=3.14,
-                relation=">",
-            ),
+            Filter(),
         ],
     ) 
 
@@ -1145,27 +982,7 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "YOUR_APP_ID" 
     alias_label = "external_id" 
     alias_id = "YOUR_USER_EXTERNAL_ID" 
-    subscription_body = SubscriptionBody(
-        subscription=Subscription(
-            id="e4e87830-b954-4363-b7bc-1f01dbaee5c8",
-            type="iOSPush",
-            token="d5d4d1a8-1c9e-42fb-b3f2-56d3a5a9a8b7",
-            enabled=True,
-            notification_types=1,
-            session_time=60,
-            session_count=1,
-            sdk="5.2.0",
-            device_model="iPhone14,2",
-            device_os="17.1",
-            rooted=True,
-            test_type=1,
-            app_version="1.0.0",
-            net_type=1,
-            carrier="Verizon",
-            web_auth="5DUmpGmLuTxWCLj5lJpwLQ",
-            web_p256="BM5-r8DauQXOb2E-3PgLPjSvjT0Ao9v5oJhw8bZ0cW7Vh6BbmPYcqbbCEJ1P2sK0hZ7HxSh9zGyU5pQk1jJmZ8A",
-        ),
-    ) 
+    subscription_body = SubscriptionBody() 
 
     try:
         api_response = api_instance.create_subscription(app_id, alias_label, alias_id, subscription_body)
@@ -1245,151 +1062,9 @@ with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     create_template_request = CreateTemplateRequest(
-        app_id="app_id_example",
-        name="name_example",
-        contents=LanguageStringMap(
-            en="en_example",
-            ar="ar_example",
-            bs="bs_example",
-            bg="bg_example",
-            ca="ca_example",
-            zh_hans="zh_hans_example",
-            zh_hant="zh_hant_example",
-            zh="zh_example",
-            hr="hr_example",
-            cs="cs_example",
-            da="da_example",
-            nl="nl_example",
-            et="et_example",
-            fi="fi_example",
-            fr="fr_example",
-            ka="ka_example",
-            de="de_example",
-            el="el_example",
-            hi="hi_example",
-            he="he_example",
-            hu="hu_example",
-            id="id_example",
-            it="it_example",
-            ja="ja_example",
-            ko="ko_example",
-            lv="lv_example",
-            lt="lt_example",
-            ms="ms_example",
-            nb="nb_example",
-            pl="pl_example",
-            fa="fa_example",
-            pt="pt_example",
-            pa="pa_example",
-            ro="ro_example",
-            ru="ru_example",
-            sr="sr_example",
-            sk="sk_example",
-            es="es_example",
-            sv="sv_example",
-            th="th_example",
-            tr="tr_example",
-            uk="uk_example",
-            vi="vi_example",
-        ),
-        headings=LanguageStringMap(
-            en="en_example",
-            ar="ar_example",
-            bs="bs_example",
-            bg="bg_example",
-            ca="ca_example",
-            zh_hans="zh_hans_example",
-            zh_hant="zh_hant_example",
-            zh="zh_example",
-            hr="hr_example",
-            cs="cs_example",
-            da="da_example",
-            nl="nl_example",
-            et="et_example",
-            fi="fi_example",
-            fr="fr_example",
-            ka="ka_example",
-            de="de_example",
-            el="el_example",
-            hi="hi_example",
-            he="he_example",
-            hu="hu_example",
-            id="id_example",
-            it="it_example",
-            ja="ja_example",
-            ko="ko_example",
-            lv="lv_example",
-            lt="lt_example",
-            ms="ms_example",
-            nb="nb_example",
-            pl="pl_example",
-            fa="fa_example",
-            pt="pt_example",
-            pa="pa_example",
-            ro="ro_example",
-            ru="ru_example",
-            sr="sr_example",
-            sk="sk_example",
-            es="es_example",
-            sv="sv_example",
-            th="th_example",
-            tr="tr_example",
-            uk="uk_example",
-            vi="vi_example",
-        ),
-        subtitle=LanguageStringMap(
-            en="en_example",
-            ar="ar_example",
-            bs="bs_example",
-            bg="bg_example",
-            ca="ca_example",
-            zh_hans="zh_hans_example",
-            zh_hant="zh_hant_example",
-            zh="zh_example",
-            hr="hr_example",
-            cs="cs_example",
-            da="da_example",
-            nl="nl_example",
-            et="et_example",
-            fi="fi_example",
-            fr="fr_example",
-            ka="ka_example",
-            de="de_example",
-            el="el_example",
-            hi="hi_example",
-            he="he_example",
-            hu="hu_example",
-            id="id_example",
-            it="it_example",
-            ja="ja_example",
-            ko="ko_example",
-            lv="lv_example",
-            lt="lt_example",
-            ms="ms_example",
-            nb="nb_example",
-            pl="pl_example",
-            fa="fa_example",
-            pt="pt_example",
-            pa="pa_example",
-            ro="ro_example",
-            ru="ru_example",
-            sr="sr_example",
-            sk="sk_example",
-            es="es_example",
-            sv="sv_example",
-            th="th_example",
-            tr="tr_example",
-            uk="uk_example",
-            vi="vi_example",
-        ),
-        is_email=True,
-        email_subject="email_subject_example",
-        email_body="email_body_example",
-        email_bcc=[
-            "email_bcc_example",
-        ],
-        is_sms=True,
-        dynamic_content="dynamic_content_example",
+        app_id="YOUR_APP_ID",
+        name="YOUR_NAME",
+        contents=LanguageStringMap(),
     ) 
 
     try:
@@ -1465,52 +1140,7 @@ with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     app_id = "YOUR_APP_ID" 
-    user = User(
-        properties=PropertiesObject(
-            tags={},
-            language="en",
-            timezone_id="America/Los_Angeles",
-            lat=3.14,
-            long=3.14,
-            country="US",
-            first_active=1,
-            last_active=1,
-            amount_spent=3.14,
-            purchases=[
-                Purchase(
-                    sku="com.example.coins100",
-                    amount="0.99",
-                    iso="USD",
-                    count=1,
-                ),
-            ],
-            ip="203.0.113.10",
-        ),
-        identity=IdentityObject(
-            key="key_example",
-        ),
-        subscriptions=[
-            Subscription(
-                id="e4e87830-b954-4363-b7bc-1f01dbaee5c8",
-                type="iOSPush",
-                token="d5d4d1a8-1c9e-42fb-b3f2-56d3a5a9a8b7",
-                enabled=True,
-                notification_types=1,
-                session_time=60,
-                session_count=1,
-                sdk="5.2.0",
-                device_model="iPhone14,2",
-                device_os="17.1",
-                rooted=True,
-                test_type=1,
-                app_version="1.0.0",
-                net_type=1,
-                carrier="Verizon",
-                web_auth="5DUmpGmLuTxWCLj5lJpwLQ",
-                web_p256="BM5-r8DauQXOb2E-3PgLPjSvjT0Ao9v5oJhw8bZ0cW7Vh6BbmPYcqbbCEJ1P2sK0hZ7HxSh9zGyU5pQk1jJmZ8A",
-            ),
-        ],
-    ) 
+    user = User() 
 
     try:
         api_response = api_instance.create_user(app_id, user)
@@ -2140,122 +1770,7 @@ with onesignal.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
     journey_id = "YOUR_JOURNEY_ID" # UUID of the journey to copy. 
-    duplicate_journey_request = DuplicateJourneyRequest(
-        overrides=DuplicateJourneyOverrides(
-            name="name_example",
-            description="description_example",
-            audience=JourneyAudience(
-                kind="segment",
-                included_segment_ids=[
-                    "included_segment_ids_example",
-                ],
-                excluded_segment_ids=[
-                    "excluded_segment_ids_example",
-                ],
-                future_additions_only=True,
-                name="name_example",
-                attributes=JourneyEventTriggerAttributes([
-                    [
-                        JourneyEventAttribute(
-                            key="key_example",
-                            operator="equal",
-                            value="value_example",
-                        ),
-                    ],
-                ]),
-            ),
-            early_exit=JourneyEarlyExit(
-                rules=JourneyEarlyExitRules(
-                    on_segment=JourneyEarlyExitRulesOnSegment(
-                        included_segment_ids=[
-                            "included_segment_ids_example",
-                        ],
-                    ),
-                    when_not_in_audience=True,
-                    on_session=True,
-                    on_event=JourneyEarlyExitRulesOnEvent(
-                        name="name_example",
-                    ),
-                ),
-                tag_on_early_exit={
-                    "key": "key_example",
-                },
-            ),
-            reentry_rules=JourneyReentryRules(
-                duration_seconds=600,
-            ),
-            schedule=JourneySchedule(
-                start_at="start_at_example",
-                stop_at="stop_at_example",
-                error="error_example",
-            ),
-            nodes=[
-                JourneyNode(
-                    id="id_example",
-                    kind="wait",
-                    client_node_id="client_node_id_example",
-                    annotation="annotation_example",
-                    duration_seconds=60,
-                    relative_to="schedule_in_timezone",
-                    windows=[
-                        JourneyTimeWindow(
-                            start=None,
-                            end=None,
-                            day_of_week=1,
-                        ),
-                    ],
-                    time_zone="time_zone_example",
-                    use_user_time_zone=True,
-                    template_id="template_id_example",
-                    iam_id="iam_id_example",
-                    user_ttl_seconds=1,
-                    webhook_id="webhook_id_example",
-                    assignments={
-                        "key": "key_example",
-                    },
-                    randomize_on_entry=True,
-                    branches=[
-                        JourneyBranch(
-                            id="id_example",
-                            condition=JourneyCondition(
-                                kind="segment_membership",
-                                included_segment_ids=[
-                                    "included_segment_ids_example",
-                                ],
-                                excluded_segment_ids=[
-                                    "excluded_segment_ids_example",
-                                ],
-                                action="received",
-                                sending_node_id="sending_node_id_example",
-                                client_node_id="client_node_id_example",
-                                name="name_example",
-                                attributes=JourneyEventTriggerAttributes([
-                                    [
-                                        JourneyEventAttribute(
-                                            key="key_example",
-                                            operator="equal",
-                                            value="value_example",
-                                        ),
-                                    ],
-                                ]),
-                                entry_event_match_attributes=[
-                                    {},
-                                ],
-                            ),
-                            weight=3.14,
-                            nodes=[
-                                JourneyNode(),
-                            ],
-                        ),
-                    ],
-                    expiration=JourneyWaitUntilExpiration(
-                        duration_seconds=60,
-                        exits=True,
-                    ),
-                ),
-            ],
-        ),
-    ) 
+    duplicate_journey_request = DuplicateJourneyRequest() 
 
     try:
         # Duplicate journey
@@ -2485,13 +2000,7 @@ with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     app_id = "YOUR_APP_ID" # The app ID that you want to export devices from 
-    export_subscriptions_request_body = ExportSubscriptionsRequestBody(
-        extra_fields=[
-            "extra_fields_example",
-        ],
-        last_active_since="last_active_since_example",
-        segment_name="segment_name_example",
-    ) 
+    export_subscriptions_request_body = ExportSubscriptionsRequestBody() 
 
     try:
         # Export CSV of Subscriptions
@@ -3017,11 +2526,7 @@ with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     notification_id = "b3a0c8bd-3a4c-4b22-9a73-3f1a8c2d1b88" # The \"id\" of the message found in the Notification object 
-    get_notification_history_request_body = GetNotificationHistoryRequestBody(
-        events="sent",
-        email="email_example",
-        app_id="app_id_example",
-    ) 
+    get_notification_history_request_body = GetNotificationHistoryRequestBody() 
 
     try:
         # Notification History
@@ -3499,30 +3004,30 @@ with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     organization_id = "YOUR_ORG_ID" # The UUID of the organization to retrieve audit logs for. Must match the authenticated Organization API Key. 
-    start_time = "start_time_example"  # Start of the time range in ISO 8601 format (e.g. 2026-02-01T00:00:00Z). Required unless cursor is provided. Must be within the last 90 days. (optional) 
-    end_time = "end_time_example"  # End of the time range in ISO 8601 format. Defaults to the current time. Must be after start_time. (optional) 
-    cursor = "cursor_example"  # Pagination cursor returned in a previous response as next_cursor. When provided, start_time and end_time are ignored. (optional) 
-    limit = 1  # Maximum number of events to return per page. Minimum 1, maximum 100. Values outside this range are clamped automatically by the server. (optional) 
+    start_time = "2026-02-01T00:00:00Z"  # Start of the time range in ISO 8601 format (e.g. 2026-02-01T00:00:00Z). Required unless cursor is provided. Must be within the last 90 days. (optional) 
+    end_time = "2026-02-02T00:00:00Z"  # End of the time range in ISO 8601 format. Defaults to the current time. Must be after start_time. (optional) 
+    cursor = "YOUR_NEXT_CURSOR"  # Pagination cursor returned in a previous response as next_cursor. When provided, start_time and end_time are ignored. (optional) 
+    limit = 50  # Maximum number of events to return per page. Minimum 1, maximum 100. Values outside this range are clamped automatically by the server. (optional) 
     app_ids = [
-        "app_ids_example",
+        "YOUR_APP_ID",
     ]  # Filter events by app UUID. Accepts up to 10 values. Org-level events are always included. (optional) 
     actions = [
-        "actions_example",
+        "notification.sent",
     ]  # Filter by action type (e.g. notification.sent, segment.created). Accepts up to 20 values. (optional) 
     actor_ids = [
-        "actor_ids_example",
+        "YOUR_ACTOR_ID",
     ]  # Filter by actor UUID (the user or service that performed the action). Accepts up to 10 values. (optional) 
     actor_emails = [
-        "actor_emails_example",
+        "admin@example.com",
     ]  # Filter by actor email address. Accepts up to 10 values. (optional) 
     target_types = [
-        "target_types_example",
+        "notification",
     ]  # Filter by the type of resource the action was performed on (e.g. notification, segment, journey). Accepts up to 10 values. (optional) 
     target_ids = [
-        "target_ids_example",
+        "YOUR_TARGET_ID",
     ]  # Filter by the UUID of the resource the action was performed on. Accepts up to 10 values. (optional) 
     ip_addresses = [
-        "ip_addresses_example",
+        "203.0.113.42",
     ]  # Filter by the IP address the action originated from. Accepts up to 10 values. (optional) 
 
     try:
@@ -3688,131 +3193,13 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
     activity_type = "order_status" # The name of the Live Activity defined in your app. This should match the attributes struct used in your app's Live Activity implementation. 
     start_live_activity_request = StartLiveActivityRequest(
-        name="name_example",
+        name="YOUR_NAME",
         event="start",
-        activity_id="activity_id_example",
+        activity_id="YOUR_ACTIVITY_ID",
         event_attributes={},
         event_updates={},
-        contents=LanguageStringMap(
-            en="en_example",
-            ar="ar_example",
-            bs="bs_example",
-            bg="bg_example",
-            ca="ca_example",
-            zh_hans="zh_hans_example",
-            zh_hant="zh_hant_example",
-            zh="zh_example",
-            hr="hr_example",
-            cs="cs_example",
-            da="da_example",
-            nl="nl_example",
-            et="et_example",
-            fi="fi_example",
-            fr="fr_example",
-            ka="ka_example",
-            de="de_example",
-            el="el_example",
-            hi="hi_example",
-            he="he_example",
-            hu="hu_example",
-            id="id_example",
-            it="it_example",
-            ja="ja_example",
-            ko="ko_example",
-            lv="lv_example",
-            lt="lt_example",
-            ms="ms_example",
-            nb="nb_example",
-            pl="pl_example",
-            fa="fa_example",
-            pt="pt_example",
-            pa="pa_example",
-            ro="ro_example",
-            ru="ru_example",
-            sr="sr_example",
-            sk="sk_example",
-            es="es_example",
-            sv="sv_example",
-            th="th_example",
-            tr="tr_example",
-            uk="uk_example",
-            vi="vi_example",
-        ),
-        headings=LanguageStringMap(
-            en="en_example",
-            ar="ar_example",
-            bs="bs_example",
-            bg="bg_example",
-            ca="ca_example",
-            zh_hans="zh_hans_example",
-            zh_hant="zh_hant_example",
-            zh="zh_example",
-            hr="hr_example",
-            cs="cs_example",
-            da="da_example",
-            nl="nl_example",
-            et="et_example",
-            fi="fi_example",
-            fr="fr_example",
-            ka="ka_example",
-            de="de_example",
-            el="el_example",
-            hi="hi_example",
-            he="he_example",
-            hu="hu_example",
-            id="id_example",
-            it="it_example",
-            ja="ja_example",
-            ko="ko_example",
-            lv="lv_example",
-            lt="lt_example",
-            ms="ms_example",
-            nb="nb_example",
-            pl="pl_example",
-            fa="fa_example",
-            pt="pt_example",
-            pa="pa_example",
-            ro="ro_example",
-            ru="ru_example",
-            sr="sr_example",
-            sk="sk_example",
-            es="es_example",
-            sv="sv_example",
-            th="th_example",
-            tr="tr_example",
-            uk="uk_example",
-            vi="vi_example",
-        ),
-        stale_date=1,
-        priority=1,
-        ios_relevance_score=3.14,
-        idempotency_key="idempotency_key_example",
-        include_aliases=IncludeAliases(
-            key=[
-                "key_example",
-            ],
-        ),
-        include_subscription_ids=[
-            "include_subscription_ids_example",
-        ],
-        included_segments=[
-            "included_segments_example",
-        ],
-        excluded_segments=[
-            "excluded_segments_example",
-        ],
-        filters=[
-            Filter(
-                field="tag",
-                key="level",
-                value="10",
-                hours_ago="24",
-                radius=3.14,
-                lat=3.14,
-                long=3.14,
-                relation=">",
-            ),
-        ],
+        contents=LanguageStringMap(),
+        headings=LanguageStringMap(),
     ) 
 
     try:
@@ -3891,11 +3278,7 @@ with onesignal.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     app_id = "YOUR_APP_ID" 
     subscription_id = "7e4c5b9a-1f60-4d07-9b1a-2e8c8d2cae51" 
-    transfer_subscription_request_body = TransferSubscriptionRequestBody(
-        identity={
-            "key": "key_example",
-        },
-    ) 
+    transfer_subscription_request_body = TransferSubscriptionRequestBody() 
 
     try:
         api_response = api_instance.transfer_subscription(app_id, subscription_id, transfer_subscription_request_body)
@@ -4052,13 +3435,7 @@ with onesignal.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     app_id = "YOUR_APP_ID" 
     token_id = "0aa1b2c3-d4e5-46f7-8899-aabbccddeeff" 
-    update_api_key_request = UpdateApiKeyRequest(
-        name="name_example",
-        ip_allowlist_mode="disabled",
-        ip_allowlist=[
-            "ip_allowlist_example",
-        ],
-    ) 
+    update_api_key_request = UpdateApiKeyRequest() 
 
     try:
         # Update API key
@@ -4134,29 +3511,7 @@ with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     app_id = "YOUR_APP_ID" # An app id 
-    app = App(
-        name="name_example",
-        android_gcm_sender_id="android_gcm_sender_id_example",
-        gcm_key="gcm_key_example",
-        chrome_web_origin="chrome_web_origin_example",
-        chrome_key="chrome_key_example",
-        chrome_web_default_notification_icon="chrome_web_default_notification_icon_example",
-        chrome_web_sub_domain="chrome_web_sub_domain_example",
-        apns_env="sandbox",
-        apns_p12="apns_p12_example",
-        apns_p12_password="apns_p12_password_example",
-        safari_apns_p12="safari_apns_p12_example",
-        safari_apns_p12_password="safari_apns_p12_password_example",
-        apns_key_id="apns_key_id_example",
-        apns_team_id="apns_team_id_example",
-        apns_bundle_id="apns_bundle_id_example",
-        apns_p8="apns_p8_example",
-        safari_site_origin="safari_site_origin_example",
-        safari_icon_256_256="safari_icon_256_256_example",
-        site_name="site_name_example",
-        organization_id="organization_id_example",
-        additional_data_is_root_payload=True,
-    ) 
+    app = App() 
 
     try:
         # Update an app
@@ -4233,122 +3588,7 @@ with onesignal.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
     journey_id = "YOUR_JOURNEY_ID" # UUID of the journey to update. 
-    update_journey_request = UpdateJourneyRequest(
-        name="name_example",
-        description="description_example",
-        audience=JourneyAudience(
-            kind="segment",
-            included_segment_ids=[
-                "included_segment_ids_example",
-            ],
-            excluded_segment_ids=[
-                "excluded_segment_ids_example",
-            ],
-            future_additions_only=True,
-            name="name_example",
-            attributes=JourneyEventTriggerAttributes([
-                [
-                    JourneyEventAttribute(
-                        key="key_example",
-                        operator="equal",
-                        value="value_example",
-                    ),
-                ],
-            ]),
-        ),
-        early_exit=JourneyEarlyExit(
-            rules=JourneyEarlyExitRules(
-                on_segment=JourneyEarlyExitRulesOnSegment(
-                    included_segment_ids=[
-                        "included_segment_ids_example",
-                    ],
-                ),
-                when_not_in_audience=True,
-                on_session=True,
-                on_event=JourneyEarlyExitRulesOnEvent(
-                    name="name_example",
-                ),
-            ),
-            tag_on_early_exit={
-                "key": "key_example",
-            },
-        ),
-        reentry_rules=JourneyReentryRules(
-            duration_seconds=600,
-        ),
-        schedule=JourneySchedule(
-            start_at="start_at_example",
-            stop_at="stop_at_example",
-            error="error_example",
-        ),
-        nodes=[
-            JourneyNode(
-                id="id_example",
-                kind="wait",
-                client_node_id="client_node_id_example",
-                annotation="annotation_example",
-                duration_seconds=60,
-                relative_to="schedule_in_timezone",
-                windows=[
-                    JourneyTimeWindow(
-                        start=None,
-                        end=None,
-                        day_of_week=1,
-                    ),
-                ],
-                time_zone="time_zone_example",
-                use_user_time_zone=True,
-                template_id="template_id_example",
-                iam_id="iam_id_example",
-                user_ttl_seconds=1,
-                webhook_id="webhook_id_example",
-                assignments={
-                    "key": "key_example",
-                },
-                randomize_on_entry=True,
-                branches=[
-                    JourneyBranch(
-                        id="id_example",
-                        condition=JourneyCondition(
-                            kind="segment_membership",
-                            included_segment_ids=[
-                                "included_segment_ids_example",
-                            ],
-                            excluded_segment_ids=[
-                                "excluded_segment_ids_example",
-                            ],
-                            action="received",
-                            sending_node_id="sending_node_id_example",
-                            client_node_id="client_node_id_example",
-                            name="name_example",
-                            attributes=JourneyEventTriggerAttributes([
-                                [
-                                    JourneyEventAttribute(
-                                        key="key_example",
-                                        operator="equal",
-                                        value="value_example",
-                                    ),
-                                ],
-                            ]),
-                            entry_event_match_attributes=[
-                                {},
-                            ],
-                        ),
-                        weight=3.14,
-                        nodes=[
-                            JourneyNode(),
-                        ],
-                    ),
-                ],
-                expiration=JourneyWaitUntilExpiration(
-                    duration_seconds=60,
-                    exits=True,
-                ),
-            ),
-        ],
-        state="draft",
-        concurrency_key="concurrency_key_example",
-    ) 
+    update_journey_request = UpdateJourneyRequest() 
 
     try:
         # Update journey
@@ -4431,97 +3671,7 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
     journey_id = "YOUR_JOURNEY_ID" # UUID of the journey that owns the node. 
     node_id = "YOUR_NODE_ID" # Server-assigned UUID of the node to update, from a prior View journey fetch. 
-    update_journey_node_request = UpdateJourneyNodeRequest(
-        client_node_id="client_node_id_example",
-        annotation="annotation_example",
-        duration_seconds=60,
-        relative_to="schedule_in_timezone",
-        windows=[
-            JourneyTimeWindow(
-                start=None,
-                end=None,
-                day_of_week=1,
-            ),
-        ],
-        time_zone="time_zone_example",
-        use_user_time_zone=True,
-        template_id="template_id_example",
-        iam_id="iam_id_example",
-        user_ttl_seconds=1,
-        webhook_id="webhook_id_example",
-        assignments={
-            "key": "key_example",
-        },
-        randomize_on_entry=True,
-        branches=[
-            JourneyBranch(
-                id="id_example",
-                condition=JourneyCondition(
-                    kind="segment_membership",
-                    included_segment_ids=[
-                        "included_segment_ids_example",
-                    ],
-                    excluded_segment_ids=[
-                        "excluded_segment_ids_example",
-                    ],
-                    action="received",
-                    sending_node_id="sending_node_id_example",
-                    client_node_id="client_node_id_example",
-                    name="name_example",
-                    attributes=JourneyEventTriggerAttributes([
-                        [
-                            JourneyEventAttribute(
-                                key="key_example",
-                                operator="equal",
-                                value="value_example",
-                            ),
-                        ],
-                    ]),
-                    entry_event_match_attributes=[
-                        {},
-                    ],
-                ),
-                weight=3.14,
-                nodes=[
-                    JourneyNode(
-                        id="id_example",
-                        kind="wait",
-                        client_node_id="client_node_id_example",
-                        annotation="annotation_example",
-                        duration_seconds=60,
-                        relative_to="schedule_in_timezone",
-                        windows=[
-                            JourneyTimeWindow(
-                                start=None,
-                                end=None,
-                                day_of_week=1,
-                            ),
-                        ],
-                        time_zone="time_zone_example",
-                        use_user_time_zone=True,
-                        template_id="template_id_example",
-                        iam_id="iam_id_example",
-                        user_ttl_seconds=1,
-                        webhook_id="webhook_id_example",
-                        assignments={
-                            "key": "key_example",
-                        },
-                        randomize_on_entry=True,
-                        branches=[],
-                        expiration=JourneyWaitUntilExpiration(
-                            duration_seconds=60,
-                            exits=True,
-                        ),
-                    ),
-                ],
-            ),
-        ],
-        expiration=JourneyWaitUntilExpiration(
-            duration_seconds=60,
-            exits=True,
-        ),
-        concurrency_key="concurrency_key_example",
-    ) 
+    update_journey_node_request = UpdateJourneyNodeRequest() 
 
     try:
         # Update journey node
@@ -4605,105 +3755,9 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "YOUR_APP_ID" # The OneSignal App ID for your app.  Available in Keys & IDs. 
     activity_id = "12345" # Live Activity record ID 
     update_live_activity_request = UpdateLiveActivityRequest(
-        name="name_example",
+        name="YOUR_NAME",
         event="update",
         event_updates={},
-        contents=LanguageStringMap(
-            en="en_example",
-            ar="ar_example",
-            bs="bs_example",
-            bg="bg_example",
-            ca="ca_example",
-            zh_hans="zh_hans_example",
-            zh_hant="zh_hant_example",
-            zh="zh_example",
-            hr="hr_example",
-            cs="cs_example",
-            da="da_example",
-            nl="nl_example",
-            et="et_example",
-            fi="fi_example",
-            fr="fr_example",
-            ka="ka_example",
-            de="de_example",
-            el="el_example",
-            hi="hi_example",
-            he="he_example",
-            hu="hu_example",
-            id="id_example",
-            it="it_example",
-            ja="ja_example",
-            ko="ko_example",
-            lv="lv_example",
-            lt="lt_example",
-            ms="ms_example",
-            nb="nb_example",
-            pl="pl_example",
-            fa="fa_example",
-            pt="pt_example",
-            pa="pa_example",
-            ro="ro_example",
-            ru="ru_example",
-            sr="sr_example",
-            sk="sk_example",
-            es="es_example",
-            sv="sv_example",
-            th="th_example",
-            tr="tr_example",
-            uk="uk_example",
-            vi="vi_example",
-        ),
-        headings=LanguageStringMap(
-            en="en_example",
-            ar="ar_example",
-            bs="bs_example",
-            bg="bg_example",
-            ca="ca_example",
-            zh_hans="zh_hans_example",
-            zh_hant="zh_hant_example",
-            zh="zh_example",
-            hr="hr_example",
-            cs="cs_example",
-            da="da_example",
-            nl="nl_example",
-            et="et_example",
-            fi="fi_example",
-            fr="fr_example",
-            ka="ka_example",
-            de="de_example",
-            el="el_example",
-            hi="hi_example",
-            he="he_example",
-            hu="hu_example",
-            id="id_example",
-            it="it_example",
-            ja="ja_example",
-            ko="ko_example",
-            lv="lv_example",
-            lt="lt_example",
-            ms="ms_example",
-            nb="nb_example",
-            pl="pl_example",
-            fa="fa_example",
-            pt="pt_example",
-            pa="pa_example",
-            ro="ro_example",
-            ru="ru_example",
-            sr="sr_example",
-            sk="sk_example",
-            es="es_example",
-            sv="sv_example",
-            th="th_example",
-            tr="tr_example",
-            uk="uk_example",
-            vi="vi_example",
-        ),
-        sound="sound_example",
-        ios_sound="ios_sound_example",
-        stale_date=1,
-        dismissal_date=1,
-        priority=1,
-        ios_relevance_score=3.14,
     ) 
 
     try:
@@ -4783,20 +3837,7 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "YOUR_APP_ID" # The OneSignal App ID for your app.  Available in Keys & IDs. 
     segment_id = "d6c5a3e1-9f17-44a1-9d10-7c0e4a2b1c8e" # The segment's unique identifier. In the dashboard, go to Audience > Segments, open the segment's options menu, and select Copy segment ID. You can also get it from the View Segments API or the segment's URL in the dashboard. 
     update_segment_request = UpdateSegmentRequest(
-        name="name_example",
-        description="description_example",
-        filters=[
-            Filter(
-                field="tag",
-                key="level",
-                value="10",
-                hours_ago="24",
-                radius=3.14,
-                lat=3.14,
-                long=3.14,
-                relation=">",
-            ),
-        ],
+        name="YOUR_NAME",
     ) 
 
     try:
@@ -4877,27 +3918,7 @@ with onesignal.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     app_id = "YOUR_APP_ID" 
     subscription_id = "7e4c5b9a-1f60-4d07-9b1a-2e8c8d2cae51" 
-    subscription_body = SubscriptionBody(
-        subscription=Subscription(
-            id="e4e87830-b954-4363-b7bc-1f01dbaee5c8",
-            type="iOSPush",
-            token="d5d4d1a8-1c9e-42fb-b3f2-56d3a5a9a8b7",
-            enabled=True,
-            notification_types=1,
-            session_time=60,
-            session_count=1,
-            sdk="5.2.0",
-            device_model="iPhone14,2",
-            device_os="17.1",
-            rooted=True,
-            test_type=1,
-            app_version="1.0.0",
-            net_type=1,
-            carrier="Verizon",
-            web_auth="5DUmpGmLuTxWCLj5lJpwLQ",
-            web_p256="BM5-r8DauQXOb2E-3PgLPjSvjT0Ao9v5oJhw8bZ0cW7Vh6BbmPYcqbbCEJ1P2sK0hZ7HxSh9zGyU5pQk1jJmZ8A",
-        ),
-    ) 
+    subscription_body = SubscriptionBody() 
 
     try:
         api_instance.update_subscription(app_id, subscription_id, subscription_body)
@@ -4976,27 +3997,7 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
     token_type = "Email" # The type of token to use when looking up the subscription. See Subscription Types. 
     token = "user@example.com" # The value of the token to lookup by (e.g., email address, phone number). 
-    subscription_body = SubscriptionBody(
-        subscription=Subscription(
-            id="e4e87830-b954-4363-b7bc-1f01dbaee5c8",
-            type="iOSPush",
-            token="d5d4d1a8-1c9e-42fb-b3f2-56d3a5a9a8b7",
-            enabled=True,
-            notification_types=1,
-            session_time=60,
-            session_count=1,
-            sdk="5.2.0",
-            device_model="iPhone14,2",
-            device_os="17.1",
-            rooted=True,
-            test_type=1,
-            app_version="1.0.0",
-            net_type=1,
-            carrier="Verizon",
-            web_auth="5DUmpGmLuTxWCLj5lJpwLQ",
-            web_p256="BM5-r8DauQXOb2E-3PgLPjSvjT0Ao9v5oJhw8bZ0cW7Vh6BbmPYcqbbCEJ1P2sK0hZ7HxSh9zGyU5pQk1jJmZ8A",
-        ),
-    ) 
+    subscription_body = SubscriptionBody() 
 
     try:
         # Update subscription by token
@@ -5075,152 +4076,7 @@ with onesignal.ApiClient(configuration) as api_client:
     api_instance = default_api.DefaultApi(api_client)
     template_id = "e4d3c2b1-a09f-4f1e-8d7c-6b5a4f3e2d1c" 
     app_id = "YOUR_APP_ID" 
-    update_template_request = UpdateTemplateRequest(
-        name="name_example",
-        contents=LanguageStringMap(
-            en="en_example",
-            ar="ar_example",
-            bs="bs_example",
-            bg="bg_example",
-            ca="ca_example",
-            zh_hans="zh_hans_example",
-            zh_hant="zh_hant_example",
-            zh="zh_example",
-            hr="hr_example",
-            cs="cs_example",
-            da="da_example",
-            nl="nl_example",
-            et="et_example",
-            fi="fi_example",
-            fr="fr_example",
-            ka="ka_example",
-            de="de_example",
-            el="el_example",
-            hi="hi_example",
-            he="he_example",
-            hu="hu_example",
-            id="id_example",
-            it="it_example",
-            ja="ja_example",
-            ko="ko_example",
-            lv="lv_example",
-            lt="lt_example",
-            ms="ms_example",
-            nb="nb_example",
-            pl="pl_example",
-            fa="fa_example",
-            pt="pt_example",
-            pa="pa_example",
-            ro="ro_example",
-            ru="ru_example",
-            sr="sr_example",
-            sk="sk_example",
-            es="es_example",
-            sv="sv_example",
-            th="th_example",
-            tr="tr_example",
-            uk="uk_example",
-            vi="vi_example",
-        ),
-        headings=LanguageStringMap(
-            en="en_example",
-            ar="ar_example",
-            bs="bs_example",
-            bg="bg_example",
-            ca="ca_example",
-            zh_hans="zh_hans_example",
-            zh_hant="zh_hant_example",
-            zh="zh_example",
-            hr="hr_example",
-            cs="cs_example",
-            da="da_example",
-            nl="nl_example",
-            et="et_example",
-            fi="fi_example",
-            fr="fr_example",
-            ka="ka_example",
-            de="de_example",
-            el="el_example",
-            hi="hi_example",
-            he="he_example",
-            hu="hu_example",
-            id="id_example",
-            it="it_example",
-            ja="ja_example",
-            ko="ko_example",
-            lv="lv_example",
-            lt="lt_example",
-            ms="ms_example",
-            nb="nb_example",
-            pl="pl_example",
-            fa="fa_example",
-            pt="pt_example",
-            pa="pa_example",
-            ro="ro_example",
-            ru="ru_example",
-            sr="sr_example",
-            sk="sk_example",
-            es="es_example",
-            sv="sv_example",
-            th="th_example",
-            tr="tr_example",
-            uk="uk_example",
-            vi="vi_example",
-        ),
-        subtitle=LanguageStringMap(
-            en="en_example",
-            ar="ar_example",
-            bs="bs_example",
-            bg="bg_example",
-            ca="ca_example",
-            zh_hans="zh_hans_example",
-            zh_hant="zh_hant_example",
-            zh="zh_example",
-            hr="hr_example",
-            cs="cs_example",
-            da="da_example",
-            nl="nl_example",
-            et="et_example",
-            fi="fi_example",
-            fr="fr_example",
-            ka="ka_example",
-            de="de_example",
-            el="el_example",
-            hi="hi_example",
-            he="he_example",
-            hu="hu_example",
-            id="id_example",
-            it="it_example",
-            ja="ja_example",
-            ko="ko_example",
-            lv="lv_example",
-            lt="lt_example",
-            ms="ms_example",
-            nb="nb_example",
-            pl="pl_example",
-            fa="fa_example",
-            pt="pt_example",
-            pa="pa_example",
-            ro="ro_example",
-            ru="ru_example",
-            sr="sr_example",
-            sk="sk_example",
-            es="es_example",
-            sv="sv_example",
-            th="th_example",
-            tr="tr_example",
-            uk="uk_example",
-            vi="vi_example",
-        ),
-        is_email=True,
-        email_subject="email_subject_example",
-        email_body="email_body_example",
-        email_bcc=[
-            "email_bcc_example",
-        ],
-        is_sms=True,
-        dynamic_content="dynamic_content_example",
-    ) 
+    update_template_request = UpdateTemplateRequest() 
 
     try:
         # Update template
@@ -5298,41 +4154,7 @@ with onesignal.ApiClient(configuration) as api_client:
     app_id = "YOUR_APP_ID" 
     alias_label = "external_id" 
     alias_id = "YOUR_USER_EXTERNAL_ID" 
-    update_user_request = UpdateUserRequest(
-        properties=PropertiesObject(
-            tags={},
-            language="en",
-            timezone_id="America/Los_Angeles",
-            lat=3.14,
-            long=3.14,
-            country="US",
-            first_active=1,
-            last_active=1,
-            amount_spent=3.14,
-            purchases=[
-                Purchase(
-                    sku="com.example.coins100",
-                    amount="0.99",
-                    iso="USD",
-                    count=1,
-                ),
-            ],
-            ip="203.0.113.10",
-        ),
-        refresh_device_metadata=False,
-        deltas=PropertiesDeltas(
-            session_time=1,
-            session_count=1,
-            purchases=[
-                Purchase(
-                    sku="com.example.coins100",
-                    amount="0.99",
-                    iso="USD",
-                    count=1,
-                ),
-            ],
-        ),
-    ) 
+    update_user_request = UpdateUserRequest() 
 
     try:
         api_response = api_instance.update_user(app_id, alias_label, alias_id, update_user_request)
@@ -5635,7 +4457,7 @@ with onesignal.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = default_api.DefaultApi(api_client)
     app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
-    cursor = "cursor_example"  # Opaque pagination token from a previous response's next_cursor. Omit for the first page. (optional) 
+    cursor = "YOUR_NEXT_CURSOR"  # Opaque pagination token from a previous response's next_cursor. Omit for the first page. (optional) 
     limit = 50  # Maximum journeys to return per page. Minimum 1, maximum 50. (optional) 
 
     try:
