@@ -32,6 +32,8 @@ Method | HTTP request | Description
 [**get_aliases_by_subscription**](DefaultApi.md#get_aliases_by_subscription) | **GET** /apps/{app_id}/subscriptions/{subscription_id}/user/identity | 
 [**get_app**](DefaultApi.md#get_app) | **GET** /apps/{app_id} | View an app
 [**get_apps**](DefaultApi.md#get_apps) | **GET** /apps | View apps
+[**get_email_provider_metrics**](DefaultApi.md#get_email_provider_metrics) | **GET** /apps/{app_id}/email_analytics/provider_metrics | Get email inbox provider metrics
+[**get_email_provider_metrics_timeseries**](DefaultApi.md#get_email_provider_metrics_timeseries) | **GET** /apps/{app_id}/email_analytics/provider_metrics_timeseries | Get email inbox provider metrics over time
 [**get_email_reputation**](DefaultApi.md#get_email_reputation) | **GET** /apps/{app_id}/email_analytics/delivery_metrics | Get email reputation statistics
 [**get_notification**](DefaultApi.md#get_notification) | **GET** /notifications/{notification_id} | View notification
 [**get_notification_history**](DefaultApi.md#get_notification_history) | **POST** /notifications/{notification_id}/history | Notification History
@@ -2338,6 +2340,178 @@ This endpoint does not need any parameter.
 |-------------|-------------|------------------|
 **200** | OK |  -  |
 **400** | Bad Request |  -  |
+**429** | Rate Limit Exceeded |  -  |
+**0** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
+
+# **get_email_provider_metrics**
+> EmailProviderMetricsResponse get_email_provider_metrics(app_id, domain, start, end)
+
+Get email inbox provider metrics
+
+Email delivery, opens, clicks, bounces, failures, and spam complaints broken down by inbox provider (Gmail, Outlook, Yahoo, Apple, and more) to pinpoint where deliverability problems are coming from. Metrics are reported for a single sending domain over the requested time range. `start` must be before `end` and no more than 365 days ago. `providers` is empty when the domain is not found for the app or is not currently active for sending. 
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.models import *
+# python-dateutil is installed automatically as a dependency of this SDK.
+from dateutil.parser import parse as dateutil_parser
+from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
+    domain = "mail.example.com" # The sending domain to report on. Must be an email domain configured for this app. 
+    start = dateutil_parser('2026-08-01T00:00:00Z') # Start of the reporting window, as an ISO 8601 timestamp (for example, `2026-08-01T00:00:00Z`). 
+    end = dateutil_parser('2026-08-08T00:00:00Z') # End of the reporting window, as an ISO 8601 timestamp (for example, `2026-08-08T00:00:00Z`). 
+
+    try:
+        # Get email inbox provider metrics
+        api_response = api_instance.get_email_provider_metrics(app_id, domain, start, end)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->get_email_provider_metrics: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| Your OneSignal App ID in UUID v4 format. |
+ **domain** | **str**| The sending domain to report on. Must be an email domain configured for this app. |
+ **start** | **datetime**| Start of the reporting window, as an ISO 8601 timestamp (for example, &#x60;2026-08-01T00:00:00Z&#x60;). |
+ **end** | **datetime**| End of the reporting window, as an ISO 8601 timestamp (for example, &#x60;2026-08-08T00:00:00Z&#x60;). |
+
+### Return type
+
+[**EmailProviderMetricsResponse**](EmailProviderMetricsResponse.md)
+
+### Authorization
+
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
+**429** | Rate Limit Exceeded |  -  |
+**0** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
+
+# **get_email_provider_metrics_timeseries**
+> EmailProviderMetricsTimeseriesResponse get_email_provider_metrics_timeseries(app_id, domain, start, end, granularity)
+
+Get email inbox provider metrics over time
+
+Email delivery, opens, clicks, bounces, failures, and spam complaints for a sending domain over time, bucketed by hour, day, or month. Use `providers[]` to narrow the totals to specific inbox providers (Gmail, Outlook, Yahoo, Apple, and more) and track how deliverability to them changes. Each event's metrics are totaled across the requested providers, or across all providers when none are given. `start` must be before `end` and no more than 365 days ago, or 60 days ago for `hourly` granularity. `events` is empty when the domain is not found for the app or is not currently active for sending. 
+
+### Example
+
+* Bearer Authentication (rest_api_key):
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.models import *
+# python-dateutil is installed automatically as a dependency of this SDK.
+from dateutil.parser import parse as dateutil_parser
+from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient(configuration) as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    app_id = "YOUR_APP_ID" # Your OneSignal App ID in UUID v4 format. 
+    domain = "mail.example.com" # The sending domain to report on. Must be an email domain configured for this app. 
+    start = dateutil_parser('2026-08-01T00:00:00Z') # Start of the reporting window, as an ISO 8601 timestamp (for example, `2026-08-01T00:00:00Z`). 
+    end = dateutil_parser('2026-08-08T00:00:00Z') # End of the reporting window, as an ISO 8601 timestamp (for example, `2026-08-08T00:00:00Z`). 
+    granularity = "daily" # The size of each time bucket. Hourly data is only available for the last 60 days. 
+    providers = [
+        "gmail",
+    ]  # Inbox providers to include in the totals. Omit to include all providers. Accepted values: `apple`, `att`, `canadian`, `chinese`, `comcast`, `free_fr`, `french`, `german`, `gmail`, `google_workspace`, `googlers`, `inbox_lv`, `italian`, `japanese`, `outlook_365`, `outlook_eu`, `outlook_us`, `proton`, `rackspace`, `russian`, `uk`, `united_online`, `yahoo_eu`, `yahoo_us`, `other_eu`, `other_us`, and `other`. Example: providers[]=gmail&providers[]=yahoo_us  (optional) 
+
+    try:
+        # Get email inbox provider metrics over time
+        api_response = api_instance.get_email_provider_metrics_timeseries(app_id, domain, start, end, granularity, providers=providers)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->get_email_provider_metrics_timeseries: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **app_id** | **str**| Your OneSignal App ID in UUID v4 format. |
+ **domain** | **str**| The sending domain to report on. Must be an email domain configured for this app. |
+ **start** | **datetime**| Start of the reporting window, as an ISO 8601 timestamp (for example, &#x60;2026-08-01T00:00:00Z&#x60;). |
+ **end** | **datetime**| End of the reporting window, as an ISO 8601 timestamp (for example, &#x60;2026-08-08T00:00:00Z&#x60;). |
+ **granularity** | **str**| The size of each time bucket. Hourly data is only available for the last 60 days. |
+ **providers** | **[str]**| Inbox providers to include in the totals. Omit to include all providers. Accepted values: &#x60;apple&#x60;, &#x60;att&#x60;, &#x60;canadian&#x60;, &#x60;chinese&#x60;, &#x60;comcast&#x60;, &#x60;free_fr&#x60;, &#x60;french&#x60;, &#x60;german&#x60;, &#x60;gmail&#x60;, &#x60;google_workspace&#x60;, &#x60;googlers&#x60;, &#x60;inbox_lv&#x60;, &#x60;italian&#x60;, &#x60;japanese&#x60;, &#x60;outlook_365&#x60;, &#x60;outlook_eu&#x60;, &#x60;outlook_us&#x60;, &#x60;proton&#x60;, &#x60;rackspace&#x60;, &#x60;russian&#x60;, &#x60;uk&#x60;, &#x60;united_online&#x60;, &#x60;yahoo_eu&#x60;, &#x60;yahoo_us&#x60;, &#x60;other_eu&#x60;, &#x60;other_us&#x60;, and &#x60;other&#x60;. Example: providers[]&#x3D;gmail&amp;providers[]&#x3D;yahoo_us  | [optional]
+
+### Return type
+
+[**EmailProviderMetricsTimeseriesResponse**](EmailProviderMetricsTimeseriesResponse.md)
+
+### Authorization
+
+[rest_api_key](https://github.com/OneSignal/onesignal-python-api#configuration)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**400** | Bad Request |  -  |
+**404** | Not Found |  -  |
 **429** | Rate Limit Exceeded |  -  |
 **0** | Unexpected error |  -  |
 

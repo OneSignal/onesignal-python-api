@@ -37,6 +37,11 @@ from onesignal.model.custom_events_request import CustomEventsRequest
 from onesignal.model.delivery_data import DeliveryData
 from onesignal.model.duplicate_journey_overrides import DuplicateJourneyOverrides
 from onesignal.model.duplicate_journey_request import DuplicateJourneyRequest
+from onesignal.model.email_metrics import EmailMetrics
+from onesignal.model.email_provider_metrics import EmailProviderMetrics
+from onesignal.model.email_provider_metrics_event import EmailProviderMetricsEvent
+from onesignal.model.email_provider_metrics_response import EmailProviderMetricsResponse
+from onesignal.model.email_provider_metrics_timeseries_response import EmailProviderMetricsTimeseriesResponse
 from onesignal.model.email_reputation_response import EmailReputationResponse
 from onesignal.model.email_reputation_window import EmailReputationWindow
 from onesignal.model.email_warm_up import EmailWarmUp
