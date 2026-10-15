@@ -35,6 +35,8 @@ from onesignal.model.create_template_request import CreateTemplateRequest
 from onesignal.model.create_user_conflict_response import CreateUserConflictResponse
 from onesignal.model.custom_events_request import CustomEventsRequest
 from onesignal.model.duplicate_journey_request import DuplicateJourneyRequest
+from onesignal.model.email_provider_metrics_response import EmailProviderMetricsResponse
+from onesignal.model.email_provider_metrics_timeseries_response import EmailProviderMetricsTimeseriesResponse
 from onesignal.model.email_reputation_response import EmailReputationResponse
 from onesignal.model.estimate_notification_recipients_request import EstimateNotificationRecipientsRequest
 from onesignal.model.estimate_notification_recipients_success_response import EstimateNotificationRecipientsSuccessResponse
@@ -1709,6 +1711,163 @@ class DefaultApi(object):
                 'location_map': {
                 },
                 'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_email_provider_metrics_endpoint = _Endpoint(
+            settings={
+                'response_type': (EmailProviderMetricsResponse,),
+                'auth': [
+                    'rest_api_key'
+                ],
+                'endpoint_path': '/apps/{app_id}/email_analytics/provider_metrics',
+                'operation_id': 'get_email_provider_metrics',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'app_id',
+                    'domain',
+                    'start',
+                    'end',
+                ],
+                'required': [
+                    'app_id',
+                    'domain',
+                    'start',
+                    'end',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'app_id':
+                        (str,),
+                    'domain':
+                        (str,),
+                    'start':
+                        (datetime,),
+                    'end':
+                        (datetime,),
+                },
+                'attribute_map': {
+                    'app_id': 'app_id',
+                    'domain': 'domain',
+                    'start': 'start',
+                    'end': 'end',
+                },
+                'location_map': {
+                    'app_id': 'path',
+                    'domain': 'query',
+                    'start': 'query',
+                    'end': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_email_provider_metrics_timeseries_endpoint = _Endpoint(
+            settings={
+                'response_type': (EmailProviderMetricsTimeseriesResponse,),
+                'auth': [
+                    'rest_api_key'
+                ],
+                'endpoint_path': '/apps/{app_id}/email_analytics/provider_metrics_timeseries',
+                'operation_id': 'get_email_provider_metrics_timeseries',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'app_id',
+                    'domain',
+                    'start',
+                    'end',
+                    'granularity',
+                    'providers',
+                ],
+                'required': [
+                    'app_id',
+                    'domain',
+                    'start',
+                    'end',
+                    'granularity',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                    'granularity',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('granularity',): {
+
+                        "HOURLY": "hourly",
+                        "DAILY": "daily",
+                        "MONTHLY": "monthly"
+                    },
+                },
+                'openapi_types': {
+                    'app_id':
+                        (str,),
+                    'domain':
+                        (str,),
+                    'start':
+                        (datetime,),
+                    'end':
+                        (datetime,),
+                    'granularity':
+                        (str,),
+                    'providers':
+                        ([str],),
+                },
+                'attribute_map': {
+                    'app_id': 'app_id',
+                    'domain': 'domain',
+                    'start': 'start',
+                    'end': 'end',
+                    'granularity': 'granularity',
+                    'providers': 'providers[]',
+                },
+                'location_map': {
+                    'app_id': 'path',
+                    'domain': 'query',
+                    'start': 'query',
+                    'end': 'query',
+                    'granularity': 'query',
+                    'providers': 'query',
+                },
+                'collection_format_map': {
+                    'providers': 'multi',
                 }
             },
             headers_map={
@@ -6077,6 +6236,201 @@ class DefaultApi(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['_request_auths'] = kwargs.get('_request_auths', None)
         return self.get_apps_endpoint.call_with_http_info(**kwargs)
+
+    def get_email_provider_metrics(
+        self,
+        app_id,
+        domain,
+        start,
+        end,
+        **kwargs
+    ):
+        """Get email inbox provider metrics  # noqa: E501
+
+        Email delivery, opens, clicks, bounces, failures, and spam complaints broken down by inbox provider (Gmail, Outlook, Yahoo, Apple, and more) to pinpoint where deliverability problems are coming from. Metrics are reported for a single sending domain over the requested time range. `start` must be before `end` and no more than 365 days ago. `providers` is empty when the domain is not found for the app or is not currently active for sending.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_email_provider_metrics(app_id, domain, start, end, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            app_id (str): Your OneSignal App ID in UUID v4 format.
+            domain (str): The sending domain to report on. Must be an email domain configured for this app.
+            start (datetime): Start of the reporting window, as an ISO 8601 timestamp (for example, `2026-08-01T00:00:00Z`).
+            end (datetime): End of the reporting window, as an ISO 8601 timestamp (for example, `2026-08-08T00:00:00Z`).
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            EmailProviderMetricsResponse
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['app_id'] = \
+            app_id
+        kwargs['domain'] = \
+            domain
+        kwargs['start'] = \
+            start
+        kwargs['end'] = \
+            end
+        return self.get_email_provider_metrics_endpoint.call_with_http_info(**kwargs)
+
+    def get_email_provider_metrics_timeseries(
+        self,
+        app_id,
+        domain,
+        start,
+        end,
+        granularity,
+        **kwargs
+    ):
+        """Get email inbox provider metrics over time  # noqa: E501
+
+        Email delivery, opens, clicks, bounces, failures, and spam complaints for a sending domain over time, bucketed by hour, day, or month. Use `providers[]` to narrow the totals to specific inbox providers (Gmail, Outlook, Yahoo, Apple, and more) and track how deliverability to them changes. Each event's metrics are totaled across the requested providers, or across all providers when none are given. `start` must be before `end` and no more than 365 days ago, or 60 days ago for `hourly` granularity. `events` is empty when the domain is not found for the app or is not currently active for sending.   # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_email_provider_metrics_timeseries(app_id, domain, start, end, granularity, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            app_id (str): Your OneSignal App ID in UUID v4 format.
+            domain (str): The sending domain to report on. Must be an email domain configured for this app.
+            start (datetime): Start of the reporting window, as an ISO 8601 timestamp (for example, `2026-08-01T00:00:00Z`).
+            end (datetime): End of the reporting window, as an ISO 8601 timestamp (for example, `2026-08-08T00:00:00Z`).
+            granularity (str): The size of each time bucket. Hourly data is only available for the last 60 days.
+
+        Keyword Args:
+            providers ([str]): Inbox providers to include in the totals. Omit to include all providers. Accepted values: `apple`, `att`, `canadian`, `chinese`, `comcast`, `free_fr`, `french`, `german`, `gmail`, `google_workspace`, `googlers`, `inbox_lv`, `italian`, `japanese`, `outlook_365`, `outlook_eu`, `outlook_us`, `proton`, `rackspace`, `russian`, `uk`, `united_online`, `yahoo_eu`, `yahoo_us`, `other_eu`, `other_us`, and `other`. Example: providers[]=gmail&providers[]=yahoo_us . [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            EmailProviderMetricsTimeseriesResponse
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['app_id'] = \
+            app_id
+        kwargs['domain'] = \
+            domain
+        kwargs['start'] = \
+            start
+        kwargs['end'] = \
+            end
+        kwargs['granularity'] = \
+            granularity
+        return self.get_email_provider_metrics_timeseries_endpoint.call_with_http_info(**kwargs)
 
     def get_email_reputation(
         self,
