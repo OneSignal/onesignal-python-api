@@ -210,6 +210,20 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_email_provider_metrics(self):
+        """Test case for get_email_provider_metrics
+
+        Get email inbox provider metrics  # noqa: E501
+        """
+        pass
+
+    def test_get_email_provider_metrics_timeseries(self):
+        """Test case for get_email_provider_metrics_timeseries
+
+        Get email inbox provider metrics over time  # noqa: E501
+        """
+        pass
+
     def test_get_email_reputation(self):
         """Test case for get_email_reputation
 
