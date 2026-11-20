@@ -81,9 +81,12 @@ from onesignal.model.journey_node import JourneyNode
 from onesignal.model.journey_node_stats import JourneyNodeStats
 from onesignal.model.journey_reentry_rules import JourneyReentryRules
 from onesignal.model.journey_schedule import JourneySchedule
+from onesignal.model.journey_schema_response import JourneySchemaResponse
 from onesignal.model.journey_stats import JourneyStats
 from onesignal.model.journey_time_point import JourneyTimePoint
 from onesignal.model.journey_time_window import JourneyTimeWindow
+from onesignal.model.journey_validation_error import JourneyValidationError
+from onesignal.model.journey_validation_error_response import JourneyValidationErrorResponse
 from onesignal.model.journey_wait_until_expiration import JourneyWaitUntilExpiration
 from onesignal.model.language_string_map import LanguageStringMap
 from onesignal.model.list_audit_logs_success_response import ListAuditLogsSuccessResponse

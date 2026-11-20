@@ -231,6 +231,13 @@ class TestDefaultApi(unittest.TestCase):
         """
         pass
 
+    def test_get_journey_schema(self):
+        """Test case for get_journey_schema
+
+        Get Journey schema  # noqa: E501
+        """
+        pass
+
     def test_get_notification(self):
         """Test case for get_notification
 
