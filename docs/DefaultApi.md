@@ -35,6 +35,7 @@ Method | HTTP request | Description
 [**get_email_provider_metrics**](DefaultApi.md#get_email_provider_metrics) | **GET** /apps/{app_id}/email_analytics/provider_metrics | Get email inbox provider metrics
 [**get_email_provider_metrics_timeseries**](DefaultApi.md#get_email_provider_metrics_timeseries) | **GET** /apps/{app_id}/email_analytics/provider_metrics_timeseries | Get email inbox provider metrics over time
 [**get_email_reputation**](DefaultApi.md#get_email_reputation) | **GET** /apps/{app_id}/email_analytics/delivery_metrics | Get email reputation statistics
+[**get_journey_schema**](DefaultApi.md#get_journey_schema) | **GET** /journeys/schema | Get Journey schema
 [**get_notification**](DefaultApi.md#get_notification) | **GET** /notifications/{notification_id} | View notification
 [**get_notification_history**](DefaultApi.md#get_notification_history) | **POST** /notifications/{notification_id}/history | Notification History
 [**get_notifications**](DefaultApi.md#get_notifications) | **GET** /notifications | View notifications
@@ -2592,6 +2593,79 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
 
+# **get_journey_schema**
+> JourneySchemaResponse get_journey_schema(operation)
+
+Get Journey schema
+
+Retrieve the JSON Schema for a Journey authoring operation without authentication or app context. The response identifies the document to validate. Schema retrieval does not validate permissions or business rules for a later write.
+
+### Example
+
+
+```python
+import onesignal
+from onesignal.api import default_api
+from onesignal.models import *
+from pprint import pprint
+
+# See configuration.py for a list of all supported configuration parameters.
+# Some of the OneSignal endpoints require ORGANIZATION_API_KEY token for authorization, while others require REST_API_KEY.
+# We recommend adding both of them in the configuration page so that you will not need to figure it out yourself.
+configuration = onesignal.Configuration(
+    rest_api_key = "YOUR_REST_API_KEY", # App REST API key required for most endpoints
+    organization_api_key = "YOUR_ORGANIZATION_API_KEY" # Organization key is only required for creating new apps and other top-level endpoints
+)
+
+
+# Enter a context with an instance of the API client
+with onesignal.ApiClient() as api_client:
+    # Create an instance of the API class
+    api_instance = default_api.DefaultApi(api_client)
+    operation = "create" # The authoring operation whose schema you need. 
+
+    try:
+        # Get Journey schema
+        api_response = api_instance.get_journey_schema(operation)
+        pprint(api_response)
+    except onesignal.ApiException as e:
+        print("Exception when calling DefaultApi->get_journey_schema: %s\n" % e)
+        print("Status Code: %s" % e.status)
+        print("Response Body: %s" % e.body)
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **operation** | **str**| The authoring operation whose schema you need. |
+
+### Return type
+
+[**JourneySchemaResponse**](JourneySchemaResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | The schema and its applicability. |  -  |
+**400** | Missing or unsupported operation. |  -  |
+**429** | Rate Limit Exceeded |  -  |
+**0** | Unexpected error |  -  |
+
+[[Back to top]](#) [[Back to API list]](https://github.com/OneSignal/onesignal-python-api#full-api-reference) [[Back to README]](https://github.com/OneSignal/onesignal-python-api)
+
 # **get_notification**
 > NotificationWithMeta get_notification(app_id, notification_id)
 
@@ -4789,10 +4863,11 @@ with onesignal.ApiClient(configuration) as api_client:
     limit = 10  # Maximum number of templates. Default and max is 50. (optional) 
     offset = 0  # Pagination offset. (optional) 
     channel = "push"  # Filter by delivery channel. (optional) 
+    name = "Welcome"  # Return only templates whose name contains this text, ignoring case. (optional) 
 
     try:
         # View templates
-        api_response = api_instance.view_templates(app_id, limit=limit, offset=offset, channel=channel)
+        api_response = api_instance.view_templates(app_id, limit=limit, offset=offset, channel=channel, name=name)
         pprint(api_response)
     except onesignal.ApiException as e:
         print("Exception when calling DefaultApi->view_templates: %s\n" % e)
@@ -4809,6 +4884,7 @@ Name | Type | Description  | Notes
  **limit** | **int**| Maximum number of templates. Default and max is 50. | [optional] if omitted the server will use the default value of 50
  **offset** | **int**| Pagination offset. | [optional] if omitted the server will use the default value of 0
  **channel** | **str**| Filter by delivery channel. | [optional]
+ **name** | **str**| Return only templates whose name contains this text, ignoring case. | [optional]
 
 ### Return type
 

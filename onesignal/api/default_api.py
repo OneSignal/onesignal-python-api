@@ -50,7 +50,9 @@ from onesignal.model.get_segment_success_response import GetSegmentSuccessRespon
 from onesignal.model.get_segments_success_response import GetSegmentsSuccessResponse
 from onesignal.model.journey import Journey
 from onesignal.model.journey_list_response import JourneyListResponse
+from onesignal.model.journey_schema_response import JourneySchemaResponse
 from onesignal.model.journey_stats import JourneyStats
+from onesignal.model.journey_validation_error_response import JourneyValidationErrorResponse
 from onesignal.model.list_audit_logs_success_response import ListAuditLogsSuccessResponse
 from onesignal.model.notification import Notification
 from onesignal.model.notification_history_success_response import NotificationHistorySuccessResponse
@@ -1929,6 +1931,63 @@ class DefaultApi(object):
             },
             api_client=api_client
         )
+        self.get_journey_schema_endpoint = _Endpoint(
+            settings={
+                'response_type': (JourneySchemaResponse,),
+                'auth': [],
+                'endpoint_path': '/journeys/schema',
+                'operation_id': 'get_journey_schema',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'operation',
+                ],
+                'required': [
+                    'operation',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                    'operation',
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                    ('operation',): {
+
+                        "CREATE": "create",
+                        "DUPLICATE": "duplicate",
+                        "UPDATE": "update",
+                        "UPDATE_NODE": "update_node"
+                    },
+                },
+                'openapi_types': {
+                    'operation':
+                        (str,),
+                },
+                'attribute_map': {
+                    'operation': 'operation',
+                },
+                'location_map': {
+                    'operation': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
         self.get_notification_endpoint = _Endpoint(
             settings={
                 'response_type': (NotificationWithMeta,),
@@ -3738,6 +3797,7 @@ class DefaultApi(object):
                     'limit',
                     'offset',
                     'channel',
+                    'name',
                 ],
                 'required': [
                     'app_id',
@@ -3770,18 +3830,22 @@ class DefaultApi(object):
                         (int,),
                     'channel':
                         (str,),
+                    'name':
+                        (str,),
                 },
                 'attribute_map': {
                     'app_id': 'app_id',
                     'limit': 'limit',
                     'offset': 'offset',
                     'channel': 'channel',
+                    'name': 'name',
                 },
                 'location_map': {
                     'app_id': 'query',
                     'limit': 'query',
                     'offset': 'query',
                     'channel': 'query',
+                    'name': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -6515,6 +6579,89 @@ class DefaultApi(object):
             app_id
         return self.get_email_reputation_endpoint.call_with_http_info(**kwargs)
 
+    def get_journey_schema(
+        self,
+        operation,
+        **kwargs
+    ):
+        """Get Journey schema  # noqa: E501
+
+        Retrieve the JSON Schema for a Journey authoring operation without authentication or app context. The response identifies the document to validate. Schema retrieval does not validate permissions or business rules for a later write.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        >>> thread = api.get_journey_schema(operation, async_req=True)
+        >>> result = thread.get()
+
+        Args:
+            operation (str): The authoring operation whose schema you need.
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            _request_auths (list): set to override the auth_settings for an a single
+                request; this effectively ignores the authentication
+                in the spec for a single request.
+                Default is None
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            JourneySchemaResponse
+                If the method is called asynchronously, returns the request
+                thread.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['_request_auths'] = kwargs.get('_request_auths', None)
+        kwargs['operation'] = \
+            operation
+        return self.get_journey_schema_endpoint.call_with_http_info(**kwargs)
+
     def get_notification(
         self,
         app_id,
@@ -8950,6 +9097,7 @@ class DefaultApi(object):
             limit (int): Maximum number of templates. Default and max is 50.. [optional] if omitted the server will use the default value of 50
             offset (int): Pagination offset.. [optional] if omitted the server will use the default value of 0
             channel (str): Filter by delivery channel.. [optional]
+            name (str): Return only templates whose name contains this text, ignoring case.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
